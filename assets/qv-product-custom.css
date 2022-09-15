@@ -1,0 +1,6 @@
+.t4s-product-form__submit svg {
+  stroke: #fff;
+}
+.t4s-product-form__submit:hover svg {
+  stroke: #F88927;
+}

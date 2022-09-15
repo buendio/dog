@@ -1,0 +1,82 @@
+<section style="display: none !important" data-section-type="collection-template"></section> 
+<section class="gt_section-s64ZFzPK1mbo9sL " data-name="Contact Us">
+  <section class="gt_contact-page">
+    <div class="gt_container">
+      <div class="gt_flex gt_flex-xs-column gt_flex-sm-column">
+          <div class="gt_mr--medium gt_mb--medium gt_contact-left">
+              <h2 class="gt_heading">
+                SEND US A MESSAGE
+              </h2>
+               
+                  {% form 'contact' %}
+              
+                  <div class="gt_mb--medium contact-form">
+                    <input class="gt_mb--small gt_input" type="text" placeholder="Your name*" id="ContactFormName" name="contact[name]" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+                      <input class="gt_mb--small gt_input" type="email" placeholder="Your email adress*" id="ContactFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+                      <input class="gt_mb--small gt_input" type="tel" placeholder="Contact phone number" id="ContactFormPhone" name="contact[phone]" autocorrect="off" autocapitalize="off" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                      <textarea name="contact[body]" id="ContactFormMessage" class="gt_input--large form-control" cols="30" rows="5" placeholder="Your Message...">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                  </div>
+                  <div class="error-mess">
+                    
+
+                      {% if form.posted_successfully? %}
+                          <p class="success">
+                            Success! Your message has been sent.   
+                          </p>
+                      {% endif %}
+                      {% if form.errors %}
+                          {% for field in form.errors %}
+                              <p class="fail">{{ field }} {{ form.errors.messages[field] }}</p>
+                          {% endfor %}
+                      {% endif %}
+                  </div>
+                  <div class="button-send-contact">
+                      <button class="gt_button" type="submit">
+                          Send
+                      </button>
+                  </div>
+              
+              {% endform %}
+              
+          </div>
+          <div class="gt_contact-right ">
+              <h2 class="gt_heading">
+                 GET IN TOUCH
+              </h2>
+              <div class="contact-info">
+                  <div class="gt_mb--medium contact-detail">
+                      <h4>
+                        DIRECT CONTACT
+                      </h4>
+                      <p>
+                          <a href="tel:">
+                            
+                          </a>
+                      </p>
+                      <p>
+                          <a href="mailto:hello@whitedogclubusa.com">
+                            hello@whitedogclubusa.com
+                          </a>
+                      </p>
+                      <h4 class="gt_mt--small">
+                        
+                      </h4>
+                      <p>
+                        
+                      </p>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+    </div>
+      
+  </section>
+</section>
+
+ 
+{% comment %}
+You SHOULD NOT modify source code in this page because
+It is automatically generated from EcomSolid
+Try to edit page with the live editor.
+{% endcomment %}

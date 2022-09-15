@@ -1,0 +1,95 @@
+{{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+<div class="container">
+    {%- if section.settings.title != blank -%}
+        <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+        <p class="p section-reviews__text">{{- section.settings.text -}}</p>
+    {%- endif -%}
+    {%- if  section.blocks.size > 0 -%}
+        <div class="reviews-items" dir="rtl">
+            {%- for block in section.blocks -%}
+                <div class="reviews-slide">
+                    <div class="reviews-item">
+                        {%- if block.settings.img != blank -%}
+                            <img src="{{- block.settings.img | img_url: 'master' -}}" alt="" loading="lazy">
+                        {%- endif -%}
+                        {%- if block.settings.rate != blank -%}
+                            {% render 'icon-stars' %}
+                        {%- endif -%}
+                        {%- if block.settings.text != blank -%}
+                            <div class="reviews-item_txt">{{- block.settings.text -}}</div>
+                        {%- endif -%}
+                        {%- if block.settings.name != blank -%}
+                            <h3>{{- block.settings.name -}}</h3>
+                        {%- endif -%}
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+    {%- comment -%}
+    {%- if section.settings.textBtn != blank or section.settings.url != blank -%}
+    <button class="section-reviews__link btn">{% render 'icon-review' %}{{- section.settings.textBtn -}}</button>
+    {%- endif -%}
+    {%- endcomment -%}
+</div>
+
+{% schema %}
+    {
+        "name": "Section Reviews",
+        "class": "section-reviews",
+        "tag": "section",
+        "settings": [
+                {
+                    "type": "html",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "html",
+                    "id": "text",
+                    "label": "Text"
+                },
+                {
+                    "type": "text",
+                    "id": "textBtn",
+                    "label": "Text Link"
+                }
+        ],
+        "blocks": [
+            {
+                "type": "item",
+                "name": "Block",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "img",
+                        "label": "Image"
+                    },
+                    {
+                        "type": "checkbox",
+                        "id": "rate",
+                        "label": "Show Rating Stars"
+                    },
+                    {
+                        "type": "text",
+                        "id": "name",
+                        "label": "Name"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "text",
+                        "label": "Text"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Section Reviews",
+                "category": "Custom Section"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&family=Quicksand:wght@700&display=swap");
+@import url("http://fonts.cdnfonts.com/css/museo-sans-cyrl?styles=17900,17898,17902");
+.page-image {
+  padding: 50px 0;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .page-image {
+    padding: 25px 0;
+  }
+}
+.page-image h1 {
+  margin-bottom: 50px;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .page-image h1 {
+    margin-bottom: 30px;
+  }
+}
+
+.page-image-block {
+  margin-bottom: 20px;
+}
+.page-image-block img {
+  display: block;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.page-image-block a {
+  margin-top: 10px;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.page-image__link {
+  margin-top: 30px;
+}

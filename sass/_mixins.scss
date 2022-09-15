@@ -1,0 +1,69 @@
+// 1550
+@mixin media-xxxl() {
+  @media (max-width: 1550px) {
+    @content;
+  }
+}
+// 1360
+@mixin media-xxl() {
+  @media (max-width: 1360px) {
+    @content;
+  }
+}
+// 1200
+@mixin media-xl() {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+// 991
+@mixin media-lg() {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+// 767
+@mixin media-md() {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+// 575
+@mixin media-sm() {
+  @media (max-width: 575px) {
+    @content;
+  }
+}
+// 480
+@mixin media-xs() {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+// 400
+@mixin media-xxs() {
+  @media (max-width: 400px) {
+    @content;
+  }
+}
+
+@mixin ul_clear() {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin hidemarkerDetail() {
+  details > summary {
+      list-style: none;
+  }
+  details > summary::-webkit-details-marker{
+    display: none!important;
+    list-style-type: none;
+    list-style: none;
+    list-style:outside none none;
+  }
+  details summary::marker {
+      display:none;
+  }
+}

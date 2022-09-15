@@ -1,0 +1,48 @@
+@use 'mixins'  as m;
+
+.t4s-drawer__content--desktop, .t4s-filter-hidden--desktop {
+    height: 100%;
+}
+.t4s-drawer__content {
+    overflow: hidden;
+}
+.t4s-facets__form .t4s-facet ul li a {
+    font-size: 16px;
+    font-weight: 300;
+    color: #1D1D1D;
+    &:hover {
+        color: #F88927;
+    }
+}
+.t4s-checkbox-wrapper {
+    border-radius: 4px;
+    border: 1px solid #928F91;
+}
+.t4s-filter__values .is--selected>a>.t4s-checkbox-wrapper {
+    background: #928F91;
+    border: 1px solid #928F91;
+}
+.t4s-facets__form .t4s-facet .t4s-facet-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1D1D1D;
+    &::after {
+        display: none;
+    }
+}
+.t4s-filter-hidden.t4s-drawer .t4s-value-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    padding-top: 3px;
+    border: 1px solid #1D1D1D;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #1D1D1D;
+    font-weight: 600;
+}
+button[data-btn-as-a]:hover {
+    color: #F88927;
+}

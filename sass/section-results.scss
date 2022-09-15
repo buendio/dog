@@ -1,0 +1,56 @@
+@use 'mixins'  as m;
+
+.section-results {
+    padding: 80px 0 40px;
+    text-align: center;
+    @include m.media-sm {
+        padding: 40px 0 0px;
+    }
+    h2 {
+        margin-bottom: 30px;
+    }
+}
+.section-results__text {
+    margin-bottom: 10px;
+}
+.section-results__link {
+    margin-bottom: 38px;
+    margin-top: 20px;
+}
+.results-item {
+    margin-bottom: 65px;
+    @include m.media-xl () {
+        max-width: 48%;
+    }
+    @include m.media-sm {
+        max-width: 100%;
+    }
+    img {
+        display: block;
+        margin-bottom: 27px;
+        border-radius: 40px;
+        object-fit: cover;
+        @include m.media-xl () {
+            width: 100%;
+        }
+        @include m.media-sm {
+            margin-bottom: 20px;
+        }
+    }
+    a {
+        padding-bottom: 5px;
+        font-size: 32px;
+        line-height: 1.4;
+        color: #525252;
+        border-bottom: 2px solid transparent;
+        @include m.media-sm {
+            font-size: 20px;
+        }
+        span {
+            color: #F88927;
+        }
+        &:hover {
+            border-bottom: 2px solid #F88927;
+        }
+    }
+}

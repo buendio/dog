@@ -1,0 +1,231 @@
+@use 'mixins'  as m;
+header {
+    position: relative;
+    padding: 25px 0;
+    background-color: #F4F4F4;
+    @include m.media-sm () {
+        padding: 15px 0;
+    }
+}
+.menu-btn {
+    width: 32px;
+    height: 32px;
+    &:hover {
+        svg {
+            stroke: #F88927;
+        }
+    }
+    svg {
+        stroke:#928F91;
+        transition: all;
+    }
+}
+
+.collection-menu {
+    display: flex;
+    align-items: center;
+    margin-left: 65px;
+    margin-bottom: 0;
+}
+.collectiom-menu__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+        margin-right: 45px;
+    }
+    svg {
+        margin-left: 8px;
+        stroke: #2B2B2B;
+        transition: all 400ms;
+    }
+    &:hover {
+        .collectiom-menu__hide {
+            visibility: visible;
+            opacity: 1;
+        }
+        svg {
+            transform: rotate(180deg);
+            stroke: #F88927;
+        }
+    }
+}
+.collectiom-menu__link {
+    &:hover {
+        color: #F88927;
+    }
+}
+.collectiom-menu__hide {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    width: 100%;
+    padding: 35px 10px 20px;
+    background: #f4f4f4;
+    color: #5F596E;
+    font-family: 'Mulish', sans-serif;
+    line-height: 2.12;
+    font-weight: 700;
+    border-radius: 0px 0px 20px 20px;
+    transition: all 444ms;
+
+}
+.header-icons {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 0;
+    @include m.media-lg() {
+        margin-left: auto;
+    }
+}
+.search {
+    margin-right: 10px;
+}
+.searchLink {
+    margin-right: 10px;
+}
+.header__account {
+    margin-right: 10px;
+}
+.header__search {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background: #fff;
+    width: 500px;
+    z-index: 100;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    padding: 20px;
+    transition: all 400ms;
+    @include m.media-lg() {
+        width: 100%;
+    }
+    &.active {
+        visibility: visible;
+        opacity: 1;
+        right: 0;
+    }
+}
+.header__search-input {
+    width: 70%;
+    margin-right: 20px;
+    border: 1px solid #928F91;
+    border-radius: 3px;
+}
+.menu-hide {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 11;
+    width: 500px;
+    height: 100vh;
+    padding: 25px 90px 90px 0;
+    background: #E5E5E5;
+    transition: all 400ms;
+    &.active {
+        visibility: visible;
+        opacity: 1;
+        left: 0;
+    }
+    @include m.media-lg() {
+        width: 100%;
+        padding: 25px;
+    }
+}
+.menu-hide_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: max-content;
+    height: 100%;
+    margin: 0 0 0 auto;
+    padding-bottom: 35px;
+    @include m.media-lg() {
+        margin: 0;
+    }
+}
+.menu-list {
+    padding: 0;
+}
+.menu-list__item--close {
+    margin-bottom: 20px;
+
+}
+.menu-list {
+
+}
+.menu-list__link {
+    font-size: 17px;
+    line-height: 1.8;
+    &:hover {
+        color: #F88927;
+    }
+}
+.headerSocial-icons{
+    margin-top: 20px;
+}
+.headerSocial-icons_item {
+    &:not(:last-child) {
+        margin-right: 35px;
+    }
+}
+.cart-drawer {
+    position: relative;
+    span.t4s-count-box {
+        position: absolute;
+        top: -16px;
+        right: -16px;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        width: 17px;
+        height: 17px;
+        font-size: 10px;
+        font-weight: 600;
+        color: #fff;
+        background-color: #F88927;
+        border-radius: 50%;
+    }
+}
+.menu-list__link--hide {
+    display: flex;
+    align-items: center;
+}
+.menuSvg {
+    display: inline-flex;
+    align-items: center;
+}
+.menu-list__wrap {
+    align-items: center;
+    svg {
+        margin-left: 20px;
+        stroke: #2B2B2B;
+        transition: all 400ms;
+        cursor: pointer;
+    }
+    &.active {
+        svg {
+            transform: rotate(180deg);
+            stroke: #F88927;
+        }
+        .menu-list__link--hide{
+            color: #F88927;
+        }
+    }
+
+}
+.menu-list__second {
+    display: none;
+    padding-left: 20px;
+    a {
+        color: #727272;
+        line-height: 29px
+    }
+}
+

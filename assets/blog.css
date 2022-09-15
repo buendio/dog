@@ -1,0 +1,21 @@
+.t4s-post-thumb > a {
+  border-radius: 40px;
+}
+
+.t4s-post-time {
+  font-family: "Mulish", sans-serif;
+  color: #49415A;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.t4s-post-title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.t4s-blog-footer {
+  margin-top: 50px;
+}

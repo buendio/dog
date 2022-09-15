@@ -1,0 +1,33 @@
+{% render 'icon-superior' %}
+<style>
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 0;
+    }
+</style>
+{% schema %}
+    {
+        "name": "Section Decor",
+        "class": "section-decor",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "img1",
+                "label": "Image 1"
+            },
+            {
+                "type": "image_picker",
+                "id": "img2",
+                "label": "Image 2"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Section Decor",
+                "category": "Custom Section"
+            }
+        ]
+    }
+{% endschema %}

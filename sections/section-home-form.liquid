@@ -1,0 +1,49 @@
+{{ 'section-home-form.css' | asset_url | stylesheet_tag }}
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col-lg-6">
+            {%- if section.settings.title != blank -%}
+                <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
+            {%- endif -%}
+            {%- if section.settings.text != blank -%}
+                <p class="">{{- section.settings.text -}}</p>
+            {%- endif -%}
+        </div>
+        <div class="col-lg-6">
+            {%- form 'contact', id: '', class: 'subscribe-form' -%}
+            {% if form.posted_successfully? %}
+                <div class="form-status form-status--success" tabindex="-1" autofocus>{% render 'icon-success' %} {{ 'templates.contact.form.post_success' | t }}</div>
+                {%- elsif form.errors -%}
+                <div class="form-status form-status--error" tabindex="-1" autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</div>
+            {% endif %}
+            <input type="text" name="contact[email]" placeholder="Your email address">
+            <button class="btn" type="submit">Subscribe</button>
+        {%- endform -%}
+        </div>
+    </div>
+</div>
+{% schema %}
+    {
+        "name": "Section Form",
+        "class": "section-form",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "html",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "html",
+                "id": "text",
+                "label": "Text"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Section Form",
+                "category": "Custom Section"
+            }
+        ]
+    }
+{% endschema %}

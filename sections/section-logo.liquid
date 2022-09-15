@@ -1,0 +1,69 @@
+{{ 'section-logo.css' | asset_url | stylesheet_tag }}
+
+<div class="container">
+    {%- if section.settings.title != blank -%}
+        <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
+    {%- endif -%}
+    {%- if  section.blocks.size > 0 -%}
+        <div class="row">
+            {%- for block in section.blocks -%}
+                <div class="col-6 col-lg-3 logo-itemWrap">
+                    <div class="logo-item">
+                        {%- if block.settings.img != blank -%}
+                            <img src="{{- block.settings.img | img_url: 'master' -}}" alt="" loading="lazy">
+                        {%- endif -%}
+                        {%- if block.settings.title  -%}
+                            <h3>{{- block.settings.title -}}</h3>
+                        {%- endif -%}
+                        {%- if block.settings.text  -%}
+                            <p>{{- block.settings.text -}}</p>
+                        {%- endif -%}
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+</div>
+{% schema %}
+    {
+        "name": "Section Logo",
+        "class": "section-logo",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "html",
+                "id": "title",
+                "label": "Title"
+            }
+        ],
+        "blocks": [
+        {
+                "type": "item",
+                "name": "Block",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "img",
+                        "label": "Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    },
+                    {
+                        "type": "html",
+                        "id": "text",
+                        "label": "Text"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Section Logo",
+                "category": "Custom Section"
+            }
+        ]
+    }
+{% endschema %}

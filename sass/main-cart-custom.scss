@@ -1,0 +1,71 @@
+@use 'mixins'  as m;
+
+#t4s-mini_cart  {
+    .t4s-drawer__header span {
+        font-size: 24px;
+        font-weight: 300;
+    }
+}
+.t4s-cart-thes__bar>span {
+    background-color: #F88927 !important;
+}
+.t4s-cart-thes__bar span>svg {
+    fill: #F88927 !important;
+}
+.t4s-mini_cart__title {
+    margin-bottom: 10px;
+    font-family: 'Museo Sans Cyrl';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+.t4s-cart__thres3 {
+    color: #1D1D1D;
+}
+.t4s-cart__threshold .t4s-cr {
+    color: #F88927 !important;
+}
+.t4s-mini_cart__meta .t4s-cart_price ins {
+    color: #F88927;
+    font-size: 20px;
+}
+.t4s-mini_cart__meta .t4s-cart_price del {
+    color: #928F91;
+    font-size: 14px;
+}
+.t4s-mini_cart__actions .t4s-quantity-cart-item {
+    border: 1px solid #CECECE;
+border-radius: 28px;
+}
+.t4s-cart-total {
+    font-weight: 600;
+font-size: 20px;
+font-family: 'Museo Sans Cyrl';
+color: #F88927;
+text-transform: uppercase;
+}
+#t4s-mini_cart .t4s-cart__tax {
+    color: #1D1D1D;
+    font-weight: 400;
+}
+#t4s-mini_cart .cart_agree{
+    color: #1D1D1D;
+}
+#t4s-mini_cart .t4s-drawer__bottom .t4s-btn__cart {
+    background: #FFFFFF;
+border: 1px solid #CECECE;
+border-radius: 28px;
+text-transform: uppercase;
+color: #1D1D1D;
+font-size: 16px;
+}
+#t4s-mini_cart .t4s-drawer__bottom .t4s-btn__checkout {
+    background: #F88927;
+border-radius: 50px;
+font-size: 16px;
+text-transform: uppercase;
+&:hover {
+    background: #fff;
+    color: #F88927;
+}
+}

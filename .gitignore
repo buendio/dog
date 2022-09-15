@@ -1,0 +1,10 @@
+.idea
+.themeplify
+node_modules
+yarn.lock
+config.yml
+yarn-error.log
+dist/
+uploads/
+*zip
+*rar

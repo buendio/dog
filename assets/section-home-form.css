@@ -1,0 +1,43 @@
+.section-form {
+  padding: 100px 0;
+  background: #F4F4F4;
+}
+@media (max-width: 991px) {
+  .section-form {
+    padding: 45px 0;
+  }
+}
+.section-form h2, .section-form p {
+  text-align: left;
+}
+@media (max-width: 991px) {
+  .section-form h2, .section-form p {
+    text-align: center;
+  }
+}
+.section-form h2 {
+  margin-bottom: 12px;
+}
+.section-form h2::after {
+  margin: 13px 0 0;
+}
+@media (max-width: 991px) {
+  .section-form h2::after {
+    margin: 13px auto 0;
+  }
+}
+.section-form .subscribe-form {
+  width: 549px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 991px) {
+  .section-form .subscribe-form {
+    margin-top: 30px;
+  }
+}
+@media (max-width: 575px) {
+  .section-form .subscribe-form {
+    width: 100%;
+  }
+}

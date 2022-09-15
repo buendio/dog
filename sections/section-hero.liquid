@@ -1,0 +1,76 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+<div class="container">
+    {%- if section.settings.logo != blank -%}
+        <a href="/" class="logo">
+            <img src="{{-  section.settings.logo | img_url: '248x' -}}" alt="{{ shop.name | escape }}" loading="lazy">
+        </a>
+    {%- endif -%}
+    <div class="hero-content">
+        {%- if section.settings.title != blank -%}
+            <h1>{{- section.settings.title -}}</h1>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+            <p class="hero__text">{{- section.settings.text -}}</p>
+        {%- endif -%}
+        {%- if section.settings.textBtn != blank or section.settings.url != blank -%}
+            <a href="{{- section.settings.url -}}" class="btn">{{- section.settings.textBtn -}}</a>
+        {%- endif -%}
+    </div>
+    <div class="hero-video">
+        <video id="heroVideo" loop="loop" autoplay loop muted="muted" playsinline>
+            <source src="{{ section.settings.video }}">
+        </video>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById("heroVideo");
+           video.play();
+    })
+
+</script>
+{% schema %}
+    {
+        "name": "Home Banner",
+        "class": "hero",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "logo",
+                "label": "LOGO"
+            },
+            {
+                "type": "html",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "html",
+                "id": "text",
+                "label": "Text"
+            },
+            {
+                "type": "text",
+                "id": "textBtn",
+                "label": "Text Button"
+            },
+            {
+                "type": "url",
+                "id": "url",
+                "label": "Link Button"
+            },
+            {
+                "type": "url",
+                "id": "video",
+                "label": "Video Link"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Home Banner",
+                "category": "Custom Section"
+            }
+        ]
+    }
+{% endschema %}

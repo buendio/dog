@@ -1,0 +1,18 @@
+{% if product.available %}
+    <div class="price__element">
+        {% if product.compare_at_price > product.price %}
+        <div class="price__element-sale">
+            <span class="curentprice">{{ product.price | money }}</span>
+            <span class="oldprice">{{ product.compare_at_price | money }}</span>
+        </div>
+        {% elsif product.price_varies %}
+            <div class="price__element-varies">
+            From {{ product.price_min | money }} to {{ product.price_max | money }}
+            </div>
+        {% else %}
+            <div class="price__element-normal">
+                {{ product.price | money }}
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

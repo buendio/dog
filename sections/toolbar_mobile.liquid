@@ -1,0 +1,348 @@
+{%- liquid
+    assign se_stts = section.settings
+    assign show_txt = se_stts.show_txt
+    assign img_size = 40
+    assign search_url = routes.search_url
+-%}
+{%- if se_stts.enable_toolbar and section.blocks.size > 0 -%}
+{{ 'toolbar_mobile.css' | asset_url | stylesheet_tag }}
+<div class="t4s-toolbar t4s-toolbar-label-{{show_txt}} t4s-pf t4s-r-0 t4s-l-0 t4s-b-0 t4s-d-flex t4s-align-items-center t4s-justify-content-between">
+    {%- for block in section.blocks-%}
+        {%- assign bk_stts = block.settings -%}
+        {%- assign block_type = block.type -%}
+        {%- case block_type -%}
+            {%- when 'shop' -%}
+            <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                <a href="{{collections[bk_stts.link].url|default:routes.all_products_collection_url}}">
+                    <span class="t4s-toolbar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </span>
+                    {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                </a>
+            </div>
+            {%- when 'wish' %}{% if settings.wishlist_mode == '0' %}{% continue %}{% endif -%}
+            <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                <a data-link-wishlist href="{% if settings.wishlist_mode != '3' %}{{ search_url }}/?view=wishlist{%- else -%}/pages/wishlist{%- endif -%}">
+                    <span class="t4s-toolbar-icon t4s-pr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <span data-count-wishlist class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">0</span>
+                    </span>
+                    {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                </a>
+            </div>
+            {%- when 'compe' -%}
+            {%- unless settings.enable_compe -%}{%- continue -%}{%- endunless -%}
+                <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                <a data-link-compare href="{{ search_url }}/?view=compare">
+                    <span class="t4s-toolbar-icon t4s-pr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                        <span data-count-compare class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">0</span>
+                    </span>
+                    {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                </a>
+              </div>
+            {%- when 'cart' -%}
+                <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                    <a href="{{ routes.cart_url }}" data-drawer-delay data-drawer-options='{ "id":"#t4s-mini_cart" }'>
+                        <span class="t4s-toolbar-icon t4s-pr">
+                            {% render 'icon-cart' %}
+                            <span data-cart-count class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">{{ cart.item_count }}</span>
+                        </span>
+                        {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                    </a>
+                </div>
+            {%- when 'account' -%}{%- unless shop.customer_accounts_enabled %}{% continue %}{% endunless -%}
+                <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                    <a href="{{ routes.account_url }}" {% unless customer or settings.login_side == false %} data-drawer-options='{ "id":"#t4s-login-sidebar" }' {% endunless %}>
+                        <span class="t4s-toolbar-icon">
+                            <svg width="22" height="21" viewBox="0 0 22 21" fill="none" class="icon icon-user " xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.4952 18.9818C0.276029 19.4888 0.509308 20.0774 1.01624 20.2965C1.52318 20.5157 2.1118 20.2824 2.33097 19.7755L0.4952 18.9818ZM19.6705 19.7755C19.8897 20.2824 20.4783 20.5157 20.9852 20.2965C21.4922 20.0774 21.7255 19.4888 21.5063 18.9818L19.6705 19.7755ZM1.41309 19.3787C2.33097 19.7755 2.33079 19.7759 2.33062 19.7763C2.33058 19.7764 2.33042 19.7768 2.33034 19.777C2.33016 19.7774 2.33003 19.7777 2.32993 19.7779C2.32974 19.7783 2.3297 19.7784 2.32982 19.7782C2.33006 19.7776 2.33092 19.7757 2.33241 19.7724C2.33539 19.7658 2.34088 19.7537 2.34893 19.7366C2.36504 19.7024 2.39135 19.648 2.42826 19.5763C2.50216 19.4327 2.61806 19.2206 2.77899 18.9629C3.10177 18.4459 3.60019 17.7541 4.29663 17.0635C5.68095 15.6908 7.8372 14.3281 11.0007 14.3281V12.3281C7.19255 12.3281 4.55497 13.9907 2.88839 15.6433C2.05939 16.4654 1.46809 17.2861 1.08252 17.9036C0.889282 18.2131 0.746346 18.4738 0.649949 18.6611C0.601714 18.7548 0.565019 18.8304 0.539405 18.8848C0.526594 18.912 0.516545 18.9339 0.509199 18.9502C0.505525 18.9584 0.502527 18.9651 0.500197 18.9704C0.499031 18.973 0.498033 18.9753 0.4972 18.9772C0.496784 18.9782 0.496409 18.979 0.496076 18.9798C0.495909 18.9802 0.49569 18.9807 0.495607 18.9809C0.495398 18.9814 0.4952 18.9818 1.41309 19.3787ZM11.0007 14.3281C14.1643 14.3281 16.3205 15.6908 17.7049 17.0635C18.4013 17.7541 18.8997 18.4459 19.2225 18.9629C19.3834 19.2206 19.4993 19.4327 19.5732 19.5763C19.6101 19.648 19.6364 19.7024 19.6526 19.7366C19.6606 19.7537 19.6661 19.7658 19.6691 19.7724C19.6706 19.7757 19.6714 19.7776 19.6717 19.7782C19.6718 19.7784 19.6717 19.7783 19.6716 19.7779C19.6715 19.7777 19.6713 19.7774 19.6711 19.777C19.6711 19.7768 19.6709 19.7764 19.6709 19.7763C19.6707 19.7759 19.6705 19.7755 20.5884 19.3787C21.5063 18.9818 21.5061 18.9814 21.5059 18.9809C21.5058 18.9807 21.5056 18.9802 21.5054 18.9798C21.5051 18.979 21.5047 18.9782 21.5043 18.9772C21.5035 18.9753 21.5025 18.973 21.5013 18.9704C21.499 18.9651 21.496 18.9584 21.4923 18.9502C21.4849 18.9339 21.4749 18.912 21.4621 18.8848C21.4365 18.8304 21.3998 18.7548 21.3515 18.6611C21.2551 18.4738 21.1122 18.2131 20.919 17.9036C20.5334 17.2861 19.9421 16.4654 19.1131 15.6433C17.4465 13.9907 14.8089 12.3281 11.0007 12.3281V14.3281Z" fill="#928F91"></path>
+                                <path d="M14.2067 5.84651C14.2067 7.61707 12.7714 9.0524 11.0008 9.0524V11.0524C13.8759 11.0524 16.2067 8.72164 16.2067 5.84651H14.2067ZM11.0008 9.0524C9.23025 9.0524 7.79492 7.61707 7.79492 5.84651H5.79492C5.79492 8.72164 8.12568 11.0524 11.0008 11.0524V9.0524ZM7.79492 5.84651C7.79492 4.07595 9.23025 2.64062 11.0008 2.64062V0.640625C8.12568 0.640625 5.79492 2.97138 5.79492 5.84651H7.79492ZM11.0008 2.64062C12.7714 2.64062 14.2067 4.07595 14.2067 5.84651H16.2067C16.2067 2.97138 13.8759 0.640625 11.0008 0.640625V2.64062Z" fill="#928F91"></path>
+                                </svg>
+                        </span>
+                        {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                    </a>
+                </div>
+            {%- when 'search' -%}
+                <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                    <a href="{{ routes.search_url }}" data-drawer-delay data-drawer-options='{ "id":"#t4s-search-hidden" }'>
+                        <span class="t4s-toolbar-icon">
+                            {% render 'icon-search' %}
+                        </span>
+                        {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                    </a>
+                </div>
+            {%- when 'blog' %}
+                {% assign blog = blogs[bk_stts.blog] -%}
+                <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                    <a href="{{blog.url |default:request.path }}">
+                        <span class="t4s-toolbar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+                        </span>
+                        {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                    </a>
+                </div>
+            {%- when 'home' -%}
+            <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                <a href="{{routes.root_url}}">
+                    <span class="t4s-toolbar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </span>
+                    {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                  </a>
+            </div>
+            {%- when 'nav' -%}
+                <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                    <a href="{{routes.root_url}}" data-menu-drawer data-drawer-options='{ "id":"#t4s-menu-drawer" }' class="t4s-push-menu-btn">
+                        <span class="t4s-toolbar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                        </span>
+                        {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                    </a>
+                </div>
+            {%- when 'filter' -%}
+            <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item t4s-dn">
+                <a href="{{request.path}}" data-drawer-options='{ "id":"#t4s-filter-hidden" }'>
+                    <span class="t4s-toolbar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="16" height="16"><path d="M324.4 64C339.6 64 352 76.37 352 91.63C352 98.32 349.6 104.8 345.2 109.8L240 230V423.6C240 437.1 229.1 448 215.6 448C210.3 448 205.2 446.3 200.9 443.1L124.7 385.6C116.7 379.5 112 370.1 112 360V230L6.836 109.8C2.429 104.8 0 98.32 0 91.63C0 76.37 12.37 64 27.63 64H324.4zM144 224V360L208 408.3V223.1C208 220.1 209.4 216.4 211.1 213.5L314.7 95.1H37.26L140 213.5C142.6 216.4 143.1 220.1 143.1 223.1L144 224zM496 400C504.8 400 512 407.2 512 416C512 424.8 504.8 432 496 432H336C327.2 432 320 424.8 320 416C320 407.2 327.2 400 336 400H496zM320 256C320 247.2 327.2 240 336 240H496C504.8 240 512 247.2 512 256C512 264.8 504.8 272 496 272H336C327.2 272 320 264.8 320 256zM496 80C504.8 80 512 87.16 512 96C512 104.8 504.8 112 496 112H400C391.2 112 384 104.8 384 96C384 87.16 391.2 80 400 80H496z"></path></svg>
+                    </span>
+                    {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                </a>
+            </div>
+            {%- when 'sidebar' -%}
+                <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item t4s-dn">
+                    <a href="{{request.path}}" data-sidebar-trigger>
+                        <span class="t4s-toolbar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sidebar"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+                        </span>
+                        {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                    </a>
+                </div>
+            {%- else -%}
+            <div class="t4s-toolbart-{{block_type}} t4s-toolbar-item">
+                {%- assign image = bk_stts.image -%}
+                <a href="{{bk_stts.link |default:routes.account_url}}">
+                    <span class="t4s-toolbar-icon t4s-pr">
+                        {%- if image != blank %}
+                            <img class="lazyloadt4s t4s-lz--fadeIn" data-src="{{ image | image_url: height: img_size }}" data-widths="[100,200,400,600,700,800,900,1000,1200,1400,1600]" data-optimumx="2" data-sizes="auto" src=" {%- render 'img_svg',w:image.img_size,h:image.img_size -%} " width="{{ image.img_size }}" height="{{ image.img_size }}" alt="{{ image.alt | escape }}">
+                            <span class="lazyloadt4s-loader"></span>
+                        {%- endif -%}
+                    </span>
+                    {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
+                </a>
+            </div>
+        {%- endcase -%}
+    {%- endfor -%}
+</div>
+{%- endif -%}
+{% schema %}
+{
+    "name": "Sticky toolbar mobile",
+    "class": "t4s-section t4s-toolbar-mobile t4s-section-admn-fixed-",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_toolbar",
+            "label": "Enable sticky toolbar mobile",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "show_txt",
+            "label": "Show text under icon",
+            "default": true
+        }
+    ],
+    "blocks":[
+    {
+        "type": "shop",
+        "name": "Shop",
+        "limit": 1,
+        "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Shop"
+                },
+                {
+                    "type": "collection",
+                    "id": "link",
+                    "label": "Link (optional)"
+                }
+            ]
+        },
+        {
+            "type": "wish",
+            "name": "Wishlist",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Wishlist"
+                }
+            ]
+        },
+        {
+            "type": "compe",
+            "name": "Compare",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Compare"
+                }
+            ]
+        },
+        {
+            "type": "cart",
+            "name": "Cart",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Cart"
+                }
+            ]
+        },
+        {
+            "type": "account",
+            "name": "Account",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Account"
+                }
+            ]
+        },
+        {
+            "type": "search",
+            "name": "Search",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Search"
+                }
+            ]
+        },
+        {
+            "type": "blog",
+            "name": "Blog",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Blog"
+                },
+                {
+                    "id": "blog",
+                    "type": "blog",
+                    "label": "Blog"
+                }
+            ]
+        },
+        {
+            "type": "filter",
+            "name": "Filter",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Filter"
+                },
+                {
+                    "type": "paragraph",
+                    "content": "Only show when page has 'Filter'"
+            }
+            ]
+        },
+        {
+            "type": "sidebar",
+            "name": "Sidebar",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Sidebar"
+                },
+                {
+                    "type": "paragraph",
+                    "content": "Only show when page has 'Sidebar'"
+                }
+            ]
+        },
+        {
+            "type": "nav",
+            "name": "Menu",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Menu"
+                }
+            ]
+        },
+        {
+            "type": "home",
+            "name": "Home",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Home"
+                }
+            ]
+        },
+        {
+            "type": "link",
+            "name": "Link Custom",
+            "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title",
+                "default": "Custom"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Icon image"
+            },
+            {
+                "type": "url",
+                "id": "link",
+                "label": "Link",
+                "default": "/"
+            }
+            ]
+        }
+    ],
+    "default": {
+        "blocks": [
+          {"type": "shop"},{"type": "wish"},{"type": "cart"},{"type": "account"},{"type": "search"}
+        ]
+    }
+}
+{% endschema %}

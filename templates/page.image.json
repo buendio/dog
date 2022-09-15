@@ -1,0 +1,140 @@
+{
+  "sections": {
+    "16614951293a981ed3": {
+      "type": "heading-template-custom",
+      "settings": {
+        "img": "shopify:\/\/shop_images\/logo.png",
+        "img2": "shopify:\/\/shop_images\/Union.png",
+        "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/aae62a01963043e2bf3d678dafadc2a8.mp4",
+        "title": "BEFOR&AFTER"
+      }
+    },
+    "main": {
+      "type": "page-image",
+      "blocks": {
+        "4aa77d11-f029-4a71-ae2f-70490fa72b20": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/1_7dba728e-ad2e-4ae2-adb7-acf7f1113639.png"
+          }
+        },
+        "7f27d1d3-69d5-4b3d-ae4b-af534764ee8e": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/2_ec4245e3-6fe0-41b9-aa1a-37a56abcd473.png"
+          }
+        },
+        "e6cfdb43-a429-4251-a4c9-0dae2738c7e4": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/3_65e6c1dc-e534-4787-a699-d1b146fbd6c3.png"
+          }
+        },
+        "c622bcaa-7729-4a0a-a4a4-c283118daa4e": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/4_eab60581-0a48-453f-95c3-9decbe31b19b.png"
+          }
+        },
+        "232e12cb-fe62-4945-9bba-b2a9d1e2def8": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/9.png"
+          }
+        },
+        "6e0cb5b3-50b5-4d69-9e80-10f33636d389": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/7.png"
+          }
+        },
+        "8f33cafe-13aa-4d6d-8224-b97e41e6c671": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/5.png"
+          }
+        },
+        "bd1f4c71-62a2-4bf3-8790-bd5a27d91ec7": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/8.png"
+          }
+        },
+        "530d6202-6373-4592-9f86-12522668eb99": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/1_4db26d6f-2866-4225-94fa-cee14426b378.png"
+          }
+        },
+        "25b06d27-2369-471d-9426-a9935f9f9101": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/2_3f1b2e03-a0a8-4be9-8600-5540346e4911.png"
+          }
+        },
+        "e143feed-1635-46a9-ad61-ed427d85bd08": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/3_0caa146e-bd73-45b4-9fd1-7d66c0e14029.png"
+          }
+        },
+        "829f3b5d-8c9d-4bbc-a118-1bfa550517f5": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/4_b37fb1aa-9aa4-4411-b79e-433b034c8c2c.png"
+          }
+        },
+        "573aa72c-c5df-4549-aacf-1185bc436843": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/5_6e1e7876-c61b-4b3c-b1d8-0d87f0d1a6e7.png"
+          }
+        },
+        "99954471-14a5-4523-9eb5-76fc9b852b94": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/6_0b540807-d0d8-4ba1-bddb-d5c6d5c6d564.png"
+          }
+        },
+        "8a319909-f2a5-49bf-a856-74673fc8c078": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/7_e3c1995f-59d8-46f6-816c-489ed00c4ea0.png"
+          }
+        },
+        "eaea31cc-7301-4d72-9662-77093c7d4d60": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/8_0b2520d1-f63b-472e-a71c-c580564851ca.png"
+          }
+        }
+      },
+      "block_order": [
+        "4aa77d11-f029-4a71-ae2f-70490fa72b20",
+        "7f27d1d3-69d5-4b3d-ae4b-af534764ee8e",
+        "e6cfdb43-a429-4251-a4c9-0dae2738c7e4",
+        "c622bcaa-7729-4a0a-a4a4-c283118daa4e",
+        "232e12cb-fe62-4945-9bba-b2a9d1e2def8",
+        "6e0cb5b3-50b5-4d69-9e80-10f33636d389",
+        "8f33cafe-13aa-4d6d-8224-b97e41e6c671",
+        "bd1f4c71-62a2-4bf3-8790-bd5a27d91ec7",
+        "530d6202-6373-4592-9f86-12522668eb99",
+        "25b06d27-2369-471d-9426-a9935f9f9101",
+        "e143feed-1635-46a9-ad61-ed427d85bd08",
+        "829f3b5d-8c9d-4bbc-a118-1bfa550517f5",
+        "573aa72c-c5df-4549-aacf-1185bc436843",
+        "99954471-14a5-4523-9eb5-76fc9b852b94",
+        "8a319909-f2a5-49bf-a856-74673fc8c078",
+        "eaea31cc-7301-4d72-9662-77093c7d4d60"
+      ],
+      "settings": {
+        "btnText": "to catalog",
+        "url": "shopify:\/\/collections\/dogs-food"
+      }
+    }
+  },
+  "order": [
+    "16614951293a981ed3",
+    "main"
+  ]
+}

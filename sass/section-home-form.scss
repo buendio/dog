@@ -1,0 +1,35 @@
+@use 'mixins'  as m;
+
+.section-form {
+    padding: 100px 0;
+    background: #F4F4F4;
+    @include m.media-lg {
+        padding: 45px 0 ;
+    }
+    h2, p {
+        text-align: left;
+        @include m.media-lg {
+            text-align: center;
+        }
+    }
+    h2 {
+        margin-bottom: 12px;
+        &::after {
+            margin: 13px 0 0;
+            @include m.media-lg {
+                margin: 13px auto 0;
+            }
+        }
+    }
+    .subscribe-form {
+        width: 549px;
+        margin-left: auto;
+        margin-right: auto;
+        @include m.media-lg {
+            margin-top: 30px;
+        }
+        @include m.media-sm {
+            width: 100%;
+        }
+    }
+}

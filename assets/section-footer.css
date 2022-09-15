@@ -1,0 +1,130 @@
+.footer {
+  padding: 45px 0 25px;
+  background-color: #242424;
+}
+@media (max-width: 575px) {
+  .footer {
+    text-align: center;
+  }
+}
+
+.footer-logo {
+  margin-bottom: 25px;
+}
+@media (max-width: 575px) {
+  .footer-logo {
+    max-width: 167px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.footer-logo svg {
+  width: 100%;
+}
+
+.footer-info {
+  margin-bottom: 25px;
+}
+
+.footer-info__text {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #CCCCCC;
+}
+@media (max-width: 575px) {
+  .footer-info__text {
+    margin-bottom: 23px;
+    font-size: 14px;
+    line-height: 1.17;
+  }
+}
+
+.footerSocial-icons {
+  margin-bottom: 20px;
+}
+@media (max-width: 575px) {
+  .footerSocial-icons {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+.footerSocial-icons a:not(:last-child) {
+  margin-right: 20px;
+}
+
+.footer-menu {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.footer-menu__link {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #FFFFFF;
+  text-transform: capitalize;
+}
+
+.subscribe-form {
+  width: 255px;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: center;
+}
+@media (max-width: 575px) {
+  .subscribe-form {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.subscribe-form input {
+  display: block;
+  width: 100%;
+  height: 58px;
+  margin-bottom: 15px;
+  background: #FFFFFF;
+  border: 1px solid #D8D8D8;
+  border-radius: 50px;
+  text-align: center;
+}
+.subscribe-form .btn {
+  width: 100%;
+}
+
+.subscribe-form__text {
+  margin-bottom: 5px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #CCCCCC;
+}
+
+.footer-copyright {
+  margin-top: 42px;
+  font-size: 14px;
+  color: #7A7A7A;
+  text-align: center;
+}
+
+.form-status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.form-status svg {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+.form-status.form-status--success {
+  color: green;
+}
+.form-status.form-status--error {
+  color: red;
+}

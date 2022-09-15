@@ -1,0 +1,14 @@
+// .t4s-product-quick-view {
+//     max-width: 360px;
+
+// }
+.t4s-product-form__submit {
+    svg {
+        stroke: #fff;
+    }
+    &:hover {
+        svg {
+            stroke: #F88927;
+        }
+    }
+}

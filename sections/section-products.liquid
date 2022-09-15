@@ -1,0 +1,66 @@
+{{ 'section-products.css' | asset_url | stylesheet_tag }}
+{{ 'collection-products-custom.css' | asset_url | stylesheet_tag }}
+{% assign collection = section.settings.collection %}
+
+
+<div class="container">
+    {%- if section.settings.title != blank -%}
+        <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+        <p class="p">{{- section.settings.text -}}</p>
+    {%- endif -%}
+    <div class="ProductGridContainer" id="ProductGridContainer">
+        <ul id="product-grid"  dir="rtl"  class="product-grid product-grid--js">
+            {%- for product in collection.products -%}
+              <li class="grid__item">
+                {% render 'product-grid-item1', for collection.products as product,product:product %}
+              </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+    {%- if section.settings.textBtn != blank or section.settings.url != blank -%}
+        <a href="{{- section.settings.url -}}" class="btn_link">{{- section.settings.textBtn -}} {% render 'icon-caretRight' %}</a>
+    {%- endif -%}
+</div>
+
+{% schema %}
+    {
+        "name": "Section Products",
+        "class": "section-products",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "html",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "html",
+                "id": "text",
+                "label": "Text"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "collection"
+            },
+            {
+                "type": "text",
+                "id": "textBtn",
+                "label": "Text Link"
+            },
+            {
+                "type": "url",
+                "id": "url",
+                "label": "Link"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Section Products",
+                "category": "Custom Section"
+            }
+        ]
+    }
+{% endschema %}

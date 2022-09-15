@@ -1,0 +1,23 @@
+@use 'mixins'  as m;
+@import './font';
+
+#contact_form_page {
+    input {
+        border: 1px solid #CECECE;
+        border-radius: 30px;
+        &[type="submit"] {
+            border: 1px solid #F88927;;
+        }
+    }
+    textarea {
+        border: 1px solid #CECECE;
+        border-radius: 10px;
+    }
+    label {
+        margin-bottom: 10px;
+    }
+    p {
+        margin-bottom: 10px;
+    }
+
+}

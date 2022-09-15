@@ -1,0 +1,143 @@
+<section style="display: none !important" data-section-type="collection-template"></section> 
+<section class="gt_section-A5hJoarD8Xs8Eg4 " data-name="Featured Collection">
+  <div class="product_list">
+    <div class="position_hook">
+      
+    </div>
+    <div class="gt_container">
+      
+        <h2 class="gt_heading gt_mb--medium change_Title">
+          Disposable Diapers
+        </h2>
+        <div class="position_hook">
+            
+        </div>
+      
+      <div class="product-list-block">
+        <div class="gt_flex gt_flex-wrap product_list_content">
+        
+        
+        
+      
+        {% case collection.sort_by %}
+          {% when 'title-descending' %}
+            {% assign products = collection.products | sort: 'title' | reverse %}
+                
+          {% when 'title-ascending' %}
+            {% assign products = collection.products | sort: 'title' %}
+                
+          {% when 'price-ascending' %}
+            {% assign products = collection.products | sort: 'price' %}
+                
+          {% when 'price-descending' %}
+            {% assign products = collection.products | sort: 'price' | reverse %}
+                
+          {% when 'created-ascending' %}
+            {% assign products = collection.products | sort: 'created_at' %}
+                
+          {% when 'created-descending' %}
+            {% assign products = collection.products | sort: 'created_at' | reverse %}
+                
+          {% when 'best-selling' %}
+            {% assign products = collection.products | sort: 'best-selling' %}
+                
+          {% when 'manual' %}
+            {% assign products = collection.products | sort: 'manual' %}
+              
+        {% endcase %}
+      
+      
+          
+            {% assign products = collections["misoko-co-disposable-diapers-for-females"].products %}
+            {% for product in products limit:6 %}
+          
+            
+              <div class="items"> 
+                <div class="gt_element-51728 gt_product-element  " data-name="Master Product List" data-keyword="product">
+  {%- assign gtCurrentVariant = product.selected_or_first_available_variant -%}
+  
+    {% for variant in product.variants %}
+      {% if variant.price < gtCurrentVariant.price%}
+      {%- assign gtCurrentVariant = variant -%}
+      {% endif %}
+    {% endfor %}
+  
+  <script type="application/json" class="ProductJson" data-id="{{product.id}}" data-variant="{{gtCurrentVariant.id}}">
+    {{ product | json }}
+  </script>
+  {% unless gtCurrentVariant == empty %}
+  <script type="application/json">
+    {{ gtCurrentVariant | json }}
+  </script>
+  {% endunless %}
+
+  
+  {% form 'product', product, class:'gt_product-form' %}
+  
+  <input type="hidden" name="id" class="gt_swatches--input" value="{{gtCurrentVariant.id}}"><input type="hidden" name="quantity" class="gt_quantity--input" value="1"><a class="link_gt_product" href="{{product.url}}" title="{{product.title | escape | replace: '&quot;', '&apos;' }}"><div class="gt_product-image-box"><div class="gt_product-above-top-image-hook" style="position: absolute; top: 0; left: 0; width: 100% ; z-index: 4;"></div><div class="gt_product-above-bottom-image-hook" style="position: absolute; bottom: 0; left: 0; width: 100% ; z-index: 4;"></div>
+      
+      {%- if gtCurrentVariant.compare_at_price > gtCurrentVariant.price -%}
+      <div class="gt_product-sale-tag"><!--                <div class="gt_product-sale-tag&#45;&#45;inner gt_pt&#45;&#45;extra-small gt_pb&#45;&#45;extra-small gt_pr&#45;&#45;small gt_pl&#45;&#45;small">--><div class="gt_product-sale-tag--inner"><div class="gt_product-sale-tag--value gt_product-sale-tag--value--percent"></div><div class="gt_product-sale-tag--value gt_product-sale-tag--value--number"></div><div class="gt_product-sale-tag--after"></div></div></div>
+      {%- endif -%}
+      
+      <div class="gt_product-sold-out-tag" data-sold-out="Sold Out">
+          {% unless gtCurrentVariant.available %}
+            <div class="gt_product-sold-out-tag--inner">
+              Sold Out
+            </div>
+          {% endunless %}
+        </div><div class="gt_product-image"><div class="gt_product-image--inner"><div class="gt_product-image--list">
+            {%- assign product_image_front = product.featured_image -%}
+            {%- assign product_image_back = product.images | last -%}
+
+            
+            {%- assign product_image_front = product.featured_image -%}
+            
+
+            
+            {% assign product_image_back = product.images | last %}
+            
+
+            <img class="gt_product-image--front not-variant gt_lazyload" src="{{ product_image_front.src | img_url: '50x' }}" data-id="{{ product_image_front.id }}" alt="{{ product_image_front.alt | escape | replace: '&quot;', '&apos;' }}"></div></div></div></div></a><div class="gt_product-info gt_flex1"><div class="gt_product-info--top gt_flex1"><a class="link_gt_product" title="{{product.title | escape | replace: '&quot;', '&apos;' }}" href="{{product.url}}"><div class="gt_product-name"><h2 class="gt_subheading gt_atom-51728_productTitle " data-name="Product Title" data-attribute="productTitle">
+  {{product.title}}
+</h2></div></a><div class="gt_product_vendor"></div><div class="gt_product_variants gt_product_variants--vertical"></div></div><div class="wrapper_price"><div class="gt_flex1"></div><div class="gt_product-price"><span class="gt_product-price--current" data-currentprice="{{ gtCurrentVariant.price }}">
+          {{ gtCurrentVariant.price | money }}
+        </span></div><div class="gt_product-button gt_mt--small"><button class="gt_button gt_button--normal gt_atom-51728_productButtonBuy  {% unless gtCurrentVariant.available %}gt_sold_out{% endunless %}  gt_product-button--add-to-cart" {% unless gtCurrentVariant.available %}disabled="disabled" {% endunless %} data-name="Product Button Add To Cart" name="add" data-attribute="productButtonBuy" data-class="gt_product-button--add-to-cart"><span class="gt_button-content"><span class="gt_button-content-text">
+      
+        {% unless gtCurrentVariant.available %}
+          
+          <span class="gt_button-content-text-main">
+            Sold out
+          </span>
+          
+        {% else %}
+          
+          <span class="gt_button-content-text-main">
+            Add To Cart
+          </span>
+          
+        {% endunless %}
+      
+    </span><span class="atom-button-loading-circle-loader"><span class="atom-button-loading-check-mark atom-button-loading-check-mark-draw"></span></span></span></button></div></div></div>
+  
+  
+  {% endform %}
+  
+</div>
+              </div> 
+            {% endfor %}
+      </div>
+      </div>
+    </div>
+    <div class="position_hook">
+      
+    </div>
+  </div>
+</section>
+
+ 
+{% comment %}
+You SHOULD NOT modify source code in this page because
+It is automatically generated from EcomSolid
+Try to edit page with the live editor.
+{% endcomment %}

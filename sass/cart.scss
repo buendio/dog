@@ -1,0 +1,16 @@
+@use 'mixins'  as m;
+
+.t4s-main-cart .t4s-quantity-cart-item {
+    border: 1px solid #CECECE;
+    border-radius: 28px;
+}
+.t4s-main-cart .t4s-quantity-cart-item button:hover {
+    color: #F88927;
+}
+.t4s-main-cart .t4s-shipping_calculator input[type=text], .t4s-main-cart .t4s-shipping_calculator select {
+    border: 1px solid #D8D8D8;
+border-radius: 50px;
+}
+.t4s-shipping_calculator {
+    border-radius: 8px;
+}

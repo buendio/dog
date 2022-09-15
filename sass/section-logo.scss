@@ -1,0 +1,39 @@
+@use 'mixins'  as m;
+
+.section-logo {
+    padding: 43px 0 45px;
+    background: #F4F4F4;
+    h2 {
+        margin-bottom: 80px;
+        @include m.media-sm () {
+            margin-bottom: 50px;
+        }
+        span {
+            color: #9F9C9E;
+        }
+    }
+}
+.logo-itemWrap {
+    margin-bottom: 40px;
+}
+.logo-item {
+    margin: 0 auto;
+    text-align: center;
+    img {
+        display: block;
+        width: 92px;
+        height: 92px;
+        object-fit: cover;
+        margin: 0 auto 45px;
+    }
+    h3 {
+        font-size: 24px;
+        line-height: 1.45;
+        font-weight: 400;
+    }
+    p {
+        font-size: 18px;
+        line-height: 1.45;
+        font-weight: 300;
+    }
+}

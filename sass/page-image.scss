@@ -1,0 +1,33 @@
+@use 'mixins'  as m;
+@import './font';
+
+.page-image {
+    padding: 50px 0;
+    text-align: center;
+    @include m.media-sm () {
+        padding: 25px 0;
+    }
+    h1 {
+        margin-bottom: 50px;
+        text-align: center;
+        @include m.media-sm () {
+            margin-bottom: 30px;
+        }
+    }
+}
+.page-image-block {
+    margin-bottom: 20px;
+    img {
+        display: block;
+        width: 100%;
+        object-fit: cover;
+    }
+    a {
+        margin-top: 10px;
+        font-size: 18px;
+        display: inline-block;
+    }
+}
+.page-image__link {
+    margin-top: 30px;
+}

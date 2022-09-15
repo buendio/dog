@@ -1,0 +1,70 @@
+{{ 'heading-template-custom.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.video != blank -%}
+    <div class="page-heading__img page-heading__img--video">
+        <video id="heroVideo" loop="loop" autoplay loop muted playsinline class="">
+            <source src="{{ section.settings.video }}">
+        </video>
+    </div>
+    {% else %}
+        {%- if section.settings.img2 != blank -%}
+            <img src="{{- section.settings.img2 | img_url: 'master' -}}" alt="" class="page-heading__img">
+        {%- endif -%}
+{%- endif -%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 page-heading__wrap">
+                {%- if section.settings.img != blank -%}
+                <a href="/" class="page-heading__logo">
+                    <img src="{{- section.settings.img | img_url: 'master' -}}" alt="{{ shop.name }}">
+                </a>
+                {%- endif -%}
+        </div>
+    </div>
+    {%- if template == 'collection' -%}
+        <h1 class="page-heading__title">{{- collection.title -}}</h1>
+        {% else %}
+        <h1 class="page-heading__title">{{- section.settings.title -}}</h1>
+    {%- endif -%}
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById("heroVideo");
+           video.play();
+    })
+  </script>
+{% schema %}
+    {
+        "name": "Custom Page Heading",
+        "class": "page-heading",
+        "tag": "section",
+        "settings": [
+            {
+                "type":"image_picker",
+                "id":"img",
+                "label":"Logo Image"
+            },
+            {
+                "type":"image_picker",
+                "id":"img2",
+                "label":"Image"
+            },
+            {
+                "type":"url",
+                "id":"video",
+                "label":"Video"
+            },
+            {
+                "type":"text",
+                "id":"title",
+                "label":"Title"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Custom Page Heading",
+                "category": "Custom Page Heading"
+            }
+        ]
+    }
+{% endschema %}

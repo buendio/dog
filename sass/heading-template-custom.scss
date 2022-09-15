@@ -1,0 +1,89 @@
+@use 'mixins'  as m;
+
+.page-heading {
+    position: relative;
+    padding: 25px 0 50px;
+    background-color: #fff;
+    @include m.media-sm {
+        padding: 0;
+        text-align: center;
+    }
+}
+.page-heading__wrap {
+    height: 235px;
+    @include m.media-sm {
+        height: auto;
+    }
+}
+.page-heading__img {
+    position: absolute;
+    top: 0;
+    left: 45%;
+    max-height: 234px;
+    @include m.media-sm {
+        position: static;
+        display: block;
+        width: 100%;
+    }
+
+}
+.page-heading__img--video {
+    width: 900px;
+    max-height: 235px;
+    overflow: hidden;
+    @include m.media-lg {
+        height: 127px;
+        left: auto;
+        right: 0;
+        width: 490px;
+    }
+    @include m.media-sm {
+        height: 98px;
+        width: 100%;
+        position: relative;
+    }
+    video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: 235px;
+        margin-top: -1px;
+        object-fit: cover;
+        @include m.media-lg {
+            width: 99%;
+            height: 125px;
+            margin-top: 0;
+            margin-left: auto;
+            margin-right: 0;
+        }
+        @include m.media-sm {
+            height: 96px;
+            width: 100%;
+        }
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;top: 0;right: 0;bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-image: url(ctl2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        @include m.media-lg {
+            background-image: url(ctl3.png);
+        }
+        @include m.media-sm {
+            background-image: url(ctl4.png);
+        }
+    }
+}
+.page-heading__logo {
+    display: inline-block;
+    @include m.media-sm {
+        max-width: 181px;
+        margin:30px 0;
+    }
+}

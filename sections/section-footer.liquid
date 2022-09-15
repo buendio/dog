@@ -1,0 +1,85 @@
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+{% assign menu = linklists[section.settings.menu] %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            {%- if section.settings.img != blank -%}
+            <div class="footer-logo">
+                {{- section.settings.img -}}
+            </div>
+            {%- endif -%}
+            {%- if settings.social_facebook_link != blank -%}
+                <div class="footer-info">
+                    <p class="footer-info__text">All your information is protected.</p>
+                    <p class="footer-info__text">Contact us: <a href="mailto:{{- settings.social_email_link -}}">{{- settings.social_email_link -}}</a></p>
+                </div>
+            {%- endif -%}
+            <div class="footerSocial-icons d-flex align-items-center">
+                {%- if settings.social_facebook_link != blank -%}
+                    <a href="{{- settings.social_facebook_link -}}" target="_blank">{% render 'icon-facebookWhite' %}</a>
+                {%- endif -%}
+                {%- if settings.social_instagram_link != blank -%}
+                    <a href="{{- settings.social_instagram_link -}}" target="_blank">{% render 'icon-instagramWhite' %}</a>
+                {%- endif -%}
+                {%- if settings.social_twitter_link != blank -%}
+                    <a href="{{- settings.social_twitter_link -}}" target="_blank">{% render 'icon-twitterWhite' %}</a>
+                {%- endif -%}
+            </div>
+        </div>
+        {%- if menu != blank -%}
+            <div class="d-none d-lg-block col-lg-4">
+                <ul class="footer-menu">
+                    {%- for link in menu.links -%}
+                        <li class="footer-menu__item"><a href="{{ link.url }}" class="footer-menu__link">{{ link.title }}</a></li>
+                    {%- endfor -%}
+                </ul>
+            </div>
+        {%- endif -%}
+        <div class="col-md-6 col-lg-4">
+            {%- form 'contact', id: 'footer-form', class: 'subscribe-form' -%}
+                <p class="subscribe-form__text">Pupums Post' Newsletter</p>
+                {% if form.posted_successfully? %}
+                    <div class="form-status form-status--success" tabindex="-1" autofocus>{% render 'icon-success' %} {{ 'templates.contact.form.post_success' | t }}</div>
+                    {%- elsif form.errors -%}
+                    <div class="form-status form-status--error" tabindex="-1" autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</div>
+                {% endif %}
+                <input type="text" name="contact[email]" placeholder="Your email address">
+                <button class="btn" type="sbbmit">Subscribe</button>
+            {%- endform -%}
+        </div>
+    </div>
+    {%- if section.settings.copy != blank -%}
+        <p class="footer-copyright">{{- section.settings.copy -}}</p>
+    {%- endif -%}
+</div>
+{% schema %}
+    {
+        "name": "FOOTER",
+        "class": "footer",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "html",
+                "id": "img",
+                "label": "Logo Icon"
+            },
+            {
+                "type":"link_list",
+                "id":"menu",
+                "label":"Menu Footer"
+            },
+            {
+                "type":"text",
+                "id":"copy",
+                "label":"Text Reserved"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Header",
+                "category": "Custom Header"
+            }
+        ]
+    }
+{% endschema %}
