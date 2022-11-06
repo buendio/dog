@@ -11,6 +11,13 @@
   }
 }
 
+a.logo {
+  max-width: 270px;
+}
+.logo img {
+/*   aspect-ratio: 5/2; */
+  width: 100%;
+}
 @media (max-width: 575px) {
   .logo {
     display: block;

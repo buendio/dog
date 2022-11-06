@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&family=Quicksand:wght@700&display=swap");
-@import url("http://fonts.cdnfonts.com/css/museo-sans-cyrl?styles=17900,17898,17902");
 .t4s-product-wrapper {
   position: relative;
   max-width: 253px;
@@ -135,6 +134,10 @@ button.ga-product_addtocart:hover {
   opacity: 0.8;
 }
 
+#wigget_8092, .ga-products-box {
+  margin: 15px auto 0 !important;
+}
+
 #wigget_8092 span.ga-product_price, #ga-product_related span.ga-product_price {
   font-size: 16px;
 }
@@ -146,6 +149,7 @@ button.ga-product_addtocart:hover {
 .ga-carousel_wrapper .ga-product {
   -webkit-box-shadow: 0 0 10px rgba(240, 238, 239, 0.4);
           box-shadow: 0 0 10px rgba(240, 238, 239, 0.4);
+  background-color: #fff;
   border-radius: 40px;
   max-width: 253px;
   margin: 0 auto;

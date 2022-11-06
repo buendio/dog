@@ -2,7 +2,7 @@
 <div class="container">
     {%- if section.settings.logo != blank -%}
         <a href="/" class="logo">
-            <img src="{{-  section.settings.logo | img_url: '248x' -}}" alt="{{ shop.name | escape }}" loading="lazy">
+            <img src="{{-  section.settings.logo | img_url: 'master' -}}" alt="{{ shop.name | escape }}">
         </a>
     {%- endif -%}
     <div class="hero-content">

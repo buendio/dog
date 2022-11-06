@@ -92,7 +92,7 @@ endif -%}
 
        <a data-pr-href href="{{ product.url | within: collection }}" class="card__title">{{ product.title }}</a>
        <div class="card__img">
-         <a href="{{ product.url | within: collection }}" class="card__medialink" style="background-image:url({{ product.media[0].preview_image | product_img_url: 'master' }});"></a>
+         <a href="{{ product.url | within: collection }}" class="card__medialink" {%- if template == 'index' -%}data-bgsrc="{{ product.media[0].preview_image | product_img_url: 'master' }}" {%- else -%} style="background-image:url({{ product.media[0].preview_image | product_img_url: 'master' }});" {%- endif -%} ></a>
        </div>
 
        {% form 'product', product, id: product.id, class: 'form form--product-card', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}

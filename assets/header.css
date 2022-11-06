@@ -74,7 +74,9 @@ header {
   position: absolute;
   top: 100%;
   z-index: 2;
-  width: 100%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   padding: 35px 10px 20px;
   background: #f4f4f4;
   color: #5F596E;

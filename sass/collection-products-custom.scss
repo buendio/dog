@@ -1,6 +1,7 @@
 @use 'mixins'  as m;
 @import './font';
 
+
 .t4s-product-wrapper {
     position: relative;
     max-width: 253px;
@@ -108,6 +109,9 @@ button.ga-product_addtocart {
         opacity: 0.8;
     }
 }
+#wigget_8092, .ga-products-box {
+    margin: 15px auto 0 !important;
+}
 #wigget_8092 span.ga-product_price, #ga-product_related span.ga-product_price {
     font-size: 16px;
 }
@@ -116,6 +120,7 @@ button.ga-product_addtocart {
 }
 .ga-carousel_wrapper .ga-product {
     box-shadow: 0 0 10px #f0eeef66;
+    background-color: #fff;
     border-radius: 40px;
     max-width: 253px;
     margin:  0 auto;

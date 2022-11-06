@@ -29,6 +29,13 @@
                     {%- if property_size > 0 -%}
                     <ul class="t4s-cart_meta_propertyList">
                       {%- for p in item.properties -%}
+                        {% assign first_character_in_key = p.first | truncate: 1, '' %}
+                        {% if first_character_in_key == '_' %}
+                            {% continue %}
+                        {% endif %}
+                         {% comment %}
+            Check if there was an uploaded file associated
+        {% endcomment %}
                         {%- if p.first contains '_bundle_' or p.first contains '_mczr_' -%}{%- continue -%}{%- endif -%}
                         {%- unless p.last == blank -%}
                           {%- if p.first == 'shipping_interval_frequency' -%}

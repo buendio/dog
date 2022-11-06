@@ -1,4 +1,5 @@
 {{ 'section-products.css' | asset_url | stylesheet_tag }}
+{{ 'collection-products.css' | asset_url | stylesheet_tag }}
 {{ 'collection-products-custom.css' | asset_url | stylesheet_tag }}
 {% assign collection = section.settings.collection %}
 
@@ -23,6 +24,49 @@
         <a href="{{- section.settings.url -}}" class="btn_link">{{- section.settings.textBtn -}} {% render 'icon-caretRight' %}</a>
     {%- endif -%}
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    $('.product-grid--js').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow:
+            `<button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="prev" role="button">
+                <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5848 1.44067L14.1965 0.000976562L0 13.6905L0.36158 14.0654L0 14.4404L14.1965 28.1299L15.5848 26.6902L2.49242 14.0654L15.5848 1.44067Z" fill="#005A68"/>
+                </svg>
+            </button>`,
+    nextArrow:
+            `<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="next" role="button">
+                <svg width="16" height="29" viewBox="0 0 16 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <path fill-rule="evenodd" clip-rule="evenodd" d="M0.000189781 1.85766L1.38846 0.417969L15.585 14.1075L15.2234 14.4824L15.585 14.8574L1.38846 28.5469L0.000189781 27.1072L13.0925 14.4824L0.000189781 1.85766Z" fill="#005A68"/>
+                </svg>
+            </button>`,
+    dots: false,
+    rtl: true,
+    responsive: [
+
+       {
+         breakpoint: 890,
+         settings: {
+           slidesToShow: 2.5,
+           arrows: false,
+           rtl: true
+         }
+       },
+       {
+         breakpoint: 750,
+         settings: {
+           slidesToShow: 1.5,
+           rtl: true,
+           arrows: false,
+         }
+       }
+
+     ]
+ })
+});
+</script>
+
 
 {% schema %}
     {

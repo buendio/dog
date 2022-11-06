@@ -10,6 +10,10 @@
     }
 }
 .logo {
+    img {
+        aspect-ratio: 5/2;
+        width: 100%;
+    }
     @include m.media-sm () {
         display: block;
         max-width: 181px;

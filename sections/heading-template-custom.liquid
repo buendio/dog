@@ -1,6 +1,10 @@
 {{ 'heading-template-custom.css' | asset_url | stylesheet_tag }}
-
-{%- if section.settings.video != blank -%}
+{%- if collection.metafields.custom.banner != blank -%}
+    <a href="{{ collection.metafields.custom.link }}" class="page-heading__img page-heading__img--link">
+        <img src="{{ collection.metafields.custom.banner }}" alt="" >
+    </a>
+    {%- else -%}
+    {%- if section.settings.video != blank -%}
     <div class="page-heading__img page-heading__img--video">
         <video id="heroVideo" loop="loop" autoplay loop muted playsinline class="">
             <source src="{{ section.settings.video }}">
@@ -10,7 +14,9 @@
         {%- if section.settings.img2 != blank -%}
             <img src="{{- section.settings.img2 | img_url: 'master' -}}" alt="" class="page-heading__img">
         {%- endif -%}
+    {%- endif -%}
 {%- endif -%}
+
 <div class="container">
     <div class="row">
         <div class="col-md-3 page-heading__wrap">

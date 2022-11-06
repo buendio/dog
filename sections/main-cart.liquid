@@ -1,3 +1,16 @@
+<script data-cfasync="false" type="text/javascript">if (typeof Shopify === "undefined") var Shopify = {}; Shopify.cart = {{ cart | json }};</script> 
+<div id="sca-fg-owl-carousel">
+  <div id="freegift_cart_container" class="sca-fg-cart-container" style="display: none;">
+    <div id="freegift_message" class="owl-carousel"></div>
+  </div> 
+  <div id="sca-fg-slider-cart" style="display: none;">
+    <div class="sca-fg-cart-title">
+      <strong>Select your free gift (s)</strong>
+    </div>
+    <div id="sca_freegift_list" class="owl-carousel"></div>
+  </div>
+</div>
+<div id="sca_fg_cart">
 {{ 'button-style.css' | asset_url | stylesheet_tag }}
 <link href="{{ 'custom-effect.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
 {%- liquid
@@ -137,7 +150,7 @@
          </div>
          {%- endif -%}
 
-         <div class="t4s-col-item t4s-col-12 t4s-text-md-end t4s-text-center t4s-order-4{% if ck_col %} t4s-col-md-6{% endif %}">
+         <div class="cart-form t4s-col-item t4s-col-12 t4s-text-md-end t4s-text-center t4s-order-4{% if ck_col %} t4s-col-md-6{% endif %}">
             {%- if se_stts.enable_calc_ship and shipping_amount > -1 -%}
               {%- assign shipping_money = shipping_amount | money -%}
                <link rel="stylesheet" href="{{ 'shipping_bar.css' | asset_url }}" media="all">
@@ -168,7 +181,7 @@
                         </ul>
                      {%- endif -%}
                      </div>
-                     <div class="t4s-cart-total t4s-row t4s-gx-30 t4s-gy-0 t4s-d-inline-flex t4s-align-items-center t4s-justify-content-between">
+                     <div class="total t4s-cart-total t4s-row t4s-gx-30 t4s-gy-0 t4s-d-inline-flex t4s-align-items-center t4s-justify-content-between">
                         <div class="t4s-col-auto t4s-col-item"><strong>{{ 'cart.cart_page.subtotal' | t }}</strong></div>
                         <div data-cart-prices class="t4s-col-auto t4s-col-item t4s-text-right t4s-cart__ttprice">
                            {%- if cart.total_discount > 0 -%}
@@ -640,3 +653,9 @@
     }
 }
 {% endschema %}
+</div>
+{% style %}
+  .mw-gp__subtotal--replaced {
+    margin-right: 15px;
+  }
+{% endstyle %}

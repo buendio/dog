@@ -3,12 +3,12 @@
     "1658144021de22341e": {
       "type": "section-hero",
       "settings": {
-        "logo": "shopify:\/\/shop_images\/Group_5.png",
+        "logo": "shopify:\/\/shop_images\/logo_906dd610-be58-4e81-816d-198f91b8c724.png",
         "title": "Impossible \n<span><span style=\"color: #f88927;\">IS Possible<\/span><\/span>",
         "text": "”When everybody said it was impossible, we kept trying and we have created the perfect product which now helps millions of pets all over the world to fight against brown tear stains and stay in perfect shape.”\n<p style=\"padding-left: 30px;margin-bottom: 50px\"><strong>-product line creator, famous cynologist and breeder Janita Januškauskaite-Plunge<\/strong><\/p>",
         "textBtn": "To catalog",
         "url": "shopify:\/\/collections\/dogs-food",
-        "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/aae62a01963043e2bf3d678dafadc2a8.mp4"
+        "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/9b2c1f3cf237458bbf6138a7eb1f4de1.mp4"
       }
     },
     "1658174191e6d7c573": {
@@ -35,7 +35,7 @@
           "settings": {
             "img": "shopify:\/\/shop_images\/3_be6ff4ca-be53-4ce3-8792-f4ee8dc715aa.png",
             "title": "30 years of experience",
-            "text": "Over the years, we have developed and continuously improved formulas for healthy food and cosmetics with the help of our sensitive approach towards the pets’ needs."
+            "text": "Over the years, we have developed and continuously improved formulas for healthy food and skin&amp;coat care products with the help of our sensitive approach towards the pets’ needs."
           }
         },
         "8b432b5e-7472-4bda-b092-198aa52073ef": {
@@ -64,14 +64,16 @@
           "type": "item",
           "settings": {
             "img": "shopify:\/\/shop_images\/1_212963bf-5c03-44ce-bfb0-f2c5d1f7f880.png",
-            "text": "helps <span>in removing tear stains<\/span>"
+            "text": "helps <span>in removing tear stains<\/span>",
+            "url": ""
           }
         },
         "3c3488da-f47e-4fe5-9454-2165993cc0b5": {
           "type": "item",
           "settings": {
             "img": "shopify:\/\/shop_images\/9.png",
-            "text": "helps <span>to maintain general health<\/span>"
+            "text": "helps <span>to maintain general health<\/span>",
+            "url": ""
           }
         }
       },
@@ -98,6 +100,7 @@
     },
     "16619594917e401c19": {
       "type": "section-reviews",
+      "disabled": true,
       "blocks": {
         "71ab974f-1f73-49ca-bd96-ef48795b7648": {
           "type": "item",

@@ -6,7 +6,6 @@
 }
 .t4s-product__title {
     margin-bottom: 10px;
-    font-family: 'Museo Sans Cyrl', sans-serif;
     font-weight: 300;
     font-size: 24px;
     line-height: 30px;
@@ -97,7 +96,6 @@ span[data-instock-status] {
 }
 .t4s-tabs-pr-ul {
     a {
-        font-family: 'Museo Sans Cyrl', sans-serif;
         color: #928F91;
         font-size: 16px;
         font-weight: 400 !important;
@@ -119,9 +117,10 @@ span[data-instock-status] {
         padding: 0 25px;
         margin: 0;
     }
-    .t4s-row {
+    .t4s-product-media__thumbnails_left > .t4s-row {
         padding-top: 25px;
     }
+
 }
 .main-logo {
     display: block;
@@ -172,4 +171,12 @@ button.ga-product_addtocart {
         color: #f88927;
     }
 
+}
+#ga-product_bought_together {
+    .ga-product_image {
+        max-height: 230px;
+    }
+    .ga-carousel_wrapper .ga-product {
+        padding-bottom: 25px;
+    }
 }

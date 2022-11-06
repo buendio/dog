@@ -35,6 +35,8 @@
 }
 .results-item img {
   display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
   margin-bottom: 27px;
   border-radius: 40px;
   -o-object-fit: cover;

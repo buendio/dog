@@ -512,7 +512,51 @@
     }());
 </script>
 {%- endif -%}
+{% javascript %}
+function setEqualHeight(columns){
+  var tallestcolumn = 0;
 
+  columns.each( function(){
+  currentHeight = $(this).height();
+  if(currentHeight > tallestcolumn){
+     tallestcolumn = currentHeight;
+  }
+  });
+
+  columns.height(tallestcolumn);
+}
+setEqualHeight($(".grid__item"));
+setEqualHeight($(".t4s-product--height"));
+const widg = document.querySelector('.globoRecommendationsBottom')
+   console.log(widg)
+
+   var target = document.querySelector('.globoRecommendationsBottom')
+
+//  observer
+const config = {
+    attributes: true,
+    childList: true,
+    subtree: true
+};
+
+// callback function
+const callback = function(mutationsList, observer) {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            console.log('111111111111111111111111111111111');
+            setEqualHeight($('.gowl-item'));
+        } else if (mutation.type === 'attributes') {
+            console.log('The ' + mutation.attributeName + ' attribute was modified.');
+        }
+    }
+};
+
+//
+const observer = new MutationObserver(callback);
+
+//
+observer.observe(target, config);
+{% endjavascript %}
 {%- schema -%}
   {
     "name": "Main collection",
@@ -1357,5 +1401,3 @@
   }
 {%- endschema -%}
 
-{%- javascript -%}
-{%- endjavascript -%}
