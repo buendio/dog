@@ -1,17 +1,17 @@
 .section-logo {
-  padding: 43px 0 45px;
-  background: #F4F4F4;
+  padding: 40px 0 10px;
+  background: #f4f4f4;
 }
 .section-logo h2 {
-  margin-bottom: 80px;
+  margin-bottom: 30px;
 }
-@media (max-width: 575px) {
+@media (max-width: 768px) {
   .section-logo h2 {
-    margin-bottom: 50px;
+    margin-bottom: 15px 0 5px;
   }
 }
 .section-logo h2 span {
-  color: #9F9C9E;
+  color: #9f9c9e;
 }
 
 .logo-itemWrap {

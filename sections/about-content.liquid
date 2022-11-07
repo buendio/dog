@@ -1,0 +1,44 @@
+{{ 'about-info.css' | asset_url | stylesheet_tag }}
+{% assign menu = linklists[section.settings.menu] %}
+<div class='container'>
+  {%- if menu != blank -%}
+    <nav class='about-menu'>
+      <ul>
+        {%- for link in menu.links -%}
+          <li>
+            <a
+              href='{{ link.url }}'
+              class='{% if link.active %}active{% endif %}'
+            >
+              {{- link.title -}}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+  <div class='rte'>
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Info",
+  "tag": "section",
+  "class": "section about-info",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu Header"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Info",
+      "category": "Custom Section"
+    }
+  ]
+}
+{% endschema %}

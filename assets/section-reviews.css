@@ -1,6 +1,6 @@
 .section-reviews {
   position: relative;
-  padding: 80px 0 60px;
+  padding: 40px 0;
   text-align: center;
 }
 @media (max-width: 991px) {
@@ -8,12 +8,17 @@
     padding: 50px 0 30px;
   }
 }
+@media (max-width: 575px) {
+  .section-reviews {
+    padding: 20px 0;
+  }
+}
 .section-reviews h2 {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 @media (max-width: 575px) {
   .section-reviews h2 {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 }
 
@@ -26,9 +31,22 @@
   }
 }
 
+.reviews-items .slick-arrow {
+  position: absolute;
+  top: 40%;
+  z-index: 11;
+}
+.reviews-items .slick-prev {
+  left: -10px;
+}
+.reviews-items .slick-next {
+  right: -10px;
+}
+
 .reviews-item {
   max-width: 357px;
   margin: 0 auto;
+  text-align: left;
 }
 .reviews-item img {
   width: 357px;
@@ -40,11 +58,21 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-.reviews-item h3 {
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #49415A;
+.reviews-item h4 {
+  margin-top: 10px;
+  font-family: "Museo Sans Cyrl", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #49415a;
+}
+.reviews-item h4:hover {
+  color: #f88927;
+}
+.reviews-item p {
+  color: #49415a;
+  font-weight: 600;
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
 }
 
 .reviews-item__txt {
@@ -54,7 +82,7 @@
   font-size: 20px;
   line-height: 1.45;
   font-weight: 400;
-  color: #49415A;
+  color: #49415a;
 }
 
 .section-reviews__link {

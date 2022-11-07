@@ -1,58 +1,68 @@
-@use 'mixins'  as m;
+@use 'mixins' as m;
 
 .section-results {
-    padding: 80px 0 40px;
-    text-align: center;
-    @include m.media-sm {
-        padding: 40px 0 0px;
+  padding: 40px 0 10px;
+  text-align: center;
+  @include m.media-md {
+    padding: 20px 0 5px;
+  }
+  h2 {
+    margin-bottom: 30px;
+    @include m.media-md {
+      margin-bottom: 15px;
     }
-    h2 {
-        margin-bottom: 30px;
-    }
+  }
 }
 .section-results__text {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .section-results__link {
-    margin-bottom: 38px;
-    margin-top: 20px;
+  margin-bottom: 38px;
+  margin-top: 20px;
 }
 .results-item {
-    margin-bottom: 65px;
-    @include m.media-xl () {
-        max-width: 48%;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  @include m.media-md {
+    margin-bottom: 20px;
+  }
+  @include m.media-xl() {
+    max-width: 48%;
+  }
+  @include m.media-sm {
+    max-width: 100%;
+  }
+  img {
+    display: block;
+    width: 100%;
+    max-height: 460px;
+    aspect-ratio: 1/1;
+
+    margin-bottom: 27px;
+    border-radius: 40px;
+    object-fit: cover;
+    @include m.media-xl() {
+      width: 100%;
     }
     @include m.media-sm {
-        max-width: 100%;
+      margin-bottom: 20px;
     }
-    img {
-        display: block;
-        width: 100%;
-        aspect-ratio: 1/1;
-        margin-bottom: 27px;
-        border-radius: 40px;
-        object-fit: cover;
-        @include m.media-xl () {
-            width: 100%;
-        }
-        @include m.media-sm {
-            margin-bottom: 20px;
-        }
+  }
+  a {
+    padding-bottom: 5px;
+    font-size: 32px;
+    line-height: 1.4;
+    color: #525252;
+    border-bottom: 2px solid transparent;
+    @include m.media-sm {
+      font-size: 20px;
     }
-    a {
-        padding-bottom: 5px;
-        font-size: 32px;
-        line-height: 1.4;
-        color: #525252;
-        border-bottom: 2px solid transparent;
-        @include m.media-sm {
-            font-size: 20px;
-        }
-        span {
-            color: #F88927;
-        }
-        &:hover {
-            border-bottom: 2px solid #F88927;
-        }
+    span {
+      color: #f88927;
     }
+    &:hover {
+      border-bottom: 2px solid #f88927;
+    }
+  }
 }

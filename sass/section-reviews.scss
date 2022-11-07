@@ -1,62 +1,88 @@
-@use 'mixins'  as m;
+@use 'mixins' as m;
 
 .section-reviews {
-    position: relative;
-    padding: 80px 0 60px;
-    text-align: center;
-    @include m.media-lg {
-        padding: 50px 0 30px;
+  position: relative;
+  padding: 40px 0;
+  text-align: center;
+  @include m.media-lg {
+    padding: 50px 0 30px;
+  }
+  @include m.media-sm {
+    padding: 20px 0;
+  }
+  h2 {
+    margin-bottom: 30px;
+    @include m.media-sm {
+      margin-bottom: 20px;
     }
-    h2 {
-        margin-bottom: 50px;
-        @include m.media-sm {
-            margin-bottom: 25px;
-        }
-    }
+  }
 }
 .section-reviews__text {
-    margin-bottom: 90px;
-    @include m.media-sm {
-            margin-bottom: 20px;
-    }
+  margin-bottom: 90px;
+  @include m.media-sm {
+    margin-bottom: 20px;
+  }
+}
+.reviews-items {
+  .slick-arrow {
+    position: absolute;
+    top: 40%;
+    z-index: 11;
+  }
+  .slick-prev {
+    left: -10px;
+  }
+  .slick-next {
+    right: -10px;
+  }
 }
 .reviews-item {
-    max-width: 357px;
-    margin: 0 auto;
-    img {
-        width: 357px;
-        height: 340px;
-        display: block;
-        width: 100%;
-        margin-bottom: 30px;
-        border-radius: 40px;
-        object-fit: cover;
+  max-width: 357px;
+  margin: 0 auto;
+  text-align: left;
+  img {
+    width: 357px;
+    height: 340px;
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 40px;
+    object-fit: cover;
+  }
+  h4 {
+    margin-top: 10px;
+    font-family: 'Museo Sans Cyrl', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #49415a;
+    &:hover {
+      color: #f88927;
     }
-    h3 {
-        font-family: 'Quicksand', sans-serif;
-        font-size: 20px;
-        font-weight: 700;
-        color: #49415A;
-    }
-
+  }
+  p {
+    color: #49415a;
+    font-weight: 600;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+  }
 }
 .reviews-item__txt {
-    margin-top: 40px;
-    margin-bottom: 30px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 20px;
-    line-height: 1.45;
-    font-weight: 400;
-    color: #49415A;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-family: 'Mulish', sans-serif;
+  font-size: 20px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: #49415a;
 }
 .section-reviews__link {
-    margin-top: 55px;
-    @include m.media-sm {
-        margin-top: 20px;
-    }
-    svg {
-        stroke: #fff;
-        margin-right: 10px;
-        margin-left: 0;
-    }
+  margin-top: 55px;
+  @include m.media-sm {
+    margin-top: 20px;
+  }
+  svg {
+    stroke: #fff;
+    margin-right: 10px;
+    margin-left: 0;
+  }
 }

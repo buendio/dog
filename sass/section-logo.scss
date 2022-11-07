@@ -1,39 +1,39 @@
-@use 'mixins'  as m;
+@use 'mixins' as m;
 
 .section-logo {
-    padding: 43px 0 45px;
-    background: #F4F4F4;
-    h2 {
-        margin-bottom: 80px;
-        @include m.media-sm () {
-            margin-bottom: 50px;
-        }
-        span {
-            color: #9F9C9E;
-        }
+  padding: 40px 0 10px;
+  background: #f4f4f4;
+  h2 {
+    margin-bottom: 30px;
+    @include m.media-md() {
+      margin-bottom: 15px 0 5px;
     }
+    span {
+      color: #9f9c9e;
+    }
+  }
 }
 .logo-itemWrap {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 .logo-item {
-    margin: 0 auto;
-    text-align: center;
-    img {
-        display: block;
-        width: 92px;
-        height: 92px;
-        object-fit: cover;
-        margin: 0 auto 45px;
-    }
-    h3 {
-        font-size: 24px;
-        line-height: 1.45;
-        font-weight: 400;
-    }
-    p {
-        font-size: 18px;
-        line-height: 1.45;
-        font-weight: 300;
-    }
+  margin: 0 auto;
+  text-align: center;
+  img {
+    display: block;
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    margin: 0 auto 45px;
+  }
+  h3 {
+    font-size: 24px;
+    line-height: 1.45;
+    font-weight: 400;
+  }
+  p {
+    font-size: 18px;
+    line-height: 1.45;
+    font-weight: 300;
+  }
 }

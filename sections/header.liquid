@@ -2,180 +2,239 @@
 {% assign menu = linklists[section.settings.menu] %}
 {% assign menuCollection = linklists[section.settings.menu2] %}
 
-<div class="container">
-    <div class="d-flex align-items-center">
-        <button class="menu-btn">
-            {% render 'menuButton' %}
-        </button>
-        {%- if menuCollection != blank -%}
-        <ul class="collection-menu d-none d-lg-flex">
-            {%- for link in menuCollection.links -%}
-                <li class="collectiom-menu__item">
-                    <a href="{{ link.url }}" class="collectiom-menu__link">{{ link.title }}</a>
-                    {%- if link.links != blank -%}{% render 'icon-caretDown' %}{%- endif -%}
-                    {%- if link.links != blank -%}
-                        <ul class="collectiom-menu__hide">
-                            {%- for childlink in link.links -%}
-                                <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
-                            {%- endfor -%}
-                        </ul>
-                    {%- endif -%}
-
-                </li>
-            {%- endfor -%}
-        </ul>
+<div class='container'>
+  <div class='d-flex align-items-center'>
+    <button class='menu-btn'>
+      {% render 'menuButton' %}
+    </button>
+    {%- if menuCollection != blank -%}
+      <ul class='collection-menu d-none d-lg-flex'>
+        {%- for link in menuCollection.links -%}
+          <li class='collectiom-menu__item'>
+            <a href='{{ link.url }}' class='collectiom-menu__link'>
+              {{- link.title -}}
+            </a>
+            {%- if link.links != blank -%}
+              {% render 'icon-caretDown' %}
+            {%- endif -%}
+            {%- if link.links != blank -%}
+              <ul class='collectiom-menu__hide'>
+                {%- for childlink in link.links -%}
+                  <li>
+                    <a href='{{ childlink.url }}'>
+                      {{- childlink.title | escape -}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+    <div class='header-icons'>
+      <a
+        class='t4s-pr searchLink'
+        href='{{ routes.search_url }}'
+        data-drawer-delay
+        data-drawer-options='{ "id":"#t4s-search-hidden" }'
+      >
+        {% render 'icon-search' %}
+      </a>
+      <a
+        href='{{ routes.account_url }}'
+        class='header__account'
+        {% unless customer or settings.login_side == false %}
+          data-drawer-options='{ "id":"#t4s-login-sidebar" }'
+        {% endunless %}
+      >
+        {% render 'icon-acount' %}
+        {%- if show_txt -%}
+          <span class='t4s-toolbar-label'>{{ bk_stts.title }}</span>
         {%- endif -%}
-        <div class="header-icons">
+      </a>
+      <a
+        class='cart-drawer'
+        href='{{ routes.cart_url }}'
+        {% if settings.cart_type != 'disable' %}
+          data-drawer-delay data-drawer-options='{ "id":"#t4s-mini_cart" }'
+        {% endif %}
+      >
+        <span class='t4s-pr t4s-icon-cart__wrap'>
+          {% render 'icon-cart' %}
+          <span data-cart-count class='t4s-pa t4s-op-0 t4s-ts-op t4s-count-box'>
+            {{- cart.item_count -}}
+          </span>
+        </span>
+      </a>
+      {%- comment -%}
+        <predictive-search class="header__search">
+            <button class="close-search">
+                {% render 'icon-close' %}
+            </button>
+            <form action='{{ routes.search_url }}' method='get' role='search' class="header__search-form">
+                <input
+                    type="search"
+                    name="q"
+                    id="Search"
+                    value="{{ search.terms | escape }}"
+                    placeholder="search"
+                    class="header__search-input"
+                >
+                <input type="hidden" name="options[prefix]" value="last">
 
+                <button type="submit" class="header__search-btn">
+                    {% render 'icon-search' %}
+                </button>
+            </form>
 
-            <a class="t4s-pr searchLink" href="{{ routes.search_url }}" data-drawer-delay data-drawer-options='{ "id":"#t4s-search-hidden" }'>
-                {% render 'icon-search' %}
-            </a>
-            <a href="{{ routes.account_url }}" class="header__account" {% unless customer or settings.login_side == false %} data-drawer-options='{ "id":"#t4s-login-sidebar" }' {% endunless %}>
-                {% render 'icon-acount' %}
-                {%- if show_txt -%}<span class="t4s-toolbar-label">{{bk_stts.title}}</span>{%- endif -%}
-            </a>
-                <a class="cart-drawer" href="{{ routes.cart_url }}"{% if settings.cart_type != 'disable' %} data-drawer-delay data-drawer-options='{ "id":"#t4s-mini_cart" }'{% endif %}>
-                    <span class="t4s-pr t4s-icon-cart__wrap">
-                        {% render 'icon-cart' %}
-                      <span data-cart-count class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">{{ cart.item_count }}</span>
-                    </span>
-              </a>
-              {%- comment -%}
-                <predictive-search class="header__search">
-                    <button class="close-search">
-                        {% render 'icon-close' %}
-                    </button>
-                    <form action='{{ routes.search_url }}' method='get' role='search' class="header__search-form">
-                        <input
-                            type="search"
-                            name="q"
-                            id="Search"
-                            value="{{ search.terms | escape }}"
-                            placeholder="search"
-                            class="header__search-input"
-                        >
-                        <input type="hidden" name="options[prefix]" value="last">
-
-                        <button type="submit" class="header__search-btn">
-                            {% render 'icon-search' %}
-                        </button>
-                    </form>
-
-                    <div class="header__search-results hidden"></div>
-                </predictive-search>
-            {%- endcomment -%}
-        </div>
+            <div class="header__search-results hidden"></div>
+        </predictive-search>
+      {%- endcomment -%}
     </div>
+  </div>
 </div>
-<nav class="menu-hide">
-    <div class="menu-hide_wrap">
-        <ul class="menu-list d-none d-lg-block">
-            <li class="menu-list__item menu-list__item--close">
-                <button class="close-menu">
-                    {% render 'icon-close' %}
-                </button>
-            </li>
-            {%- if menu != blank -%}
-                {%- for link in menu.links -%}
-                    <li class="menu-list__item"><a href="{{ link.url }}" class="menu-list__link"">{{ link.title }}</a></li>
-                {%- endfor -%}
-            {%- endif -%}
-        </ul>
-        <ul class="menu-list menu-list--hide d-block d-lg-none">
-            <li class="menu-list__item menu-list__item--close">
-                <button class="close-menu">
-                    {% render 'icon-close' %}
-                </button>
-            </li>
-            {%- if menuCollection != blank -%}
-                {%- for link in menuCollection.links -%}
-                    <li class="menu-list__item menu-list__item--hide">
-                        <div class="d-flex menu-list__wrap">
-                            <a href="{{ link.url }}" class="menu-list__link menu-list__link--hide">{{ link.title }}</a>
-                            {%- if link.links != blank -%}<span class="menuSvg">{% render 'icon-caretDown' %}</span>{%- endif -%}
-                        </div>
-                        {%- if link.links != blank -%}
-                            <ul class="menu-list__second">
-                                {%- for childlink in link.links -%}
-                                    <li><a href="{{ childlink.url }}">{{ childlink.title | escape }}</a></li>
-                                {%- endfor -%}
-                            </ul>
-                        {%- endif -%}
-                    </li>
-                {%- endfor -%}
-            {%- endif -%}
-
-        </ul>
-        <div class="menu-hide__bottom">
-            {%- if menu != blank -%}
-            <ul class="menu-list d-block d-lg-none">
-                    {%- for link in menu.links -%}
-                        <li class="menu-list__item"><a href="{{ link.url }}" class="menu-list__link"">{{ link.title }}</a></li>
-                    {%- endfor -%}
-                </ul>
-                {%- endif -%}
-            <div class="headerSocial-icons d-flex align-items-center">
-                {%- if settings.social_instagram_link != blank -%}
-                    <a href="{{- settings.social_instagram_link -}}" class="headerSocial-icons_item" target="_blank">{% render 'icon-instagram' %}</a>
-                {%- endif -%}
-                {%- if settings.social_twitter_link != blank -%}
-                    <a href="{{- settings.social_twitter_link -}}" class="headerSocial-icons_item" target="_blank">{% render 'icon-twitter' %}</a>
-                {%- endif -%}
-                {%- if settings.social_facebook_link != blank -%}
-                    <a href="{{- settings.social_facebook_link -}}" class="headerSocial-icons_item" target="_blank">{% render 'icon-facebook' %}</a>
-                {%- endif -%}
+<nav class='menu-hide'>
+  <div class='menu-hide_wrap'>
+    <ul class='menu-list d-none d-lg-block'>
+      <li class='menu-list__item menu-list__item--close'>
+        <button class='close-menu'>
+          {% render 'icon-close' %}
+        </button>
+      </li>
+      {%- if menu != blank -%}
+        {%- for link in menu.links -%}
+          <li class='menu-list__item'>
+            <a href='{{ link.url }}' class='menu-list__link'>
+              {{- link.title -}}
+            </a>
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+    <ul class='menu-list menu-list--hide d-block d-lg-none'>
+      <li class='menu-list__item menu-list__item--close'>
+        <button class='close-menu'>
+          {% render 'icon-close' %}
+        </button>
+      </li>
+      {%- if menuCollection != blank -%}
+        {%- for link in menuCollection.links -%}
+          <li class='menu-list__item menu-list__item--hide'>
+            <div class='d-flex menu-list__wrap'>
+              <a
+                href='{{ link.url }}'
+                class='menu-list__link menu-list__link--hide'
+              >
+                {{- link.title -}}
+              </a>
+              {%- if link.links != blank -%}
+                <span class='menuSvg'>{% render 'icon-caretDown' %}</span>
+              {%- endif -%}
             </div>
-        </div>
+            {%- if link.links != blank -%}
+              <ul class='menu-list__second'>
+                {%- for childlink in link.links -%}
+                  <li>
+                    <a href='{{ childlink.url }}'>
+                      {{- childlink.title | escape -}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+    <div class='menu-hide__bottom'>
+      {%- if menu != blank -%}
+        <ul class='menu-list d-block d-lg-none'>
+          {%- for link in menu.links -%}
+            <li class='menu-list__item'>
+              <a href='{{ link.url }}' class='menu-list__link'>
+                {{- link.title -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      <div class='headerSocial-icons d-flex align-items-center'>
+        {%- if settings.social_instagram_link != blank -%}
+          <a
+            href='{{- settings.social_instagram_link -}}'
+            class='headerSocial-icons_item'
+            target='_blank'
+          >
+            {%- render 'icon-instagram' -%}
+          </a>
+        {%- endif -%}
+        {%- if settings.social_twitter_link != blank -%}
+          <a
+            href='{{- settings.social_twitter_link -}}'
+            class='headerSocial-icons_item'
+            target='_blank'
+          >
+            {%- render 'icon-twitter' -%}
+          </a>
+        {%- endif -%}
+        {%- if settings.social_facebook_link != blank -%}
+          <a
+            href='{{- settings.social_facebook_link -}}'
+            class='headerSocial-icons_item'
+            target='_blank'
+          >
+            {%- render 'icon-facebook' -%}
+          </a>
+        {%- endif -%}
+      </div>
     </div>
+  </div>
 </nav>
 {% javascript %}
-$('.menu-btn').on('click', function(){
-    $('.menu-hide').toggleClass('active');
-    $('body').toggleClass('scroll');
- });
- $('.close-menu').on('click', function(){
-    $('.menu-hide').toggleClass('active');
-    $('body').toggleClass('scroll');
- });
+  $('.menu-btn').on('click', function () {
+    $('.menu-hide').toggleClass('active')
+    $('body').toggleClass('scroll')
+  })
+  $('.close-menu').on('click', function () {
+    $('.menu-hide').toggleClass('active')
+    $('body').toggleClass('scroll')
+  })
 
- $('.menuSvg').on('click',function(){
-    if(!$(this).parent().hasClass('active'))
-    {
-       $(this).parent().next().slideDown();
-        $('.menu-list__wrap.active').next().slideUp();
-        $('.menu-list__wrap.active').removeClass('active');
-       $(this).parent().addClass('active');
+  $('.menuSvg').on('click', function () {
+    if (!$(this).parent().hasClass('active')) {
+      $(this).parent().next().slideDown()
+      $('.menu-list__wrap.active').next().slideUp()
+      $('.menu-list__wrap.active').removeClass('active')
+      $(this).parent().addClass('active')
+    } else {
+      $(this).parent().removeClass('active')
+      $(this).parent().next().slideUp()
     }
-    else
-    {
-       $(this).parent().removeClass('active');
-       $(this).parent().next().slideUp();
-    }
- });
+  })
 {% endjavascript %}
 {% schema %}
+{
+  "name": "HEADER",
+  "class": "header",
+  "tag": "header",
+  "settings": [
     {
-        "name": "HEADER",
-        "class": "header",
-        "tag": "header",
-        "settings": [
-            {
-                "type":"link_list",
-                "id":"menu",
-                "label":"Menu Header"
-            },
-            {
-                "type":"link_list",
-                "id":"menu2",
-                "label":"Menu Collections"
-            }
-        ],
-        "presets": [
-            {
-                "name": "Header",
-                "category": "Custom Header"
-            }
-        ]
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu Header"
+    },
+    {
+      "type": "link_list",
+      "id": "menu2",
+      "label": "Menu Collections"
     }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "category": "Custom Header"
+    }
+  ]
+}
 {% endschema %}
