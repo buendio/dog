@@ -83,3 +83,35 @@
 .results-item a:hover {
   border-bottom: 2px solid #f88927;
 }
+.results-item.sng {
+  width: 100%;
+}
+@media (max-width: 1200px) {
+  .results-item.sng {
+    max-width: 100%;
+  }
+}
+.results-item.sng img {
+  max-height: 380px;
+  border-radius: 40px;
+}
+@media (max-width: 991px) {
+  .results-item.sng img {
+    max-height: 180px;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+}
+@media (max-width: 575px) {
+  .results-item.sng img {
+    max-height: 150px;
+  }
+}
+.results-item .results-item__text {
+  margin: 20px 0 0;
+}
+@media (max-width: 575px) {
+  .results-item .results-item__text {
+    margin: 10px 0 0;
+  }
+}

@@ -8,7 +8,7 @@ body {
   font-size: 16px;
   line-height: 1.25;
   font-weight: 400;
-  color: #1D1D1D;
+  color: #1d1d1d;
   overflow-x: hidden;
 }
 body.scroll {
@@ -29,11 +29,13 @@ body.scroll::after {
   transition: all 400ms;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   text-transform: uppercase;
 }
 @media (max-width: 575px) {
-  h1, .h1 {
+  h1,
+.h1 {
     font-size: 32px;
   }
 }
@@ -42,7 +44,7 @@ h1, .h1 {
   text-align: center;
 }
 .h1--decor span {
-  color: #ACAAAB;
+  color: #acaaab;
 }
 .h1--decor:after {
   content: "";
@@ -50,7 +52,7 @@ h1, .h1 {
   width: 73px;
   height: 1px;
   margin: 32px auto 0;
-  background-color: #2D2424;
+  background-color: #2d2424;
 }
 
 p {
@@ -108,14 +110,14 @@ form ::-webkit-input-placeholder {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #FFFFFF;
+  color: #ffffff;
   text-transform: uppercase;
-  background: #F88927;
+  background: #f88927;
   border-radius: 50px;
 }
 .btn:hover {
   color: #fff;
-  background: #F88927;
+  background: #f88927;
   opacity: 0.8;
 }
 
@@ -132,7 +134,7 @@ form ::-webkit-input-placeholder {
   font-size: 24px;
   font-weight: 400;
   text-transform: uppercase;
-  color: #F88927;
+  color: #f88927;
 }
 @media (max-width: 575px) {
   .btn_link {
@@ -141,7 +143,7 @@ form ::-webkit-input-placeholder {
 }
 .btn_link svg {
   margin-left: 10px;
-  stroke: #F88927;
+  stroke: #f88927;
 }
 
 h2.ga-title {

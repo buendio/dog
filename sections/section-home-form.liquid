@@ -10,15 +10,64 @@
             {%- endif -%}
         </div>
         <div class="col-lg-6">
-            {%- form 'contact', id: '', class: 'subscribe-form' -%}
+
+        {%- form 'customer',
+            class: 't4s-pr t4s-z-100 t4s-newsletter__form subscribe-form',
+            id: 'form_id1',
+            data-form-mail-agree: ''
+          -%}
             {% if form.posted_successfully? %}
-                <div class="form-status form-status--success" tabindex="-1" autofocus>{% render 'icon-success' %} {{ 'templates.contact.form.post_success' | t }}</div>
-                {%- elsif form.errors -%}
-                <div class="form-status form-status--error" tabindex="-1" autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</div>
-            {% endif %}
-            <input type="text" name="contact[email]" placeholder="Your email address">
-            <button class="btn" type="submit">Subscribe</button>
-        {%- endform -%}
+          <div class='form-status form-status--success' tabindex='-1' autofocus>
+            {% render 'icon-success' %}
+            {{ 'templates.contact.form.post_success' | t }}
+          </div>
+        {%- elsif form.errors -%}
+          <div class='form-status form-status--error' tabindex='-1' autofocus>
+            {% render 'icon-error' %}
+            {{ 'templates.contact.form.error_heading' | t }}
+          </div>
+        {% endif %}
+            <input type='hidden' name='contact[tags]' value='newsletter'>
+            <div class='t4s-newsletter__fields'>
+              <div class='t4s-newsletter__inner t4s-row t4s-g-0 t4s-pr t4s-oh {{class}}'>
+                <div class='{{class_email}} t4s-col-item is--col-email'>
+                  <input
+                    type='email'
+                    name='contact[email]'
+                    placeholder='{{ 'sections.newsletter_form.email_placeholder' | t }}'
+                    value='{% if customer %}{{ customer.email }}{% endif %}'
+                    class='{{class_ip}} t4s-newsletter__email'
+                    required='required'
+                  >
+                </div>
+                 <button
+                    data-agreeMail-btn
+                    type='submit'
+                    class='t4s-w-100 t4s-newsletter__submit t4s-truncate t4s-btn-loading__svg btn'
+                  >
+                    <span class='t4s-newsletter__text'>
+                      {{- 'sections.newsletter_form.submit' | t -}}
+                      {{- btn_icon -}}
+                      {{- icon_Html -}}
+                    </span>
+                    <span class='t4s-loading__spinner t4s-dn'>
+                      <svg
+                        width='16'
+                        height='16'
+                        aria-hidden='true'
+                        focusable='false'
+                        role='presentation'
+                        class='t4s-svg__spinner'
+                        viewBox='0 0 66 66'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                      </svg>
+                    </span>
+                  </button>
+              {{- conditions_mail- }}
+            </div>
+          {%- endform -%}
         </div>
     </div>
 </div>

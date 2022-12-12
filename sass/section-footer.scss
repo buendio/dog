@@ -1,106 +1,122 @@
-@use 'mixins'  as m;
+@use 'mixins' as m;
 
 .footer {
-    padding: 45px 0 25px;
-    background-color: #242424;
-    @include m.media-sm() {
-        text-align: center;
-    }
+  padding: 45px 0 25px;
+  background-color: #242424;
+  @include m.media-sm() {
+    text-align: center;
+  }
 }
 .footer-logo {
-    margin-bottom: 25px;
-    @include m.media-sm() {
-        max-width: 167px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    svg {
-        width: 100%;
-    }
+  margin-bottom: 25px;
+  @include m.media-sm() {
+    max-width: 167px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  svg {
+    width: 100%;
+  }
 }
 .footer-info {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 .footer-info__text {
-    font-size: 17px;
-    line-height: 1.8;
-    color: #CCCCCC;
-    @include m.media-sm() {
-        margin-bottom: 23px;
-        font-size: 14px;
-        line-height: 1.17;
-    }
+  font-size: 17px;
+  line-height: 1.8;
+  color: #cccccc;
+  @include m.media-sm() {
+    margin-bottom: 23px;
+    font-size: 14px;
+    line-height: 1.17;
+  }
 }
 .footerSocial-icons {
-    margin-bottom: 20px;
-    @include m.media-sm() {
-        justify-content: center;
+  margin-bottom: 20px;
+  @include m.media-sm() {
+    justify-content: center;
+  }
+  a {
+    &:not(:last-child) {
+      margin-right: 20px;
     }
-    a {
-        &:not(:last-child) {
-            margin-right: 20px;
-        }
-    }
+  }
 }
 .footer-menu {
-    width: max-content;
-    margin: 0 auto;
+  width: max-content;
+  margin: 0 auto;
 }
 .footer-menu__link {
-    font-size: 17px;
-    line-height: 1.8;
-    color: #FFFFFF;
-    text-transform: capitalize;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #ffffff;
+  text-transform: capitalize;
 }
 .subscribe-form {
-    width: 255px;
+  width: 255px;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: center;
+  @include m.media-sm() {
     margin-left: auto;
-    margin-right: 0;
+    margin-right: auto;
+  }
+  input {
+    display: block;
+    width: 100%;
+    height: 58px;
+    margin-bottom: 15px;
+    background: #ffffff;
+    border: 1px solid #d8d8d8;
+    border-radius: 50px;
     text-align: center;
-    @include m.media-sm() {
-        margin-left: auto;
-        margin-right: auto;
-    }
-    input {
-        display: block;
-        width: 100%;
-        height: 58px;
-        margin-bottom: 15px;
-        background: #FFFFFF;
-        border: 1px solid #D8D8D8;
-        border-radius: 50px;
-        text-align: center;
-    }
-    .btn {
-        width: 100%;
-    }
+  }
+  .btn {
+    width: 100%;
+  }
 }
 .subscribe-form__text {
-    margin-bottom: 5px;
-    font-size: 17px;
-    line-height: 1.8;
-    color: #CCCCCC;
+  margin-bottom: 5px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #cccccc;
 }
 .footer-copyright {
-    margin-top: 42px;
-    font-size: 14px;
-    color: #7A7A7A;
-    text-align: center;
+  margin-top: 42px;
+  font-size: 14px;
+  color: #7a7a7a;
+  text-align: center;
 }
 .form-status {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    color: #fff;
-    svg {
-        width: 25px;
-        height: 25px;
-        margin-right: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #fff;
+  svg {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
+  &.form-status--success {
+    color: green;
+  }
+  &.form-status--error {
+    color: red;
+  }
+}
+.soundest-forms-container {
+  .soundest-form-without-image-wrapper {
+    .soundest-form-without-image-close-holder {
+      .soundest-form-without-image-close {
+        border-color: red !important;
+      }
     }
-    &.form-status--success {
-        color: green;
-    }
-    &.form-status--error {
-        color: red;
-    }
+  }
+}
+
+#soundest-form-qxxAEDI7GMk2pc080T9XI8z0cHDo8CSeDhmX-template-container
+  .soundest-form-without-image-close:after,
+#soundest-form-qxxAEDI7GMk2pc080T9XI8z0cHDo8CSeDhmX-template-container
+  .soundest-form-without-image-close:before {
+  background: red !important;
 }

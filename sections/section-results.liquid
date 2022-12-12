@@ -1,87 +1,104 @@
 {{ 'section-results.css' | asset_url | stylesheet_tag }}
 
 <div class="container">
-    {%- if section.settings.title != blank -%}
-        <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
-    {%- endif -%}
-    {%- if section.settings.title != blank -%}
-        <p class="p section-results__text">{{- section.settings.text -}}</p>
-    {%- endif -%}
-    {%- if section.settings.textBtn != blank or section.settings.url != blank -%}
-        <a href="{{- section.settings.url -}}" class="section-results__link btn_link">{{- section.settings.textBtn -}} {% render 'icon-caretRight' %}</a>
-    {%- endif -%}
-    {%- if  section.blocks.size > 0 -%}
-        <div class="d-md-flex justify-content-between flex-wrap">
-            {%- for block in section.blocks -%}
-                    <div class="results-item">
-                        {%- if block.settings.img != blank -%}
-                            <img src="{{- block.settings.img | img_url: '538x538' -}}" alt="" loading="lazy">
-                        {%- endif -%}
-                        {%- if block.settings.text  -%}
-                            <a href="{{- block.settings.url -}}">{{- block.settings.text -}}</a>
-                        {%- endif -%}
-                    </div>
-            {%- endfor -%}
+  {%- if section.settings.title != blank -%}
+    <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
+  {%- endif -%}
+  {%- if section.settings.title != blank -%}
+    <p class="p section-results__text">{{- section.settings.text -}}</p>
+  {%- endif -%}
+  {%- if section.settings.textBtn != blank or section.settings.url != blank -%}
+    <a
+      href="{{- section.settings.url -}}"
+      class="section-results__link btn_link"
+    >
+      {{- section.settings.textBtn -}}
+      {% render 'icon-caretRight' -%}
+    </a>
+  {%- endif -%}
+  {%- if section.blocks.size > 0 -%}
+    <div class="d-md-flex justify-content-between flex-wrap">
+      {%- for block in section.blocks -%}
+        <div class="results-item {% if  section.blocks.size < 2 %}sng{% endif %}">
+          {%- if block.settings.img != blank -%}
+            <img
+              src="{{- block.settings.img | img_url: 'master' -}}"
+              alt=""
+              loading="lazy"
+            >
+          {%- endif -%}
+          {%- if block.settings.text -%}
+            <a href="{{- block.settings.url -}}">{{- block.settings.text -}}</a>
+          {%- endif -%}
+          {%- if block.settings.info -%}
+            <p class="results-item__text">{{- block.settings.info -}}</p>
+          {%- endif -%}
         </div>
-    {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
+{
+  "name": "Section Results",
+  "class": "section-results",
+  "tag": "section",
+  "settings": [
     {
-        "name": "Section Results",
-        "class": "section-results",
-        "tag": "section",
-        "settings": [
-            {
-                "type": "html",
-                "id": "title",
-                "label": "Title"
-            },
-            {
-                "type": "html",
-                "id": "text",
-                "label": "Text"
-            },
-            {
-                "type": "text",
-                "id": "textBtn",
-                "label": "Text Link"
-            },
-            {
-                "type": "url",
-                "id": "url",
-                "label": "Link"
-            }
-        ],
-        "blocks": [
-        {
-                "type": "item",
-                "name": "Block",
-                "settings": [
-                    {
-                        "type": "image_picker",
-                        "id": "img",
-                        "label": "Image"
-                    },
-                    {
-                        "type": "html",
-                        "id": "text",
-                        "label": "Text Link"
-                    },
-                    {
-                        "type": "url",
-                        "id": "url",
-                        "label": "URL Link"
-                    }
-
-                ]
-            }
-        ],
-        "presets": [
-            {
-                "name": "Section Results",
-                "category": "Custom Section"
-            }
-        ]
+      "type": "html",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "html",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "textBtn",
+      "label": "Text Link"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
     }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Text Link"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL Link"
+        },
+        {
+          "type": "html",
+          "id": "info",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Results",
+      "category": "Custom Section"
+    }
+  ]
+}
 {% endschema %}

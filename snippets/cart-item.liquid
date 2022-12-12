@@ -26,6 +26,8 @@
           {%- if property_size > 0 -%}
           <ul class="cart_meta_propertyList">
             {%- for p in item.properties -%}
+              {% assign first_char = p.first | slice: 0 %}
+              {% if first_char == '_' %}{% continue %}{% endif %}
               {%- if p.first contains '_bundle_' or p.first contains '_mczr_' -%}{%- continue -%}{%- endif -%}
               {%- unless p.last == blank -%}
                 {%- if p.first == 'shipping_interval_frequency' -%}

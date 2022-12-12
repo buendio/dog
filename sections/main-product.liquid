@@ -721,7 +721,11 @@ endif -%}
               {%- when 'custom_liquid' -%}
               <div class="t4s-liquid_{{bk_id}} t4s-pr__custom-liquid" {{ block.shopify_attributes }}>{{ bk_stts.custom_liquid }}</div>
 
-              {%- when '@app' -%}{%- render block -%}
+              {%- when '@app' -%}
+              <div class="appWr">
+
+                {%- render block -%}
+              </div>
 
 
             {%- endcase -%}
@@ -808,7 +812,33 @@ endif -%}
     {{ product.media | where: 'media_type', 'model' | json }}
   </script>
 {%- endunless -%}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.appWr')) {
+      var target2 = document.querySelector('.appWr')
+  target2.addEventListener('click', function(e) {
+  let li = document.querySelectorAll('[data-t4s-tab-item]')
+  let cnt = document.querySelectorAll('.t4s-tab-content')
+  console.log( document.querySelectorAll('.t4s-tab-content'));
+  li.forEach(e => {
+    e.classList.remove('t4s-active')
+  })
+  cnt.forEach(e => {
+    e.classList.remove('t4s-active')
+    e.style.display = 'none'
+  })
+  li[1].classList.add('t4s-active')
+  cnt[1].style.display = 'block'
+  cnt[1].classList.add('t4s-active')
+  var id  = $('.t4s-tabs-ul'),
+  top = $(id).offset().top;
+  console.log(top)
+  $('body,html').animate({scrollTop: top}, 1500);
+})
+    }
 
+  })
+</script>
 <script type="application/ld+json">
 {
   "@context": "http://schema.org/",

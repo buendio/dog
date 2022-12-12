@@ -63,17 +63,20 @@
         "7656bb39-6f9f-4530-8163-d793f0e2add8": {
           "type": "item",
           "settings": {
-            "img": "shopify:\/\/shop_images\/1_212963bf-5c03-44ce-bfb0-f2c5d1f7f880.png",
-            "text": "helps <span>in removing tear stains<\/span>",
-            "url": ""
+            "img": "shopify:\/\/shop_images\/EN_SC_PET_WEB_BANNER_1170X380PX_ABOUT_JANITA_4_2022_11_23.png",
+            "text": "Read<span> more<\/span>",
+            "url": "shopify:\/\/pages\/about-the-nursery",
+            "info": "The founder of this company - Janita J. Plunge - has been living with dogs for more than 35 years. It allowed her to understand and create the best products for pets. Learn more about her experience and expertise in the pet world."
           }
         },
         "3c3488da-f47e-4fe5-9454-2165993cc0b5": {
           "type": "item",
+          "disabled": true,
           "settings": {
             "img": "shopify:\/\/shop_images\/9.png",
             "text": "helps <span>to maintain general health<\/span>",
-            "url": ""
+            "url": "",
+            "info": ""
           }
         }
       },
@@ -82,10 +85,10 @@
         "3c3488da-f47e-4fe5-9454-2165993cc0b5"
       ],
       "settings": {
-        "title": "Are the <span>results great?<\/span>",
-        "text": "<h4 style=\"font-weight: 300;\">All feeds in this line are formulated without wheat. This helps to reduce the risks of allergy, skin irritation and various infections.<\/h4>",
-        "textBtn": "More results",
-        "url": "shopify:\/\/pages\/befor-after"
+        "title": "About <span>us <\/span>",
+        "text": "",
+        "textBtn": "",
+        "url": ""
       }
     },
     "1661959393ff5fad6b": {
@@ -157,6 +160,39 @@
       "settings": {
         "title": ""
       }
+    },
+    "2716c624-b10d-40df-9611-94e573537c42": {
+      "type": "section-results",
+      "blocks": {
+        "1d8111e2-ac21-4036-ac33-db99c41ed391": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/1_111.png",
+            "text": "helps <span>in removing tear stains<\/span>",
+            "url": "",
+            "info": ""
+          }
+        },
+        "03a0d1fe-484c-4386-aaf3-143a2efb91f8": {
+          "type": "item",
+          "settings": {
+            "img": "shopify:\/\/shop_images\/1_1.png",
+            "text": "helps <span>to maintain general health<\/span>",
+            "url": "",
+            "info": ""
+          }
+        }
+      },
+      "block_order": [
+        "1d8111e2-ac21-4036-ac33-db99c41ed391",
+        "03a0d1fe-484c-4386-aaf3-143a2efb91f8"
+      ],
+      "settings": {
+        "title": "ARE THE <span>RESULTS GREAT?<\/span>",
+        "text": "",
+        "textBtn": "more results",
+        "url": ""
+      }
     }
   },
   "order": [
@@ -166,6 +202,7 @@
     "1661959393ff5fad6b",
     "16619594917e401c19",
     "16619599253f82af49",
-    "1661959646b2f7a31a"
+    "1661959646b2f7a31a",
+    "2716c624-b10d-40df-9611-94e573537c42"
   ]
 }

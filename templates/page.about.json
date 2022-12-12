@@ -3,12 +3,11 @@
     "ee4864f4-f03a-4aae-90e3-f5d36ff239dc": {
       "type": "heading-template-custom",
       "settings": {
-        "img": "shopify://shop_images/logo_906dd610-be58-4e81-816d-198f91b8c724.png",
-        "video": "https://cdn.shopify.com/videos/c/o/v/aae62a01963043e2bf3d678dafadc2a8.mp4",
+        "img": "shopify:\/\/shop_images\/logo_906dd610-be58-4e81-816d-198f91b8c724.png",
+        "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/aae62a01963043e2bf3d678dafadc2a8.mp4",
         "title": "About Us"
       }
     },
-
     "42178eee-958e-427b-84fc-78129edda821": {
       "type": "about-content",
       "settings": {
@@ -18,7 +17,7 @@
     "4627602e-e050-4de7-9d7e-61447d1b824c": {
       "type": "section-reviews",
       "settings": {
-        "title": "RELATED <span>ARTICLES</span>",
+        "title": "RELATED <span>ARTICLES<\/span>",
         "blog": "news"
       }
     }

@@ -1,0 +1,13 @@
+<script>
+  window.onload = function() {
+  if (typeof jQuery === 'undefined') {
+    return;
+  }
+
+  jQuery('body').on('mwGroupedProducts', function (event, action) {
+    if (action === 'end-append-table') {
+      $('[data-mwgp-add-to-cart]').removeAttr('data-atc-form');
+    }
+  })  
+} 
+</script>

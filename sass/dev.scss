@@ -1,120 +1,138 @@
-@use 'mixins'  as m;
-@import './font';
+@use "mixins" as m;
+@import "./font";
 
 body {
-    position: relative;
-    height: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    line-height: 1.25;
-    font-weight: 400;
-    color: #1D1D1D;
-    overflow-x: hidden;
-    &.scroll {
-        height: 100vh;
-        overflow: hidden;
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            background-color: rgba(#000, 0.3);
-            transition: all 400ms;
-        }
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 400;
+  color: #1d1d1d;
+  overflow-x: hidden;
+  &.scroll {
+    height: 100vh;
+    overflow: hidden;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background-color: rgba(#000, 0.3);
+      transition: all 400ms;
     }
-
+  }
 }
 
-h1, .h1 {
-    // font-family: 'Museo Sans Cyrl', sans-serif;
-    // font-size: 48px;
-    // line-height: 1;
-    // font-weight: 300;
-    text-transform: uppercase;
-    @include m.media-sm() {
-        font-size: 32px;
-    }
+h1,
+.h1 {
+  // font-family: 'Museo Sans Cyrl', sans-serif;
+  // font-size: 48px;
+  // line-height: 1;
+  // font-weight: 300;
+  text-transform: uppercase;
+  @include m.media-sm() {
+    font-size: 32px;
+  }
 }
 .h1--decor {
-    text-align: center;
-    span {
-        color: #ACAAAB;
-    }
-    &:after {
-        content: "";
-        display: block;
-        width: 73px;
-        height: 1px;
-        margin: 32px auto 0;
-        background-color: #2D2424;
-    }
+  text-align: center;
+  span {
+    color: #acaaab;
+  }
+  &:after {
+    content: "";
+    display: block;
+    width: 73px;
+    height: 1px;
+    margin: 32px auto 0;
+    background-color: #2d2424;
+  }
 }
 p {
-    margin: 0;
-    // font-size: 18px;
-    // font-weight: 300;
-    @include m.media-sm {
-        font-size: 16px;
-    }
+  margin: 0;
+  // font-size: 18px;
+  // font-weight: 300;
+  @include m.media-sm {
+    font-size: 16px;
+  }
 }
 button {
-    padding: 0;
-    &:hover {
-        background: none;
-    }
+  padding: 0;
+  &:hover {
+    background: none;
+  }
 }
 form {
-    :-moz-placeholder {color: #999999;letter-spacing: 0.02em;font-size: 16px;font-family: 'Museo Sans Cyrl', sans-serif;}
-    ::-moz-placeholder {color: #999999;letter-spacing: 0.02em;font-size: 16px;font-family: 'Museo Sans Cyrl', sans-serif;}
-    :-ms-input-placeholder {color: #999999;letter-spacing: 0.02em;font-size: 16px;font-family: 'Museo Sans Cyrl', sans-serif;}
-    ::-webkit-input-placeholder {color: #999999;letter-spacing: 0.02em;font-size: 16px;font-family: 'Museo Sans Cyrl', sans-serif;}
+  :-moz-placeholder {
+    color: #999999;
+    letter-spacing: 0.02em;
+    font-size: 16px;
+    font-family: "Museo Sans Cyrl", sans-serif;
+  }
+  ::-moz-placeholder {
+    color: #999999;
+    letter-spacing: 0.02em;
+    font-size: 16px;
+    font-family: "Museo Sans Cyrl", sans-serif;
+  }
+  :-ms-input-placeholder {
+    color: #999999;
+    letter-spacing: 0.02em;
+    font-size: 16px;
+    font-family: "Museo Sans Cyrl", sans-serif;
+  }
+  ::-webkit-input-placeholder {
+    color: #999999;
+    letter-spacing: 0.02em;
+    font-size: 16px;
+    font-family: "Museo Sans Cyrl", sans-serif;
+  }
 }
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 25px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    background: #F88927;
-    border-radius: 50px;
-    &:hover {
-        color: #fff;
-        background: #F88927;
-        opacity: .8;
-    }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 25px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: #f88927;
+  border-radius: 50px;
+  &:hover {
+    color: #fff;
+    background: #f88927;
+    opacity: 0.8;
+  }
 }
 .btn_link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: 400;
-    text-transform: uppercase;
-    color: #F88927;
-    @include m.media-sm {
-        font-size: 20px;
-    }
-    svg {
-        margin-left: 10px;
-        stroke: #F88927;;
-    }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #f88927;
+  @include m.media-sm {
+    font-size: 20px;
+  }
+  svg {
+    margin-left: 10px;
+    stroke: #f88927;
+  }
 }
 
-h2.ga-title  {
-    text-transform: uppercase;
-    font-family: var(--font-heading-family);
+h2.ga-title {
+  text-transform: uppercase;
+  font-family: var(--font-heading-family);
 }
 .ga-product_price-container {
-    text-align: center;
+  text-align: center;
 }
-
-

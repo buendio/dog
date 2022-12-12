@@ -1,4 +1,4 @@
-@use 'mixins' as m;
+@use "mixins" as m;
 
 .section-results {
   padding: 40px 0 10px;
@@ -63,6 +63,29 @@
     }
     &:hover {
       border-bottom: 2px solid #f88927;
+    }
+  }
+  &.sng {
+    width: 100%;
+    @include m.media-xl() {
+      max-width: 100%;
+    }
+    img {
+      max-height: 380px;
+      border-radius: 40px;
+      @include m.media-lg {
+        max-height: 180px;
+        object-fit: contain;
+      }
+      @include m.media-sm {
+        max-height: 150px;
+      }
+    }
+  }
+  .results-item__text {
+    margin: 20px 0 0;
+    @include m.media-sm() {
+      margin: 10px 0 0;
     }
   }
 }
