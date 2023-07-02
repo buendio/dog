@@ -33,32 +33,40 @@
                 {%- assign button_style = bk_stts.button_style-%}
                 {%- case block.type -%}
                     {%- when 'bl_form' -%}
-                        <div class="t4s-col-item t4s-contact-form t4s-col-md-6 t4s-col-12">
+                        <div class="t4s-col-item t4s-contact-form t4s-col-md-8 t4s-col-12">
                             {%- form 'contact', id: formId -%}
                                 {%- render 'form-status', form: form, form_id: formId -%}
-                                <h3 class="t4s-form-title">{{bk_stts.heading}}</h3>
-                                <p>
-                                    <label for="{{ formId }}-name">{{ 'templates.contact.form.name' | t }}</label>
-                                    <input required="required" type="text" id="{{ formId }}-name" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-                                </p>
-                                <p>
-                                    <label for="{{ formId }}-email">{{ 'templates.contact.form.email' | t }}</label>
-                                    <input required="required" type="email" id="{{ formId }}-email" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-required="true" required="required"
-                                    {%- if form.errors contains 'email' -%}class="t4s-input--error" aria-invalid="true" aria-describedby="{{ formId }}-email-error"{%- endif -%}
-                                >
-                                    {%- if form.errors contains 'email' -%}
-                                        <span id="{{ formId}}-email-error" class="t4s-input-error-message"><i class="las la-exclamation-triangle"></i>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                                    {%- endif -%}
-                                </p>
-                                {%- if bk_stts.enable_phone -%}
+                                <h2 class="t4s-form-title h1--decor2">{{bk_stts.heading}}</h2>
+                                <p class="t4s-form-title__sub">Your email address will not be published. Required fields are marked *</p>
+                                <div class="field-wrap">
                                     <p>
-                                        <label for="{{ formId }}-phone">{{ 'templates.contact.form.phone' | t }}</label>
-                                        <input required="required" type="tel" id="{{ formId }}-phone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                                        <input placeholder="First Name*" required="required" type="text" id="{{ formId }}-name" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
                                     </p>
-                                {%- endif -%}
+                                    <p>
+                                        <input placeholder="Last Name*" required="required" type="email" id="{{ formId }}-email" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-required="true" required="required"
+                                        {%- if form.errors contains 'email' -%}class="t4s-input--error" aria-invalid="true" aria-describedby="{{ formId }}-email-error"{%- endif -%}
+                                    >
+                                        {%- if form.errors contains 'email' -%}
+                                            <span id="{{ formId}}-email-error" class="t4s-input-error-message"><i class="las la-exclamation-triangle"></i>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                                        {%- endif -%}
+                                    </p>
+                                </div>
+                                <div class="field-wrap">
+                                    <p>
+                                            
+                                        <input placeholder="Email*" required="required" type="email" id="{{ formId }}-email" name="contact[email]" >
+                                    </p>
+                                    {%- if bk_stts.enable_phone -%}
+                                        <p>
+                                            
+                                            <input placeholder="Phone*" required="required" type="tel" id="{{ formId }}-phone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                                        </p>
+                                    {%- endif -%}
+                                </div>
+                                
+                                
                                 <p>
-                                    <label for="{{ formId }}-message">{{ 'templates.contact.form.message' | t }}</label>
-                                    <textarea rows="20" id="{{ formId }}-message" name="contact[body]" required="required" class="t4s-input-textarea">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                                    <textarea placeholder="{{ 'templates.contact.form.message' | t }}" rows="20" id="{{ formId }}-message" name="contact[body]" required="required" class="t4s-input-textarea">{% if form.body %}{{ form.body }}{% endif %}</textarea>
                                 </p>
                                 <input type="submit" class="t4s-btn t4s-btn-base t4s-btn-style-{{button_style}} t4s-btn-size-{{bk_stts.btn_size}} t4s-btn-color-{{bk_stts.btn_cl}}{% if bk_stts.enable_full_btn %} t4s-w-100 t4s-justify-content-center{% endif %} t4s-btn-effect-fade t4s-cursor-pointer" value="{{ 'templates.contact.form.submit' | t }}">
                             {%- endform -%}
@@ -72,6 +80,7 @@
             {%- endfor -%}
         </div>
     {{-html_layout[1]-}}
+    <img src="https://cdn.shopify.com/s/files/1/0597/1551/8645/files/pawW.png?v=1682525272" alt="" class="img_form_dec">
 </div>
 <style>
 input.t4s-input--error {

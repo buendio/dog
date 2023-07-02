@@ -1,0 +1,49 @@
+{{ 'page-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="t4s-container">
+  <div class="page-banner-block">
+    {%- if section.settings.img != blank -%}
+      <img
+        src="{{ section.settings.img | img_url: 'master' }}"
+        alt="{{page.title}}"
+        class="page-banner__img">
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h1 class="page-banner__title h1--decor2">{{ section.settings.title }}</h1>
+    {%- else -%}
+      <h1 class="page-banner__title">{{ page.title }}</h1>
+    {%- endif -%}
+  </div>
+  {%- if page.content != blank and section.settings.iscontent -%}
+    <div class="page-banner__text">
+      {{ page.content }}
+    </div>
+  {%- endif -%}
+</div>
+{% schema %}
+  {
+    "name": "Page Banner",
+    "class": "page-banner",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Img"
+      }, {
+        "type": "checkbox",
+        "id": "iscontent",
+        "label": "Show description"
+      }, {
+        "type": "liquid",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Banner"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,51 +1,56 @@
 {{ 'section-foto.css' | asset_url | stylesheet_tag }}
 <div class="container">
-    {%- if section.settings.title != blank -%}
-        <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
-    {%- endif -%}
+  {%- if section.settings.title != blank -%}
+    <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
+  {%- endif -%}
 </div>
-{%- if  section.blocks.size > 0 -%}
-<div class="section-fotos">
+{%- if section.blocks.size > 0 -%}
+  <div class="section-fotos">
     {%- for block in section.blocks -%}
-            <div class="foto-item">
-                {%- if block.settings.img != blank -%}
-                    <img src="{{- block.settings.img | img_url: 'master' -}}" alt="" loading="lazy" class="section-fotos__img">
-                {%- endif -%}
-            </div>
+      <div class="foto-item">
+        {%- if block.settings.img != blank -%}
+          <img
+            src="{{- block.settings.img | img_url: 'master' -}}"
+            alt=""
+            loading="lazy"
+            class="section-fotos__img"
+          >
+        {%- endif -%}
+      </div>
     {%- endfor -%}
-</div>
+  </div>
 {%- endif -%}
 
 {% schema %}
+{
+  "name": "Section Foto",
+  "class": "section-foto",
+  "tag": "section",
+  "settings": [
     {
-        "name": "Section Foto",
-        "class": "section-foto",
-        "tag": "section",
-        "settings": [
-            {
-                "type": "html",
-                "id": "title",
-                "label": "Title"
-            }
-        ],
-        "blocks": [
-        {
-                "type": "item",
-                "name": "Foto",
-                "settings": [
-                    {
-                        "type": "image_picker",
-                        "id": "img",
-                        "label": "Image"
-                    }
-                ]
-            }
-        ],
-        "presets": [
-            {
-                "name": "Section Foto",
-                "category": "Custom Section"
-            }
-        ]
+      "type": "html",
+      "id": "title",
+      "label": "Title"
     }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Foto",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Foto",
+      "category": "Custom Section"
+    }
+  ]
+}
 {% endschema %}

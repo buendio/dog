@@ -13,13 +13,15 @@
         {% if se_stts.breadcrumb_pr %}
         <nav class="t4s-pr-breadcrumb">
           {%- if template == 'collection' -%}
-          <a href="{{ routes.root_url }}" class="t4s-dib">{{'products.breadcrumb.home' | t}}</a>{% if collection.url != blank %}<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12.96875 4.28125 L 11.53125 5.71875 L 21.8125 16 L 11.53125 26.28125 L 12.96875 27.71875 L 23.96875 16.71875 L 24.65625 16 L 23.96875 15.28125 Z"/></svg><span>{{collection.title}}</span>{% endif %}
+          <a href="{{ routes.root_url }}" class="t4s-dib">{{'products.breadcrumb.home' | t}}</a>{% if collection.url != blank %}<div class="crummb-separ"></div> <span>{{collection.title}}</span>{% endif %}
           {%- elsif  template == 'product' -%}
-          <a href="{{ routes.root_url }}" class="t4s-dib">{{'products.breadcrumb.home' | t}}</a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12.96875 4.28125 L 11.53125 5.71875 L 21.8125 16 L 11.53125 26.28125 L 12.96875 27.71875 L 23.96875 16.71875 L 24.65625 16 L 23.96875 15.28125 Z"/></svg><a href="{{collection.url}}" class="t4s-dib">{{collection.title}}</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"  width="16" height="16" fill="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12.96875 4.28125 L 11.53125 5.71875 L 21.8125 16 L 11.53125 26.28125 L 12.96875 27.71875 L 23.96875 16.71875 L 24.65625 16 L 23.96875 15.28125 Z"/></svg><span>{{product.title}}</span>
+          <a href="{{ routes.root_url }}" class="t4s-dib">{{'products.breadcrumb.home' | t}}</a>{% if collection.title != blank %}<div class="crummb-separ"></div><a href="{{collection.url}}" class="t4s-dib">{{collection.title}}</a> {% endif %}<div class="crummb-separ"></div><span>{{product.title}}</span>
           {%- else -%}
-          <a href="{{ routes.root_url }}" class="t4s-dib">{{'products.breadcrumb.home' | t}}</a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12.96875 4.28125 L 11.53125 5.71875 L 21.8125 16 L 11.53125 26.28125 L 12.96875 27.71875 L 23.96875 16.71875 L 24.65625 16 L 23.96875 15.28125 Z"/></svg><a href="{{blog.url}}" class="t4s-dib">{{blog.title}}</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"  width="16" height="16" fill="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12.96875 4.28125 L 11.53125 5.71875 L 21.8125 16 L 11.53125 26.28125 L 12.96875 27.71875 L 23.96875 16.71875 L 24.65625 16 L 23.96875 15.28125 Z"/></svg><span>{{article.title}}</span>
+          <a href="{{ routes.root_url }}" class="t4s-dib">{{'products.breadcrumb.home' | t}}</a><div class="crummb-separ"></div><a href="{{blog.url}}" class="t4s-dib">{{blog.title}}</a><div class="crummb-separ"></div><span>{{article.title}}</span>
           {%- endif -%}
-
+          
+            
+         
         </nav>
         {% endif %}
       </div>

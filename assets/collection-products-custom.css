@@ -1,19 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&family=Quicksand:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 .t4s-product-wrapper {
   position: relative;
-  max-width: 253px;
-  padding: 50px 0 38px;
+  max-width: 368px;
+  padding: 20px 0 16px;
   margin: 0 auto;
   background: #fff;
-  -webkit-box-shadow: 0px 0px 10px rgba(240, 238, 239, 0.4);
-          box-shadow: 0px 0px 10px rgba(240, 238, 239, 0.4);
-  border-radius: 40px;
+  border: 1px solid #e0e1e1;
+  border-radius: 20px;
 }
 
 .t4s-dropdown__sortby button[data-dropdown-open] {
-  border: 1px solid #CECECE !important;
-  border-radius: 50px !important;
-  color: #928F91 !important;
+  border: 1px solid #e0e1e1 !important;
+  border-radius: 10px !important;
+  color: #928f91 !important;
   font-size: 16px !important;
 }
 @media (max-width: 768px) {
@@ -23,7 +23,8 @@
 }
 
 @media (max-width: 768px) {
-  .t4s-dropdown__sortby .t4s-icon-select-arrow, .t4s-icon-select-arrow {
+  .t4s-dropdown__sortby .t4s-icon-select-arrow,
+.t4s-icon-select-arrow {
     right: 10px !important;
   }
 }
@@ -39,20 +40,13 @@
   }
 }
 
-.t4s-btn-filter {
-  font-size: 18px;
-  font-weight: 300;
-}
-
 .t4s-collection-header {
   margin: 0 0 40px;
 }
 
-.form--product-card {
-  text-align: center;
-}
-
 .card__title {
+  color: #121212;
+  text-align: left;
   margin-bottom: 15px;
 }
 
@@ -77,22 +71,21 @@
   height: 100%;
 }
 
-.t4s-active-filters a:hover {
-  color: #F88927;
-}
-
-.t4s-active-filters .t4s-active-filters__count > span {
-  color: #F88927;
-}
-
-.t4s-active-filters .t4s-active-filters__clear {
-  background-color: #F88927;
-}
-
 .product-form__submit--collection {
   font-size: 11px;
 }
 
+.product-form__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 .product-form__buttons .t4s-pr-quickview .t4s-svg-pr-icon {
   display: none !important;
 }
@@ -102,14 +95,14 @@
   right: 10px !important;
 }
 .t4s-modal-close:hover {
-  color: #F88927 !important;
+  color: #f88927 !important;
 }
 .t4s-modal-close:hover svg {
-  fill: #F88927 !important;
+  fill: #f88927 !important;
 }
 
 .badge_shape_1 .t4s-product-badge > span {
-  border-radius: 10px;
+  border-radius: 0px 8px 8px 0px;
   height: 30px;
 }
 
@@ -134,11 +127,13 @@ button.ga-product_addtocart:hover {
   opacity: 0.8;
 }
 
-#wigget_8092, .ga-products-box {
+#wigget_8092,
+.ga-products-box {
   margin: 15px auto 0 !important;
 }
 
-#wigget_8092 span.ga-product_price, #ga-product_related span.ga-product_price {
+#wigget_8092 span.ga-product_price,
+#ga-product_related span.ga-product_price {
   font-size: 16px;
 }
 
@@ -167,6 +162,52 @@ button.ga-product_addtocart:hover {
           justify-content: space-between;
 }
 
-#wigget_8092 .ga-product_title:hover, #ga-product_related .ga-product_title:hover {
+#wigget_8092 .ga-product_title:hover,
+#ga-product_related .ga-product_title:hover {
   color: #f88927;
+}
+
+.ratWr {
+  padding-left: 16px;
+  margin: 20px 0 0;
+}
+.ratWr > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+@media (max-width: 768px) {
+  .ratWr {
+    padding-left: 5px;
+  }
+}
+
+.t4s-desc-collection--dropdown {
+  max-height: 120px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 20px !important;
+}
+
+#toggleButton {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #F88927;
+}
+#toggleButton.dwn svg {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+#toggleButton svg {
+  margin-left: 10px;
 }

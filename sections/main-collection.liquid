@@ -104,385 +104,243 @@
   {%- if stt_layout == 't4s-se-container' -%}<div class="t4s-container-inner {% if stt_image_bg != blank %} t4s-has-imgbg lazyloadt4s {% endif %} "  {% if stt_image_bg != blank %}  data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto"  data-optimumx="1.5" {% endif %} > {%- endif -%}
   {%- if se_stts.position_desc == '1' and se_stts.show_desc -%}<div id="t4s-desc-collection" class="t4s-desc-collection t4s-desc-before">{{collection.description}}</div>{%- endif -%}
 
-    {%- comment -%}
-    <div class="col-lg-3 filterWrp">
-      {%- liquid
-        assign style_color         = section.settings.style_color_filter | replace: ' ,', ',' | replace: ', ', ',' |split:','
-        assign style_tag           = section.settings.style_tag_filter | replace: ' ,', ',' | replace: ', ', ',' |split:','
-        assign results             = search |default:collection
-        assign sort_by             = results.sort_by | default: results.default_sort_by
-        assign total_active_values = 0
-         if results.url
-             assign results_url = results.url
-         else
-             assign terms = results.terms | escape
-             assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
-         endif
-         assign results_count = results.results_count |default:results.products_count -%}
-        <link rel="stylesheet" href="{{ 'facets.css' | asset_url }}" media="all">
-        <link rel="stylesheet" href="{{ 'facets-custom.css' | asset_url }}" media="all">
-      <div data-filter-links id="t4s-filter-hidden" class="t4s-filter-hidden t4s-filter-hidden--desktop" aria-hidden="true">
 
-        <div class="t4s-drawer__content t4s-drawer__content--desktop">
-           <div class="t4s-drawer__main t4s-drawer__main--desktop">
-              <div data-t4s-scroll-me class="t4s-drawer__scroll t4s-current-scrollbar">
-                 <form id="FacetFiltersForm2" class="t4s-facets__form t4s-row t4s-g-0">
+    {%- if collection.metafields.custom.custom_h1 != blank -%}
+      <h1 class="collection__title">{{- collection.metafields.custom.custom_h1 -}}</h1>
+    {%- else -%}
+      <h1 class="collection__title">{{- collection.title -}}</h1>
+    {%- endif -%}
+    <div class="filtercont-wrap">
+      {%- if se_blocks.size > 0 -%}
+      <div class="t4s-collection-header t4s-d-flex 4s-align-items-center">
+      
+        {%- for block in se_blocks  -%}
+          {%- assign bk_stts = block.settings -%}
+          {%- case block.type -%}
+            {%- when 'sortby' -%}
+              <link rel="stylesheet" href="{{ 'base_drop.min.css' | asset_url }}" media="all">
+              {{ 'collection-products-custom.css' | asset_url | stylesheet_tag }}
+              {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                {%- assign option_selected = collection.sort_options | where:"value",sort_by | first -%}
+                <div class="d-flex">
+                  {% comment %} <span class="srtBy">Sort by:</span> {% endcomment %}
+                  <div class="t4s-dropdown t4s-dropdown__sortby">
+                    <button data-dropdown-open data-position="bottom-end" data-id="t4s__sortby"><span class="t4s-d-none t4s-d-md-block">{{option_selected.name | escape}}</span><span class="t4s-d-md-none">{{'collections.general.sort_button' | t}}</span>
+                    <svg class="t4s-icon-select-arrow" width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 1L6.5 6L1 1" stroke="#767270" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      
+                    </button>
+                    <div data-dropdown-wrapper class="t4s-dropdown__wrapper" id="t4s__sortby">
+                      <div class="t4s-drop-arrow"></div>
+                      <div class="t4s-dropdown__header">
+                          <span class="t4s-dropdown__title">{{'collections.general.sort_by_label' | t}}</span>
+                          <button data-dropdown-close aria-label="{{ 'general.aria.close' | t }}"><svg role="presentation" class="t4s-iconsvg-close" viewBox="0 0 16 14"><path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path></svg></button>
+                      </div>
+                      <div class="t4s-dropdown__content">
+                          {%- for option in collection.sort_options -%}
+                          <button data-dropdown-item data-sortby-item data-value="{{ option.value | escape }}"{% if option.value == sort_by %} class="is--selected"{% endif %}>{{ option.name | escape }}</button>
+                          {%- endfor -%}
+                      </div>
+                    </div>
+                </div>
+                </div>
 
-                    {%- if results.terms -%}
-                      <input type="hidden" name="q" value="{{ search.terms | escape }}">
-                      <input type="hidden" name="type" value="product">
-                      <input type="hidden" name="options[unavailable_products]" value="{{settings.unavailable_prs}}">
-                      <input type="hidden" name="options[prefix]" value="last">
-                    {%- endif -%}
+            {%- when 'layout'  -%}
 
-                    {%- if results.current_vendor or results.current_type -%}
-                        <input type="hidden" name="q" value="{{ results.current_vendor }}{{ results.current_type }}">
-                    {%- endif -%}
-
-                    {%- for filter in results.filters -%}
-                       {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
-
-                       {%- case filter.type -%}
-
-                          {%- when 'boolean' or 'list' -%}
-
-                             {%- if filter.values.size == 0 or results_count == 0 %}{% continue %}{% endif %}{% assign ck_style = true -%}
-
-                             {%- if style_color contains filter.label -%}
-
-                                <div id="blockid_{{forloop.index}}" data-count="{{bk_stts.count}}" class="t4s-col-item t4s-col-12 t4s-col-md-{{col_class}} t4s-facet is--blockidColor">
-                                   <h5 class="t4s-facet-title">{{filter.label | escape}}</h5>
-                                   <div class="t4s-facet-content">
-                                      <ul class="t4s-filter__values is--style-color t4s-current-scrollbar">
-
-                                         {%- for value in filter.values -%}
-
-                                           {%- assign value_label = value.label -%}
-                                           {%- assign label = value_label | escape -%}
-                                           {%- if value.active -%}
-                                               <li class="{% if value.count == 0 and value.active == false %}is--disabled {% endif %}is--selected"><a href="{{value.url_to_remove}}"><div class="t4s-filter_color t4s-pr t4s-oh"><span class="bg_color_{{value_label | handle}} lazyloadt4s"></span><svg focusable="false" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M9 20l-7-7 3-3 4 4L19 4l3 3z"></path></svg></div> {{label}}<span class="t4s-value-count">({{value.count}})</span></a></li>
-                                           {%- else -%}
-                                               <li{% if value.count == 0 and value.active == false %} class="is--disabled"{% endif %}><a href="{{value.url_to_add}}"><div class="t4s-filter_color t4s-pr t4s-oh"><span class="bg_color_{{value_label | handle}} lazyloadt4s"></span><svg focusable="false" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M9 20l-7-7 3-3 4 4L19 4l3 3z"></path></svg></div> {{label}}<span class="t4s-value-count">({{value.count}})</span></a></li>
-                                           {%- endif -%}
-
-                                         {%- endfor -%}
-
-                                      </ul>
-                                   </div>
-                                 </div>
-
-                             {%- elsif style_tag contains filter.label -%}
-
-                                <div id="blockid_{{forloop.index}}" data-count="{{bk_stts.count}}" class="t4s-col-item t4s-col-12 t4s-col-md-{{col_class}} t4s-facet is--blockid{{filter.label | handle}}">
-                                      <h5 class="t4s-facet-title">{{filter.label | escape}}</h5>
-                                      <div class="t4s-facet-content">
-                                         <ul class="t4s-filter__values is--style-tag t4s-current-scrollbar">
-
-                                            {%- for value in filter.values -%}
-
-                                              {%- if value.active -%}
-                                                  <li class="{% if value.count == 0 and value.active == false %}is--disabled {% endif %}is--selected"><a href="{{value.url_to_remove}}">{{value.label | escape}}<span class="t4s-value-count">({{value.count}})</span></a></li>
-                                              {%- else -%}
-                                                  <li{% if value.count == 0 and value.active == false %} class="is--disabled"{% endif %}><a href="{{value.url_to_add}}">{{value.label | escape}}<span class="t4s-value-count">({{value.count}})</span></a></li>
-                                              {%- endif -%}
-
-                                            {%- endfor -%}
-
-                                         </ul>
-                                      </div>
-                                </div>
-
-                              {%- else -%}
-
-                                <div id="blockid_{{forloop.index}}" data-count="{{bk_stts.count}}" class="t4s-col-item t4s-col-12 t4s-col-md-{{col_class}} t4s-facet is--blockid{{filter.label | handle}}">
-                                      <h5 class="t4s-facet-title">{{filter.label | escape}}</h5>
-                                      <div class="t4s-facet-content">
-                                         <ul class="t4s-filter__values is--style-checkbox t4s-current-scrollbar">
-
-                                            {%- for value in filter.values -%}
-
-                                              {%- if value.active -%}
-                                                  <li class="is--selected"><a href="{{value.url_to_remove}}">
-                                                     <div class="t4s-checkbox-wrapper t4s-pr t4s-oh"><svg focusable="false" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M9 20l-7-7 3-3 4 4L19 4l3 3z"></path></svg></div>{{value.label | escape}}<span class="t4s-value-count">({{value.count}})</span>
-                                                  </a></li>
-                                              {%- else -%}
-                                                  <li{% if value.count == 0 and value.active == false %} class="is--disabled"{% endif %}><a href="{{value.url_to_add}}"><div class="t4s-checkbox-wrapper t4s-pr t4s-oh"><svg focusable="false" viewBox="0 0 24 24" role="presentation"><path fill="currentColor" d="M9 20l-7-7 3-3 4 4L19 4l3 3z"></path></svg></div>{{value.label | escape}}<span class="t4s-value-count">({{value.count}})</span></a></li>
-                                              {%- endif -%}
-
-                                            {%- endfor -%}
-
-                                         </ul>
-                                      </div>
-                                </div>
-
-                              {%- endif -%}
-
-                           {%- when 'price_range' -%}
-                               {%- assign min_value_price = filter.min_value.value |default:0 -%}
-                               {%- assign max_value_price = filter.max_value.value |default:filter.range_max |default:0  -%}
-
-                               {%- if min_value_price == max_value_price or all_count_pr == 0 %}{% continue %}{% endif %}{% assign ck_style = true -%}
-
-                                <div id="blockid_{{forloop.index}}" class="t4s-col-item t4s-col-12 t4s-col-md-{{col_class}} t4s-facet is--blockid_price">
-                                   <h5 class="t4s-facet-title">{{filter.label| escape}}</h5>
-                                   <div class="t4s-price_slider_wrapper">
-                                     <div class="t4s-price_slider"></div>
-                                     <div class="t4s-price_slider_amount" data-step="1" data-maxstr='{{filter.max_value.param_name}}' data-minstr='{{filter.min_value.param_name}}'>
-                                       <input type="hidden" class="t4s-url_price" name="url_price" value="">
-                                       <input type="hidden" class="t4s-min_price" name="min_price" value="{{min_value_price}}" data-min="0" placeholder="Min price">
-                                       <input type="hidden" class="t4s-max_price" name="max_price" value="{{max_value_price}}" data-max="{{filter.range_max}}" placeholder="Max price">
-                                       <div class="t4s-price_steps_slider"></div>
-                                       <button type="button" class="t4s-price_slider_btn t4s-dn">{{ 'products.facets.button_price' | t }}</button>
-                                       <div class="t4s-price_label">
-                                         {{ 'products.facets.title_price' | t }}: <span class="t4s-from">{{min_value_price | money }}</span> — <span class="t4s-to">{{max_value_price | money }}</span>
-                                       </div>
-                                     </div>
-                                   </div>
-                                </div>
-
-
-                        {%- endcase -%}
-                     {%- endfor -%}
-
-                  </form>
-              </div>
-           </div>
-           {%- if total_active_values > 1 -%}
-                 <div class="t4s-drawer__bottom">
-                    <a href="{{ results_url }}" class="t4s-mini-search__viewAll">{{ 'products.facets.clear_all' | t }} <svg width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M 18.71875 6.78125 L 17.28125 8.21875 L 24.0625 15 L 4 15 L 4 17 L 24.0625 17 L 17.28125 23.78125 L 18.71875 25.21875 L 27.21875 16.71875 L 27.90625 16 L 27.21875 15.28125 Z"/></svg></a>
-                 </div>
-           {%- endif -%}
-        </div>
-     </div>
-    </div>
-    {%- endcomment -%}
-    {%- if se_blocks.size > 0 -%}
-    <div class="t4s-collection-header t4s-d-flex 4s-align-items-center">
-      {%- for block in se_blocks  -%}
-        {%- assign bk_stts = block.settings -%}
-        {%- case block.type -%}
-          {%- when 'sortby' -%}
-            <link rel="stylesheet" href="{{ 'base_drop.min.css' | asset_url }}" media="all">
-            {{ 'collection-products-custom.css' | asset_url | stylesheet_tag }}
-            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-              {%- assign option_selected = collection.sort_options | where:"value",sort_by | first -%}
-              <div class="d-flex">
-                <span class="srtBy">Sort by:</span>
-                <div class="t4s-dropdown t4s-dropdown__sortby">
-                  <button data-dropdown-open data-position="bottom-end" data-id="t4s__sortby"><span class="t4s-d-none t4s-d-md-block">{{option_selected.name | escape}}</span><span class="t4s-d-md-none">{{'collections.general.sort_button' | t}}</span>
-                    <svg class="t4s-icon-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="#928F91" stroke-width="2" stroke-miterlimit="10"/>
-                    <path d="M10.25 7.25L8 9.75L5.75 7.25" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </button>
-                  <div data-dropdown-wrapper class="t4s-dropdown__wrapper" id="t4s__sortby">
-                     <div class="t4s-drop-arrow"></div>
-                     <div class="t4s-dropdown__header">
-                        <span class="t4s-dropdown__title">{{'collections.general.sort_by_label' | t}}</span>
-                        <button data-dropdown-close aria-label="{{ 'general.aria.close' | t }}"><svg role="presentation" class="t4s-iconsvg-close" viewBox="0 0 16 14"><path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path></svg></button>
-                     </div>
-                     <div class="t4s-dropdown__content">
-                        {%- for option in collection.sort_options -%}
-                        <button data-dropdown-item data-sortby-item data-value="{{ option.value | escape }}"{% if option.value == sort_by %} class="is--selected"{% endif %}>{{ option.name | escape }}</button>
-                        {%- endfor -%}
-                     </div>
-                  </div>
-              </div>
-              </div>
-
-          {%- when 'layout'  -%}
-
-          {%- liquid
-            assign enable_listing = se_stts.enable_listing
-            assign enable_listing_default = se_stts.enable_listing_default
-            unless cart_collection_items_per_row contains 'list_t4s' and enable_listing == false
-                assign col_mobile = collection_items_per_row[0] | default:col_mobile
-                assign col_tablet = collection_items_per_row[1] | default:col_tablet
-                assign col_desktop = collection_items_per_row[2] | default:col_desktop
-            endunless
-            assign arr_cols_layout = 'list_t4s,1,2,3,4,5,6' |split:','
-            assign arr_cols_limit = '3,5,7' |split:','
-            assign arr_breakpoint = 'mobile,tablet,desktop' |split:','
-            assign icon_col_0 = '<span class="t4s_icon_viewlist"></span>'
-            assign icon_col_1 = '<span class="t4s_icon_view1"></span>'
-            assign icon_col_2 = '<span class="t4s_icon_view2"></span>'
-            assign icon_col_3 = '<span class="t4s_icon_view3"></span>'
-            assign icon_col_4 = '<span class="t4s_icon_view4"></span>'
-            assign icon_col_5 = '<span class="t4s_icon_view5"></span>'
-            assign icon_col_6 = '<span class="t4s_icon_view6"></span>'
-            if enable_listing
-              assign listing_continue1 = ''
-              assign listing_continue2 = '1'
-            else
-              assign listing_continue1 = '0'
-              assign listing_continue2 = '0,1'
-            endif
-            if cart_collection_items_per_row contains 'list_t4s'
-                assign class_listview = ''
-            elsif enable_listing and enable_listing_default
-                 assign class_listview = 'is--listview'
-            endif -%}
-
-            <div data-layout-switch data-items="{{cart_collection_items_per_row}}" class="t4s-layout-switch-wrapper">
-              {%- for i in (0..2) -%}
-                 {%- assign cols_limit = arr_cols_limit[i] | plus:0 -%}
-                 {%- capture list_continue -%}
-                  {%- cycle listing_continue1,listing_continue2,listing_continue2 -%}
-                 {%- endcapture -%}
-
-                 <div class="t4s-layout__switch is--{% cycle 'mobile t4s-d-md-flex t4s-d-md-none', 'tablet t4s-d-none t4s-d-md-flex t4s-d-lg-none', 'desktop t4s-d-none t4s-d-lg-flex' %}">
-
-                   {%- assign col_active = 'col_' | append:arr_breakpoint[i] -%}
-
-                   {%- for j in (0..6) limit:cols_limit -%}
-                      {%- if list_continue contains j %}{% continue %}{% endif -%}
-
-                       <button data-btn-as-a data-breakpoint="{{arr_breakpoint[i]}}" data-col="{{arr_cols_layout[j]}}"{% if [col_active] == arr_cols_layout[j] %} class="is--active"{% endif %}>{%- assign icon_col_j = 'icon_col_' | append:j -%}{{ [icon_col_j] }}</button>
-                   {%- endfor -%}
-                 </div>
-               {%- endfor -%}
-            </div>
-          {%- when 'filter' -%}
-            <div class="t4s-btn-filter-wrapper">
-              {%- liquid
-              if collection.filters.size > 0 and type_filters == 'facets'
-                  assign show_filter = true
-              elsif type_filters == 'facets_tags'
-                 if current_tags
-                   assign tags_dow = collection.tags
-                 else
-                   assign tags_dow = collection.all_tags
-                 endif
-                 if tags_dow.size > 0
-                  assign show_filter = true
-                  assign id_drawer = '-tags'
-                  echo '<style>button.t4s-btn-filter {opacity: 0 !important; pointer-events: none !important; }.t4s-toolbart-filter.t4s-toolbar-item{ display: none !important;}</style>'
-                 endif
+            {%- liquid
+              assign enable_listing = se_stts.enable_listing
+              assign enable_listing_default = se_stts.enable_listing_default
+              unless cart_collection_items_per_row contains 'list_t4s' and enable_listing == false
+                  assign col_mobile = collection_items_per_row[0] | default:col_mobile
+                  assign col_tablet = collection_items_per_row[1] | default:col_tablet
+                  assign col_desktop = collection_items_per_row[2] | default:col_desktop
+              endunless
+              assign arr_cols_layout = 'list_t4s,1,2,3,4,5,6' |split:','
+              assign arr_cols_limit = '3,5,7' |split:','
+              assign arr_breakpoint = 'mobile,tablet,desktop' |split:','
+              assign icon_col_0 = '<span class="t4s_icon_viewlist"></span>'
+              assign icon_col_1 = '<span class="t4s_icon_view1"></span>'
+              assign icon_col_2 = '<span class="t4s_icon_view2"></span>'
+              assign icon_col_3 = '<span class="t4s_icon_view3"></span>'
+              assign icon_col_4 = '<span class="t4s_icon_view4"></span>'
+              assign icon_col_5 = '<span class="t4s_icon_view5"></span>'
+              assign icon_col_6 = '<span class="t4s_icon_view6"></span>'
+              if enable_listing
+                assign listing_continue1 = ''
+                assign listing_continue2 = '1'
               else
-                 assign show_filter = false
+                assign listing_continue1 = '0'
+                assign listing_continue2 = '0,1'
+              endif
+              if cart_collection_items_per_row contains 'list_t4s'
+                  assign class_listview = ''
+              elsif enable_listing and enable_listing_default
+                  assign class_listview = 'is--listview'
               endif -%}
-              {%- if show_filter %}<button data-btn-as-a class="t4s-btn-filter" data-drawer-delay data-drawer-options='{ "id":"#t4s-filter-hidden{{id_drawer}}" }' aria-label="Show filters">
-                <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 13.5L16 27" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 5L16 8.5" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 13.5C17.3807 13.5 18.5 12.3807 18.5 11C18.5 9.61929 17.3807 8.5 16 8.5C14.6193 8.5 13.5 9.61929 13.5 11C13.5 12.3807 14.6193 13.5 16 13.5Z" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M25 23.5L25.0001 27" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M25.0001 5L25 18.5" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M25 23.5C26.3807 23.5 27.5 22.3807 27.5 21C27.5 19.6193 26.3807 18.5 25 18.5C23.6193 18.5 22.5 19.6193 22.5 21C22.5 22.3807 23.6193 23.5 25 23.5Z" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7.00007 19.5L7 27" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7 5L7.00007 14.5" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7 19.5C8.38071 19.5 9.5 18.3807 9.5 17C9.5 15.6193 8.38071 14.5 7 14.5C5.61929 14.5 4.5 15.6193 4.5 17C4.5 18.3807 5.61929 19.5 7 19.5Z" stroke="#928F91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>{{'collections.general.filter_button' | t}}</button>{% endif -%}
-            </div>
-        {%- endcase -%}
-      {%- endfor -%}
-    </div>
-  {%- endif -%}
-  <div class="t4s-row">
-    <div data-ntajax-container{% if show_filter %} data-has-filters{% endif %} data-ntajax-options='{"id":"{{sid}}","type":"{{typeAjax}}","typeFilters":"{{type_filters}}","isProduct":true,"updateURL":true,"updateURLPrev":true}'{% unless collection.current_type or collection.current_vendor %} data-collection-url="{{collection.url}}"{% endunless %} class="t4s-col-item t4s-col-12 t4s-main-area t4s-main-collection-page">
-     {%- assign total_active_values = 0 -%}
-     {%- capture filters__active -%}
-          <div class="t4s-active-filters__count t4s-d-inline-block">{{ 'products.facets.results_with_count_html' | t:count:collection.products_count}}</div>
-          {%- for filter in collection.filters -%}
-            {%- if filter.type == "price_range" -%}
-              {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
-              {%- assign total_active_values = total_active_values | plus: 1 -%}
-                <a class="t4s-active-filters__remove-filter" href="{{ filter.url_to_remove }}">
-                  {%- assign min_value = filter.min_value.value | default: 0 -%}
-                  {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
-                  {{ min_value | money }} - {{ max_value | money }}
-                </a>
-              {%- endif -%}
-            {%- else -%}
-              {%- for filter_value in filter.active_values -%}
-                {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
-                <a class="t4s-active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">{{ filter_value.label }}</a>
-              {%- endfor -%}
-            {%- endif- %}
-          {%- endfor -%}
-          {%- if total_active_values > 1 %}<a href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}" class="t4s-active-filters__clear">{{ 'products.facets.clear_all' | t }}</a>{% endif -%}
-      {%- endcapture -%}
-      {%- if total_active_values > 0 %}<div class="t4s-active-filters">{{- filters__active -}}</div>{% endif -%}
 
-       {%- if current_tags.size > 0 and type_filters == 'facets_tags' -%}
-          <div class="t4s-active-filters">
-             <div class="t4s-active-filters__count t4s-d-inline-block">{{ 'products.facets.results_with_count_html' | t:count:collection.products_count}}</div>
-             {%- if current_tags.size > 0 -%}{%- for tag in current_tags -%}{%- assign txt_tag = tag | replace: '-', ' ' | replace: '_', ' ' -%}{{ txt_tag | link_to_remove_tag: tag | replace: 'title=', 'class="t4s-active-filters__remove-filter" aria-label=' }}{%- endfor -%}{%- endif -%}
-             {%- if current_tags.size > 1 -%}<a class="t4s-active-filters__clear" href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}">{{ 'products.facets.clear_all' | t }}</a>{%- endif -%}
-          </div>
-       {%- endif -%}
+              <div data-layout-switch data-items="{{cart_collection_items_per_row}}" class="t4s-layout-switch-wrapper">
+                {%- for i in (0..2) -%}
+                  {%- assign cols_limit = arr_cols_limit[i] | plus:0 -%}
+                  {%- capture list_continue -%}
+                    {%- cycle listing_continue1,listing_continue2,listing_continue2 -%}
+                  {%- endcapture -%}
 
-      {%- if paginate.previous.is_link and isLoadmore -%}
-        <div data-wrap-lm-prev class="t4s-pagination-wrapper t4s-prs-head t4s-has-btn-{{use_pagination}} {{se_stts.btn_pos}} t4s-w-100">
-          <a data-load-more data-is-prev href="{{ paginate.previous.url }}" class="t4s-pr t4s-loadmore-btn t4s-btn t4s-btn-loading__svg t4s-btn-base t4s-btn-style-{{se_stts.button_style}} t4s-btn-size-{{se_stts.btns_size}} t4s-btn-icon-{{se_stts.btn_icon}} t4s-btn-color-{{se_stts.btns_cl}} {% if se_stts.button_style == 'default' or se_stts.button_style == 'outline'%}t4s-btn-effect-{{se_stts.button_effect}}{% endif %}">
-            <span class="t4s-btn-atc_text">{{ 'search.pagination.load_prev' | t }}</span>
-            {% if se_stts.btn_icon %}
-              <svg class="t4s-btn-icon" viewBox="0 0 32 32"><path d="M 15 4 L 15 24.0625 L 8.21875 17.28125 L 6.78125 18.71875 L 15.28125 27.21875 L 16 27.90625 L 16.71875 27.21875 L 25.21875 18.71875 L 23.78125 17.28125 L 17 24.0625 L 17 4 Z"/></svg>
-            {% endif %}
-            <div class="t4s-loading__spinner t4s-dn">
-              <svg  width="16" height="16" aria-hidden="true" focusable="false" role="presentation" class="t4s-svg__spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg>
-            </div>
-          </a>
-        </div>
-      {%- endif -%}
-      {%- if layout_des == "1" -%}
-        <div data-contentlm-replace class="t4s_box_pr_grid t4s-products {{class_listview}} t4s-text-{{se_stts.content_align}} t4s_{{image_ratio}}  t4s_position_{{se_stts.image_position}} t4s_{{se_stts.image_size}} t4s-row  t4s-justify-content-center t4s-row-cols-{{col_mobile}} t4s-row-cols-md-{{col_tablet}} t4s-row-cols-lg-{{col_desktop}} t4s-gx-md-{{se_stts.space_h_item}} t4s-gy-md-{{se_stts.space_v_item}} t4s-gx-{{se_stts.space_h_item_mb}} t4s-gy-{{se_stts.space_v_item_mb}}">
-      {%- else -%}
-        <div data-contentlm-replace class="isotopet4s t4s_box_pr_masonry t4s-products {{class_listview}} t4s-text-{{se_stts.content_align}} t4s_{{image_ratio}} t4s_position_{{se_stts.image_position}} t4s_{{se_stts.image_size}} t4s-row t4s-row-cols-{{col_mobile}} t4s-row-cols-md-{{col_tablet}} t4s-row-cols-lg-{{col_desktop}} t4s-gx-md-{{se_stts.space_h_item}} t4s-gy-md-{{se_stts.space_v_item}} t4s-gx-{{se_stts.space_h_item_mb}} t4s-gy-{{se_stts.space_v_item_mb}}" data-isotopet4s-js='{ "itemSelector": ".t4s-product", "layoutMode": "masonry" }'>
-      {%- endif -%}
-        {%- liquid
-          case product_des
-            when '1'
-              render 'product-grid-item1' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
-            when '2'
-              render 'product-grid-item2' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
-            when '3'
-              render 'product-grid-item3' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
-            when '4'
-              render 'product-grid-item4' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
-            when '5'
-              render 'product-grid-item5' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
-            when '6'
-              render 'product-grid-item6' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
-          endcase -%}
-      </div>
-      {%- if paginate.pages > 1 -%}
-        <div class="t4s-row t4s-prs-footer t4s-has-btn-{{use_pagination}} {{se_stts.btn_pos}}">
-          {%- if use_pagination == 'default' -%}
-            {%- render 'pagination', paginate: paginate, anchor: '' -%}
-          {%- elsif paginate.next.is_link -%}
-             <div data-wrap-lm class="t4s-pagination-wrapper t4s-w-100">
-               {%- if enable_bar_lm -%}
-               <div data-wrap-lm-bar class="t4s-lm-bar t4s-btn-color-{{se_stts.btns_cl}}">
-                 {%- assign current_pr_size = collection.products.size | plus:paginate.current_offset -%}
-                  <span class="t4s-lm-bar--txt">{{ 'collections.pagination.bar_with_count_html' | t:current_count:current_pr_size,total_count:results_count}}</span>
-                  <div class="t4s-lm-bar--progress t4s-pr t4s-oh"><span class="t4s-lm-bar--current t4s-pa t4s-l-0 t4s-r-0 t4s-t-0 t4s-b-0" style="width: {{current_pr_size | times:100.0 | divided_by: results_count}}%"></span></div>
-               </div>
-               {%- endif -%}
-                <a data-load-more {% if use_pagination == 'infinite' %} data-load-onscroll {% endif %}  href="{{ paginate.next.url }}" class="t4s-pr t4s-loadmore-btn t4s-btn-loading__svg t4s-btn t4s-btn-base t4s-btn-style-{{se_stts.button_style}} t4s-btn-size-{{se_stts.btns_size}} t4s-btn-icon-{{se_stts.btn_icon}} t4s-btn-color-{{se_stts.btns_cl}} {% if se_stts.button_style == 'default' or se_stts.button_style == 'outline'%}t4s-btn-effect-{{se_stts.button_effect}}{% endif %}">
-                  <span class="t4s-btn-atc_text">{{ 'collections.pagination.load_more' | t }}</span>
-                  {% if se_stts.btn_icon %}
-                    <svg class="t4s-btn-icon" viewBox="0 0 32 32"><path d="M 15 4 L 15 24.0625 L 8.21875 17.28125 L 6.78125 18.71875 L 15.28125 27.21875 L 16 27.90625 L 16.71875 27.21875 L 25.21875 18.71875 L 23.78125 17.28125 L 17 24.0625 L 17 4 Z"/></svg>
-                  {% endif %}
-                  <div class="t4s-loading__spinner t4s-dn">
-                    <svg  width="16" height="16" aria-hidden="true" focusable="false" role="presentation" class="t4s-svg__spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg>
+                  <div class="t4s-layout__switch is--{% cycle 'mobile t4s-d-md-flex t4s-d-md-none', 'tablet t4s-d-none t4s-d-md-flex t4s-d-lg-none', 'desktop t4s-d-none t4s-d-lg-flex' %}">
+
+                    {%- assign col_active = 'col_' | append:arr_breakpoint[i] -%}
+
+                    {%- for j in (0..6) limit:cols_limit -%}
+                        {%- if list_continue contains j %}{% continue %}{% endif -%}
+
+                        <button data-btn-as-a data-breakpoint="{{arr_breakpoint[i]}}" data-col="{{arr_cols_layout[j]}}"{% if [col_active] == arr_cols_layout[j] %} class="is--active"{% endif %}>{%- assign icon_col_j = 'icon_col_' | append:j -%}{{ [icon_col_j] }}</button>
+                    {%- endfor -%}
                   </div>
-                </a>
-             </div>
+                {%- endfor -%}
+              </div>
+            {%- when 'filter' -%}
+              <div class="t4s-btn-filter-wrapper">
+                {%- liquid
+                if collection.filters.size > 0 and type_filters == 'facets'
+                    assign show_filter = true
+                elsif type_filters == 'facets_tags'
+                  if current_tags
+                    assign tags_dow = collection.tags
+                  else
+                    assign tags_dow = collection.all_tags
+                  endif
+                  if tags_dow.size > 0
+                    assign show_filter = true
+                    assign id_drawer = '-tags'
+                    echo '<style>button.t4s-btn-filter {opacity: 0 !important; pointer-events: none !important; }.t4s-toolbart-filter.t4s-toolbar-item{ display: none !important;}</style>'
+                  endif
+                else
+                  assign show_filter = false
+                endif -%}
+                {%- if show_filter %}<button data-btn-as-a class="t4s-btn-filter" data-drawer-delay data-drawer-options='{ "id":"#t4s-filter-hidden{{id_drawer}}" }' aria-label="Show filters">
+                  <svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6812 4.625C10.3627 6.19404 8.97553 7.375 7.3125 7.375C5.64947 7.375 4.26226 6.19404 3.94376 4.625H1.8125C1.4328 4.625 1.125 4.3172 1.125 3.9375C1.125 3.5578 1.4328 3.25 1.8125 3.25H3.94376C4.26226 1.68096 5.64947 0.5 7.3125 0.5C8.97553 0.5 10.3627 1.68096 10.6812 3.25H25.1875C25.5672 3.25 25.875 3.5578 25.875 3.9375C25.875 4.3172 25.5672 4.625 25.1875 4.625H10.6812ZM19.6875 14.25C21.3505 14.25 22.7377 13.069 23.0562 11.5H25.1875C25.5672 11.5 25.875 11.1922 25.875 10.8125C25.875 10.4328 25.5672 10.125 25.1875 10.125H23.0562C22.7377 8.55596 21.3505 7.375 19.6875 7.375C18.0245 7.375 16.6373 8.55596 16.3188 10.125H1.8125C1.4328 10.125 1.125 10.4328 1.125 10.8125C1.125 11.1922 1.4328 11.5 1.8125 11.5H16.3188C16.6373 13.069 18.0245 14.25 19.6875 14.25ZM11.4375 21.125C13.1005 21.125 14.4877 19.944 14.8062 18.375H25.1875C25.5672 18.375 25.875 18.0672 25.875 17.6875C25.875 17.3078 25.5672 17 25.1875 17H14.8062C14.4877 15.431 13.1005 14.25 11.4375 14.25C9.77447 14.25 8.38726 15.431 8.06876 17H1.8125C1.4328 17 1.125 17.3078 1.125 17.6875C1.125 18.0672 1.4328 18.375 1.8125 18.375H8.06876C8.38726 19.944 9.77447 21.125 11.4375 21.125ZM9.375 3.9375C9.375 5.07659 8.45159 6 7.3125 6C6.17341 6 5.25 5.07659 5.25 3.9375C5.25 2.79841 6.17341 1.875 7.3125 1.875C8.45159 1.875 9.375 2.79841 9.375 3.9375ZM19.6875 12.875C20.8266 12.875 21.75 11.9516 21.75 10.8125C21.75 9.67341 20.8266 8.75 19.6875 8.75C18.5484 8.75 17.625 9.67341 17.625 10.8125C17.625 11.9516 18.5484 12.875 19.6875 12.875ZM13.5 17.6875C13.5 18.8266 12.5766 19.75 11.4375 19.75C10.2984 19.75 9.375 18.8266 9.375 17.6875C9.375 16.5484 10.2984 15.625 11.4375 15.625C12.5766 15.625 13.5 16.5484 13.5 17.6875Z" fill="black"/>
+                    <path d="M10.6812 4.625V4.325H10.436L10.3872 4.56532L10.6812 4.625ZM3.94376 4.625L4.23777 4.56532L4.18898 4.325H3.94376V4.625ZM3.94376 3.25V3.55H4.18898L4.23777 3.30968L3.94376 3.25ZM10.6812 3.25L10.3872 3.30968L10.436 3.55H10.6812V3.25ZM23.0562 11.5V11.2H22.811L22.7622 11.4403L23.0562 11.5ZM23.0562 10.125L22.7622 10.1847L22.811 10.425H23.0562V10.125ZM16.3188 10.125V10.425H16.564L16.6128 10.1847L16.3188 10.125ZM16.3188 11.5L16.6128 11.4403L16.564 11.2H16.3188V11.5ZM14.8062 18.375V18.075H14.561L14.5122 18.3153L14.8062 18.375ZM14.8062 17L14.5122 17.0597L14.561 17.3H14.8062V17ZM8.06876 17V17.3H8.31398L8.36277 17.0597L8.06876 17ZM8.06876 18.375L8.36277 18.3153L8.31398 18.075H8.06876V18.375ZM7.3125 7.675C9.12102 7.675 10.6289 6.39078 10.9752 4.68468L10.3872 4.56532C10.0966 5.9973 8.83005 7.075 7.3125 7.075V7.675ZM3.64976 4.68468C3.99608 6.39078 5.50398 7.675 7.3125 7.675V7.075C5.79495 7.075 4.52844 5.9973 4.23777 4.56532L3.64976 4.68468ZM1.8125 4.925H3.94376V4.325H1.8125V4.925ZM0.825 3.9375C0.825 4.48288 1.26712 4.925 1.8125 4.925V4.325C1.59849 4.325 1.425 4.15151 1.425 3.9375H0.825ZM1.8125 2.95C1.26712 2.95 0.825 3.39212 0.825 3.9375H1.425C1.425 3.72349 1.59849 3.55 1.8125 3.55V2.95ZM3.94376 2.95H1.8125V3.55H3.94376V2.95ZM7.3125 0.2C5.50398 0.2 3.99608 1.48422 3.64976 3.19032L4.23777 3.30968C4.52844 1.8777 5.79495 0.8 7.3125 0.8V0.2ZM10.9752 3.19032C10.6289 1.48422 9.12102 0.2 7.3125 0.2V0.8C8.83005 0.8 10.0966 1.8777 10.3872 3.30968L10.9752 3.19032ZM25.1875 2.95H10.6812V3.55H25.1875V2.95ZM26.175 3.9375C26.175 3.39212 25.7329 2.95 25.1875 2.95V3.55C25.4015 3.55 25.575 3.72349 25.575 3.9375H26.175ZM25.1875 4.925C25.7329 4.925 26.175 4.48288 26.175 3.9375H25.575C25.575 4.15151 25.4015 4.325 25.1875 4.325V4.925ZM10.6812 4.925H25.1875V4.325H10.6812V4.925ZM22.7622 11.4403C22.4716 12.8723 21.205 13.95 19.6875 13.95V14.55C21.496 14.55 23.0039 13.2658 23.3502 11.5597L22.7622 11.4403ZM25.1875 11.2H23.0562V11.8H25.1875V11.2ZM25.575 10.8125C25.575 11.0265 25.4015 11.2 25.1875 11.2V11.8C25.7329 11.8 26.175 11.3579 26.175 10.8125H25.575ZM25.1875 10.425C25.4015 10.425 25.575 10.5985 25.575 10.8125H26.175C26.175 10.2671 25.7329 9.825 25.1875 9.825V10.425ZM23.0562 10.425H25.1875V9.825H23.0562V10.425ZM19.6875 7.675C21.205 7.675 22.4716 8.7527 22.7622 10.1847L23.3502 10.0653C23.0039 8.35922 21.496 7.075 19.6875 7.075V7.675ZM16.6128 10.1847C16.9034 8.7527 18.17 7.675 19.6875 7.675V7.075C17.879 7.075 16.3711 8.35922 16.0248 10.0653L16.6128 10.1847ZM1.8125 10.425H16.3188V9.825H1.8125V10.425ZM1.425 10.8125C1.425 10.5985 1.59849 10.425 1.8125 10.425V9.825C1.26712 9.825 0.825 10.2671 0.825 10.8125H1.425ZM1.8125 11.2C1.59849 11.2 1.425 11.0265 1.425 10.8125H0.825C0.825 11.3579 1.26712 11.8 1.8125 11.8V11.2ZM16.3188 11.2H1.8125V11.8H16.3188V11.2ZM19.6875 13.95C18.17 13.95 16.9034 12.8723 16.6128 11.4403L16.0248 11.5597C16.3711 13.2658 17.879 14.55 19.6875 14.55V13.95ZM14.5122 18.3153C14.2216 19.7473 12.955 20.825 11.4375 20.825V21.425C13.246 21.425 14.7539 20.1408 15.1002 18.4347L14.5122 18.3153ZM25.1875 18.075H14.8062V18.675H25.1875V18.075ZM25.575 17.6875C25.575 17.9015 25.4015 18.075 25.1875 18.075V18.675C25.7329 18.675 26.175 18.2329 26.175 17.6875H25.575ZM25.1875 17.3C25.4015 17.3 25.575 17.4735 25.575 17.6875H26.175C26.175 17.1421 25.7329 16.7 25.1875 16.7V17.3ZM14.8062 17.3H25.1875V16.7H14.8062V17.3ZM11.4375 14.55C12.955 14.55 14.2216 15.6277 14.5122 17.0597L15.1002 16.9403C14.7539 15.2342 13.246 13.95 11.4375 13.95V14.55ZM8.36277 17.0597C8.65344 15.6277 9.91995 14.55 11.4375 14.55V13.95C9.62898 13.95 8.12108 15.2342 7.77476 16.9403L8.36277 17.0597ZM1.8125 17.3H8.06876V16.7H1.8125V17.3ZM1.425 17.6875C1.425 17.4735 1.59849 17.3 1.8125 17.3V16.7C1.26712 16.7 0.825 17.1421 0.825 17.6875H1.425ZM1.8125 18.075C1.59849 18.075 1.425 17.9015 1.425 17.6875H0.825C0.825 18.2329 1.26712 18.675 1.8125 18.675V18.075ZM8.06876 18.075H1.8125V18.675H8.06876V18.075ZM11.4375 20.825C9.91995 20.825 8.65344 19.7473 8.36277 18.3153L7.77476 18.4347C8.12108 20.1408 9.62898 21.425 11.4375 21.425V20.825ZM7.3125 6.3C8.61727 6.3 9.675 5.24227 9.675 3.9375H9.075C9.075 4.9109 8.2859 5.7 7.3125 5.7V6.3ZM4.95 3.9375C4.95 5.24227 6.00773 6.3 7.3125 6.3V5.7C6.3391 5.7 5.55 4.9109 5.55 3.9375H4.95ZM7.3125 1.575C6.00773 1.575 4.95 2.63273 4.95 3.9375H5.55C5.55 2.9641 6.3391 2.175 7.3125 2.175V1.575ZM9.675 3.9375C9.675 2.63273 8.61727 1.575 7.3125 1.575V2.175C8.2859 2.175 9.075 2.9641 9.075 3.9375H9.675ZM21.45 10.8125C21.45 11.7859 20.6609 12.575 19.6875 12.575V13.175C20.9923 13.175 22.05 12.1173 22.05 10.8125H21.45ZM19.6875 9.05C20.6609 9.05 21.45 9.8391 21.45 10.8125H22.05C22.05 9.50773 20.9923 8.45 19.6875 8.45V9.05ZM17.925 10.8125C17.925 9.8391 18.7141 9.05 19.6875 9.05V8.45C18.3827 8.45 17.325 9.50773 17.325 10.8125H17.925ZM19.6875 12.575C18.7141 12.575 17.925 11.7859 17.925 10.8125H17.325C17.325 12.1173 18.3827 13.175 19.6875 13.175V12.575ZM11.4375 20.05C12.7423 20.05 13.8 18.9923 13.8 17.6875H13.2C13.2 18.6609 12.4109 19.45 11.4375 19.45V20.05ZM9.075 17.6875C9.075 18.9923 10.1327 20.05 11.4375 20.05V19.45C10.4641 19.45 9.675 18.6609 9.675 17.6875H9.075ZM11.4375 15.325C10.1327 15.325 9.075 16.3827 9.075 17.6875H9.675C9.675 16.7141 10.4641 15.925 11.4375 15.925V15.325ZM13.8 17.6875C13.8 16.3827 12.7423 15.325 11.4375 15.325V15.925C12.4109 15.925 13.2 16.7141 13.2 17.6875H13.8Z" fill="black"/>
+                    </svg>
+                    {{'collections.general.filter_button' | t}}</button>{% endif -%}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+      <div class="t4s-row">
+        <div data-ntajax-container{% if show_filter %} data-has-filters{% endif %} data-ntajax-options='{"id":"{{sid}}","type":"{{typeAjax}}","typeFilters":"{{type_filters}}","isProduct":true,"updateURL":true,"updateURLPrev":true}'{% unless collection.current_type or collection.current_vendor %} data-collection-url="{{collection.url}}"{% endunless %} class="t4s-col-item t4s-col-12 t4s-main-area t4s-main-collection-page">
+        {%- assign total_active_values = 0 -%}
+        {%- capture filters__active -%}
+              <div class="t4s-active-filters__count t4s-d-inline-block">({{collection.products_count}})</div>
+              {%- for filter in collection.filters -%}
+                {%- if filter.type == "price_range" -%}
+                  {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                  {%- assign total_active_values = total_active_values | plus: 1 -%}
+                    <a class="t4s-active-filters__remove-filter" href="{{ filter.url_to_remove }}">
+                      {%- assign min_value = filter.min_value.value | default: 0 -%}
+                      {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                      {{ min_value | money }} - {{ max_value | money }}
+                    </a>
+                  {%- endif -%}
+                {%- else -%}
+                  {%- for filter_value in filter.active_values -%}
+                    {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+                    <a class="t4s-active-filters__remove-filter" href="{{ filter_value.url_to_remove }}">{{ filter_value.label }}</a>
+                  {%- endfor -%}
+                {%- endif- %}
+              {%- endfor -%}
+              {%- if total_active_values > 1 %}<a href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}" class="t4s-active-filters__clear">{{ 'products.facets.clear_all' | t }}</a>{% endif -%}
+          {%- endcapture -%}
+          {%- if total_active_values > 0 %}<div class="t4s-active-filters">{{- filters__active -}}</div>{% endif -%}
+
+          {%- if current_tags.size > 0 and type_filters == 'facets_tags' -%}
+              <div class="t4s-active-filters">
+                <div class="t4s-active-filters__count t4s-d-inline-block">{{ 'products.facets.results_with_count_html' | t:count:collection.products_count}}</div>
+                {%- if current_tags.size > 0 -%}{%- for tag in current_tags -%}{%- assign txt_tag = tag | replace: '-', ' ' | replace: '_', ' ' -%}{{ txt_tag | link_to_remove_tag: tag | replace: 'title=', 'class="t4s-active-filters__remove-filter" aria-label=' }}{%- endfor -%}{%- endif -%}
+                {%- if current_tags.size > 1 -%}<a class="t4s-active-filters__clear" href="{{ collection.url }}{% if collection.sort_by != blank %}?sort_by={{ collection.sort_by }}{% endif %}">{{ 'products.facets.clear_all' | t }}</a>{%- endif -%}
+              </div>
+          {%- endif -%}
+
+          {%- if paginate.previous.is_link and isLoadmore -%}
+            <div data-wrap-lm-prev class="t4s-pagination-wrapper t4s-prs-head t4s-has-btn-{{use_pagination}} {{se_stts.btn_pos}} t4s-w-100">
+              <a data-load-more data-is-prev href="{{ paginate.previous.url }}" class="t4s-pr t4s-loadmore-btn t4s-btn t4s-btn-loading__svg t4s-btn-base t4s-btn-style-{{se_stts.button_style}} t4s-btn-size-{{se_stts.btns_size}} t4s-btn-icon-{{se_stts.btn_icon}} t4s-btn-color-{{se_stts.btns_cl}} {% if se_stts.button_style == 'default' or se_stts.button_style == 'outline'%}t4s-btn-effect-{{se_stts.button_effect}}{% endif %}">
+                <span class="t4s-btn-atc_text">{{ 'search.pagination.load_prev' | t }}</span>
+                {% if se_stts.btn_icon %}
+                  <svg class="t4s-btn-icon" viewBox="0 0 32 32"><path d="M 15 4 L 15 24.0625 L 8.21875 17.28125 L 6.78125 18.71875 L 15.28125 27.21875 L 16 27.90625 L 16.71875 27.21875 L 25.21875 18.71875 L 23.78125 17.28125 L 17 24.0625 L 17 4 Z"/></svg>
+                {% endif %}
+                <div class="t4s-loading__spinner t4s-dn">
+                  <svg  width="16" height="16" aria-hidden="true" focusable="false" role="presentation" class="t4s-svg__spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg>
+                </div>
+              </a>
+            </div>
+          {%- endif -%}
+          {%- if layout_des == "1" -%}
+            <div data-contentlm-replace class="t4s_box_pr_grid t4s-products {{class_listview}} t4s-text-{{se_stts.content_align}} t4s_{{image_ratio}}  t4s_position_{{se_stts.image_position}} t4s_{{se_stts.image_size}} t4s-row  t4s-justify-content-center t4s-row-cols-{{col_mobile}} t4s-row-cols-md-{{col_tablet}} t4s-row-cols-lg-{{col_desktop}} t4s-gx-md-{{se_stts.space_h_item}} t4s-gy-md-{{se_stts.space_v_item}} t4s-gx-{{se_stts.space_h_item_mb}} t4s-gy-{{se_stts.space_v_item_mb}}">
+          {%- else -%}
+            <div data-contentlm-replace class="isotopet4s t4s_box_pr_masonry t4s-products {{class_listview}} t4s-text-{{se_stts.content_align}} t4s_{{image_ratio}} t4s_position_{{se_stts.image_position}} t4s_{{se_stts.image_size}} t4s-row t4s-row-cols-{{col_mobile}} t4s-row-cols-md-{{col_tablet}} t4s-row-cols-lg-{{col_desktop}} t4s-gx-md-{{se_stts.space_h_item}} t4s-gy-md-{{se_stts.space_v_item}} t4s-gx-{{se_stts.space_h_item_mb}} t4s-gy-{{se_stts.space_v_item_mb}}" data-isotopet4s-js='{ "itemSelector": ".t4s-product", "layoutMode": "masonry" }'>
+          {%- endif -%}
+            {%- liquid
+              case product_des
+                when '1'
+                  render 'product-grid-item1' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
+                when '2'
+                  render 'product-grid-item2' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
+                when '3'
+                  render 'product-grid-item3' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
+                when '4'
+                  render 'product-grid-item4' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
+                when '5'
+                  render 'product-grid-item5' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
+                when '6'
+                  render 'product-grid-item6' for collection.products as product,product:product,prefix_url:prefix_url,isGrowaveWishlist:isGrowaveWishlist,show_img:show_img,show_vendor:show_vendor,enable_pr_color:enable_pr_color,show_cl_type:show_cl_type,get_color:get_color,enable_pr_size:enable_pr_size,pr_size_pos:pr_size_pos,get_size:get_size,show_size_type:show_size_type,price_varies_style:price_varies_style,app_review:app_review,enable_rating:enable_rating,use_countdown:use_countdown,imgatt:imgatt,show_list_btns:show_list_btns, placeholder_img:placeholder_img
+              endcase -%}
+          </div>
+          {%- if paginate.pages > 1 -%}
+            <div class="t4s-row t4s-prs-footer t4s-has-btn-{{use_pagination}} {{se_stts.btn_pos}}">
+              {%- if use_pagination == 'default' -%}
+                {%- render 'pagination', paginate: paginate, anchor: '' -%}
+              {%- elsif paginate.next.is_link -%}
+                <div data-wrap-lm class="t4s-pagination-wrapper t4s-w-100">
+                  {%- if enable_bar_lm -%}
+                  <div data-wrap-lm-bar class="t4s-lm-bar t4s-btn-color-{{se_stts.btns_cl}}">
+                    {%- assign current_pr_size = collection.products.size | plus:paginate.current_offset -%}
+                      <span class="t4s-lm-bar--txt">{{ 'collections.pagination.bar_with_count_html' | t:current_count:current_pr_size,total_count:results_count}}</span>
+                      <div class="t4s-lm-bar--progress t4s-pr t4s-oh"><span class="t4s-lm-bar--current t4s-pa t4s-l-0 t4s-r-0 t4s-t-0 t4s-b-0" style="width: {{current_pr_size | times:100.0 | divided_by: results_count}}%"></span></div>
+                  </div>
+                  {%- endif -%}
+                    <a data-load-more {% if use_pagination == 'infinite' %} data-load-onscroll {% endif %}  href="{{ paginate.next.url }}" class="t4s-pr t4s-loadmore-btn t4s-btn-loading__svg t4s-btn t4s-btn-base t4s-btn-style-{{se_stts.button_style}} t4s-btn-size-{{se_stts.btns_size}} t4s-btn-icon-{{se_stts.btn_icon}} t4s-btn-color-{{se_stts.btns_cl}} {% if se_stts.button_style == 'default' or se_stts.button_style == 'outline'%}t4s-btn-effect-{{se_stts.button_effect}}{% endif %}">
+                      <span class="t4s-btn-atc_text">{{ 'collections.pagination.load_more' | t }}</span>
+                      {% if se_stts.btn_icon %}
+                        <svg class="t4s-btn-icon" viewBox="0 0 32 32"><path d="M 15 4 L 15 24.0625 L 8.21875 17.28125 L 6.78125 18.71875 L 15.28125 27.21875 L 16 27.90625 L 16.71875 27.21875 L 25.21875 18.71875 L 23.78125 17.28125 L 17 24.0625 L 17 4 Z"/></svg>
+                      {% endif %}
+                      <div class="t4s-loading__spinner t4s-dn">
+                        <svg  width="16" height="16" aria-hidden="true" focusable="false" role="presentation" class="t4s-svg__spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg>
+                      </div>
+                    </a>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if collection.products.size == 0 -%}
+            <div class="t4s-coll-empty t4s-align-items-center">
+              <div class="t4s-no-result-product t4s-d-flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"></path></svg>{{ 'collections.general.no_matches' | t }}
+              </div>
+            </div>
           {%- endif -%}
         </div>
-      {%- endif -%}
-      {%- if collection.products.size == 0 -%}
-        <div class="t4s-coll-empty t4s-align-items-center">
-          <div class="t4s-no-result-product t4s-d-flex">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="18" height="18"><path d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"></path></svg>{{ 'collections.general.no_matches' | t }}
-          </div>
-        </div>
-      {%- endif -%}
+        <aside data-sidebar-content class="t4s-col-item t4s-col-12 t4s-col-lg-3 t4s-sidebar t4s-dn"><div class="t4s-loading--bg"></div></aside>
+      </div>
     </div>
-    <aside data-sidebar-content class="t4s-col-item t4s-col-12 t4s-col-lg-3 t4s-sidebar t4s-dn"><div class="t4s-loading--bg"></div></aside>
-  </div>
-  {%- if se_stts.position_desc == '2' and se_stts.show_desc -%}<div id="t4s-desc-collection" class="t4s-desc-collection t4s-desc-before">{{collection.description}}</div>{%- endif -%}
+  <div id="t4s-desc-collection" class="t4s-desc-collection t4s-desc-before t4s-desc-collection--dropdown collapsed">{{collection.description}}</div>
+  {%- if collection.description != blank -%}
+    <button id="toggleButton">read more 
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.5 1.25L5 4.75L1.5 1.25" stroke="#F88927" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  {%- endif -%}
   {{-html_layout[1]-}}
 </div>
 
@@ -528,7 +386,6 @@ function setEqualHeight(columns){
 setEqualHeight($(".grid__item"));
 setEqualHeight($(".t4s-product--height"));
 const widg = document.querySelector('.globoRecommendationsBottom')
-   console.log(widg)
 
    var target = document.querySelector('.globoRecommendationsBottom')
 
@@ -543,10 +400,8 @@ const config = {
 const callback = function(mutationsList, observer) {
     for (let mutation of mutationsList) {
         if (mutation.type === 'childList') {
-            console.log('111111111111111111111111111111111');
             setEqualHeight($('.gowl-item'));
         } else if (mutation.type === 'attributes') {
-            console.log('The ' + mutation.attributeName + ' attribute was modified.');
         }
     }
 };
@@ -556,6 +411,22 @@ const observer = new MutationObserver(callback);
 
 //
 observer.observe(target, config);
+
+        var textDiv = document.getElementById("t4s-desc-collection");
+        var toggleButton = document.getElementById("toggleButton");
+
+        toggleButton.addEventListener("click", function() {
+          if (textDiv.classList.contains("collapsed")) {
+                textDiv.style.maxHeight = textDiv.scrollHeight + "px";
+                textDiv.classList.remove("collapsed");
+                toggleButton.classList.add("dwn");
+            } else {
+                textDiv.style.maxHeight = "120px";
+                textDiv.classList.add("collapsed");
+                toggleButton.classList.remove("dwn");
+            }
+        });
+
 {% endjavascript %}
 {%- schema -%}
   {

@@ -1,4 +1,4 @@
-@use 'mixins' as m;
+@use "mixins" as m;
 
 .about-info {
   position: relative;
@@ -16,41 +16,47 @@
       margin-bottom: 20px;
       object-fit: cover;
     }
+    iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
   }
 }
 .about-menu {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding-bottom: 20px;
-  overflow: auto;
   @include m.media-lg {
     display: none;
   }
   ul {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     li {
+      margin-bottom: 10px;
       &:not(:last-child) {
-        margin-right: 15px;
+        margin-right: 10px;
       }
       a {
         display: inline-block;
         width: max-content;
-        padding: 8px 20px;
-        background: none;
-        border: 1px solid transparent;
-        color: #928f91;
-        font-weight: 400;
-        font-size: 16px;
-        border-radius: 28px;
+        padding: 20px 30px;
+        background: transparent;
+        border: 1px solid #f88927;
+        color: #f88927;
+        font-weight: 700;
+        font-size: 14px;
+        border-radius: 10px;
         transition: all 400ms;
         &.active {
-          color: #1d1d1d;
+          color: #fff;
           font-weight: 600;
-          background-color: #fff;
-          border: 1px solid #cecece;
+          background-color: #f88927;
         }
         &:hover {
-          color: #f88927;
+          background-color: #f88927;
+          color: #fff;
         }
       }
     }
@@ -85,7 +91,7 @@
 }
 .mob {
   position: relative;
-  z-index: 11;
+  z-index: 3;
   width: 45px;
   height: 40px;
   overflow: hidden;
@@ -105,7 +111,7 @@
   transition: all 0.1s;
 }
 .mob span:before {
-  content: '';
+  content: "";
   width: 100%;
   border-radius: 4px;
   position: absolute;
@@ -120,7 +126,7 @@
 }
 .mob span:after {
   border-radius: 4px;
-  content: '';
+  content: "";
   width: 100%;
   position: absolute;
   height: 4px;

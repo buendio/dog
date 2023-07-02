@@ -1,17 +1,11 @@
 .section-logo {
-  padding: 40px 0 10px;
-  background: #f4f4f4;
+  padding: 10px 0 90px;
 }
 .section-logo h2 {
   margin-bottom: 30px;
 }
-@media (max-width: 768px) {
-  .section-logo h2 {
-    margin-bottom: 15px 0 5px;
-  }
-}
-.section-logo h2 span {
-  color: #9f9c9e;
+.section-logo .container {
+  position: relative;
 }
 
 .logo-itemWrap {
@@ -26,17 +20,37 @@
   display: block;
   width: 92px;
   height: 92px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin: 0 auto 45px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin: 0 auto 20px;
 }
 .logo-item h3 {
-  font-size: 24px;
-  line-height: 1.45;
-  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 700;
 }
 .logo-item p {
-  font-size: 18px;
-  line-height: 1.45;
-  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #767270;
+}
+
+.section-logo__slider {
+  overflow: hidden;
+}
+
+.swiper-pagination--logo {
+  bottom: -30px !important;
+}
+.swiper-pagination--logo .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid #e0e1e1;
+}
+.swiper-pagination--logo .swiper-pagination-bullet-active {
+  background: #f88927;
+  border: 2px solid #f88927;
 }

@@ -38,13 +38,8 @@
 		        {% endif %}
 		        {% if show_dt %}
 		            <span class="t4s-post-time">
-		            	<span>
-			            	{%- if date contains "%" -%}
-			            		{{ post.published_at | time_tag: date }}
-			            	{%- else -%}
-			            	{{ post.published_at | time_tag: format: date }}
-			            	{%- endif -%}
-		            	</span>
+									{% render 'calendar' %}
+                	{{ post.published_at | date: '%d-%m-%Y' }}
 			        </span>
 		        {% endif %}
 		        {% if show_cm %}

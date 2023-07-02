@@ -1,9 +1,10 @@
-@use 'mixins' as m;
+@use "mixins" as m;
 
 .section-reviews {
   position: relative;
   padding: 40px 0;
   text-align: center;
+  background: #f8f9fa;
   @include m.media-lg {
     padding: 50px 0 30px;
   }
@@ -26,50 +27,122 @@
 .reviews-items {
   .slick-arrow {
     position: absolute;
-    top: 40%;
+    top: 50%;
     z-index: 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #f88927;
+    transition: all 300ms;
+    svg {
+      path {
+        transition: all 300ms;
+        stroke: #f88927;
+      }
+    }
+    &:hover {
+      background: #f88927;
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
   }
   .slick-prev {
-    left: -10px;
+    left: -50px;
+    @include m.media-xxxl {
+      left: 0;
+    }
   }
   .slick-next {
-    right: -10px;
+    right: -50px;
+    @include m.media-xxxl {
+      right: 0;
+    }
+  }
+  .slick-dots {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: -40px;
+    li {
+      button {
+        font-size: 0;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 2px solid #e0e1e1;
+      }
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+      &.slick-active {
+        button {
+          background: #f88927;
+          border: 2px solid #f88927;
+        }
+      }
+    }
   }
 }
 .reviews-item {
-  max-width: 357px;
+  max-width: calc(100% - 15px);
   margin: 0 auto;
   text-align: left;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
   img {
-    width: 357px;
-    height: 340px;
+    width: 100%;
+    height: 310px;
     display: block;
     width: 100%;
     margin-bottom: 30px;
-    border-radius: 40px;
     object-fit: cover;
+    @include m.media-sm {
+      height: 205px;
+    }
   }
   h4 {
     margin-top: 10px;
-    font-family: 'Museo Sans Cyrl', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
+
+    font-weight: 500;
+    font-size: 20px;
     color: #49415a;
+    @include m.media-sm {
+      font-size: 13px;
+    }
     &:hover {
       color: #f88927;
     }
   }
   p {
-    color: #49415a;
-    font-weight: 600;
-    font-family: 'Mulish', sans-serif;
+    display: flex;
+    color: #767270;
+    font-weight: 400;
     font-size: 16px;
+    @include m.media-sm {
+      font-size: 11px;
+    }
+    svg {
+      margin-right: 10px;
+    }
+  }
+}
+.reviews-item__body {
+  padding: 0 20px 40px;
+  @include m.media-sm {
+    padding: 0 15px 15px;
   }
 }
 .reviews-item__txt {
   margin-top: 40px;
   margin-bottom: 30px;
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
   font-size: 20px;
   line-height: 1.45;
   font-weight: 400;
@@ -84,5 +157,11 @@
     stroke: #fff;
     margin-right: 10px;
     margin-left: 0;
+  }
+}
+.section-reviews__btn {
+  margin-top: 40px;
+  @include m.media-sm {
+    margin-top: 70px;
   }
 }

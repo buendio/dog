@@ -1,69 +1,114 @@
 {{ 'section-logo.css' | asset_url | stylesheet_tag }}
 
 <div class="container">
-    {%- if section.settings.title != blank -%}
-        <h2 class="h1 h1--decor">{{- section.settings.title -}}</h2>
-    {%- endif -%}
-    {%- if  section.blocks.size > 0 -%}
-        <div class="row">
-            {%- for block in section.blocks -%}
-                <div class="col-6 col-lg-3 logo-itemWrap">
-                    <div class="logo-item">
-                        {%- if block.settings.img != blank -%}
-                            <img src="{{- block.settings.img | img_url: 'master' -}}" alt="" loading="lazy">
-                        {%- endif -%}
-                        {%- if block.settings.title  -%}
-                            <h3>{{- block.settings.title -}}</h3>
-                        {%- endif -%}
-                        {%- if block.settings.text  -%}
-                            <p>{{- block.settings.text -}}</p>
-                        {%- endif -%}
-                    </div>
-                </div>
-            {%- endfor -%}
-        </div>
-    {%- endif -%}
+  {%- if section.settings.title != blank -%}
+    <h2 class="h1 h1--decor2">{{- section.settings.title -}}</h2>
+  {%- endif -%}
+  {%- if section.blocks.size > 0 -%}
+    <div class="section-logo__slider">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          <div class="swiper-slide logo-itemWrap">
+            <div class="logo-item">
+              {%- if block.settings.img != blank -%}
+                <img
+                  src="{{- block.settings.img | img_url: 'master' -}}"
+                  alt=""
+                  loading="lazy"
+                >
+              {%- endif -%}
+              {%- if block.settings.title -%}
+                <h3>{{- block.settings.title -}}</h3>
+              {%- endif -%}
+              {%- if block.settings.text -%}
+                <p>{{- block.settings.text -}}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    <!-- Gallery Navigation -->
+    <div class="{{ section.id }}-pagination swiper-pagination swiper-pagination--logo"></div>
+    <!-- END Gallery Navigation -->
+  {%- endif -%}
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainSlides = new Swiper('.section-logo__slider', {
+      direction: 'horizontal',
+      slidesPerView: 4,
+      spaceBetween: 30,
+      loop: false,
+      freeMode: false,
+      autoHeight: true,
+      pagination: {
+        el: '.{{ section.id }}-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 0,
+        },
+        767: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        800: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1000: {
+          slidesPerView: 4,
+          spaceBetween: 30,
+        },
+      },
+    })
+  })
+</script>
+
 {% schema %}
+{
+  "name": "Section Logo",
+  "class": "section-logo",
+  "tag": "section",
+  "settings": [
     {
-        "name": "Section Logo",
-        "class": "section-logo",
-        "tag": "section",
-        "settings": [
-            {
-                "type": "html",
-                "id": "title",
-                "label": "Title"
-            }
-        ],
-        "blocks": [
-        {
-                "type": "item",
-                "name": "Block",
-                "settings": [
-                    {
-                        "type": "image_picker",
-                        "id": "img",
-                        "label": "Image"
-                    },
-                    {
-                        "type": "text",
-                        "id": "title",
-                        "label": "Title"
-                    },
-                    {
-                        "type": "html",
-                        "id": "text",
-                        "label": "Text"
-                    }
-                ]
-            }
-        ],
-        "presets": [
-            {
-                "name": "Section Logo",
-                "category": "Custom Section"
-            }
-        ]
+      "type": "html",
+      "id": "title",
+      "label": "Title"
     }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Logo",
+      "category": "Custom Section"
+    }
+  ]
+}
 {% endschema %}

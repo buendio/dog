@@ -329,6 +329,42 @@
       {%- endif -%}
 </div>
 
+
+<script>
+$(document).on('click', '#cart_href', function() {
+
+  let item_name = $(this).attr('data-name');
+  let item_id = $(this).attr('data-cart-id');
+  let item_price = $(this).attr('data-price');
+  let item_brand = $(this).attr('data-brand');
+  let item_category = $(this).attr('data-category');
+  let item_variant = $(this).attr('data-variant');
+  let item_list_name = $(this).attr('data-list-name');
+  let item_quantity = $(this).attr('data-quantity');
+  
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    'event': 'remove_from_cart',
+    'ecommerce': {
+      'items': [
+       {
+         'item_name': item_name,       
+         'item_id': item_id,
+         'price': item_price,
+         'item_brand': item_brand,
+         'item_category': item_category,
+         'item_variant': item_variant,
+         'item_list_name': item_list_name,
+         'index': 1,
+         'quantity': item_quantity,
+
+       }]
+    }
+  });
+
+});
+</script>
+                       
 {%- schema -%}
   {
     "name": "Shopping Cart Widget",

@@ -1,0 +1,208 @@
+{{ 'section.css' | asset_url | stylesheet_tag }}
+{{ 'button-style.css' | asset_url | stylesheet_tag }}
+<link href="{{ 'custom-effect.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
+{{ 'article.css' | asset_url | stylesheet_tag }}
+{{ 'section-comment.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign sid = section.id
+  assign se_stts = section.settings
+  assign se_blocks = section.blocks
+  assign stt_layout = se_stts.layout
+  assign stt_image_bg = se_stts.image_bg
+  if stt_layout == 't4s-se-container'
+    assign html_layout = '<div class="t4s-container">__</div></div>' | split: '__'
+  elsif stt_layout == 't4s-container-wrap'
+    assign html_layout = '<div class="t4s-container">__</div>' | split: '__'
+  else
+    assign html_layout = '__' | split: '__'
+  endif
+  assign blog_url = blog.url
+  assign article_id = article.id
+  assign article_title = article.title
+  assign image = article.image
+  assign article_tags = article.tags
+
+  if comment.status == 'pending'
+    assign number_of_comments = article.comments_count | plus: 1
+  else
+    assign number_of_comments = article.comments_count
+  endif
+-%}
+<div class="t4s-container">
+  <div class="t4s-article-comments-block">
+    {%- if number_of_comments > 0 -%}
+      {%- assign anchorId = '#Comments-' | append: article.id -%}
+      <div class="t4s-line-space"></div>
+      {%- paginate article.comments by 5 -%}
+        {%- comment -%}
+          #comments is required, it is used as an anchor link by Shopify.
+        {%- endcomment -%}
+        <div id="comments">
+          <h2 id="Comments-{{ article.id }}" class="t4s-comments-heading">{{ 'blogs.comments.comments_title_html' | t: count: number_of_comments, title: article_title }}</h2>
+          <div class="t4s-row t4s-row-cols-1 t4s-gy-30">
+            {%- if comment.status == 'pending' and comment.content -%}
+              {%- comment -%}
+                If a comment was just submitted with no blank field, show it.
+              {%- endcomment -%}
+              <div id="{{ comment.id }}" class="t4s-comment-item comment t4s-col-item">{%- render 'comment', comment: comment -%}</div>
+            {%- endif -%}
+            {%- for comment in article.comments -%}
+              <div id="{{ comment.id }}" class="t4s-comment-item t4s-col-item">{%- render 'comment', comment: comment -%}</div>
+            {%- endfor -%}
+            {%- if paginate.pages > 1 -%}
+              <div class="t4s-col-12">{%- render 'pagination', paginate: paginate, anchor: anchorId, ajax: 'false' -%}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endpaginate -%}
+    {%- endif -%}
+    <div class="t4s-line-space"></div>
+    {%- form 'new_comment', article, id: 'CommentForm' -%}
+      <h2 class="h1--decor2">Leave a <span>Comment</span></h2>
+      <p class="t4s-comments-form__notes">{{ 'blogs.comments.comments_note_html' | t }}</p>
+      {%- liquid
+        assign post_message = 'blogs.comments.success'
+        assign blog_moderate = blog.moderated?
+        if blog.moderated? and comment.status == 'pending'
+          assign post_message = 'blogs.comments.success_moderated'
+        elsif comment.status == 'unapproved' or comment.status == 'spam'
+          assign post_message = 'blogs.comments.unapproved'
+        endif
+        assign error_heading = 'blogs.comments.error_heading'
+        assign name = 'blogs.comments.name'
+        assign email = 'blogs.comments.email'
+        assign message = 'blogs.comments.message'
+        assign form_errors = form.errors
+        assign form_errors_messages = form_errors.messages
+
+        render 'form-status', form: form, form_id: 'CommentForm', success_message: post_message, form_errors: form_errors, form_errors_messages: form_errors_messages, error_heading: error_heading, name: name, email: email, message: message
+      -%}
+      <div class="t4s-row">
+        <div class="t4s-col-md-6 t4s-col-item t4s-form-group">
+          <label class="t4s-field__label" for="CommentForm-author">
+            {{- name | t }}
+            <span aria-hidden="true">*</span></label
+          >
+          <input
+            type="text"
+            name="comment[author]"
+            id="CommentForm-author"
+            class="t4s-field__input {% if form_errors contains 'author' %}t4s-input--error{% endif %}"
+            autocomplete="name"
+            value="{{ form.author }}"
+            aria-required="true"
+            {% if form_errors contains 'author' %}
+              aria-invalid="true" aria-describedby="CommentForm-author-error"
+            {% endif %}
+            placeholder="First Name*"
+          >
+          {%- if form_errors contains 'author' -%}
+            <small id="CommentForm-author-error"
+              ><span class="t4s-message-error">
+                {%- render 'icon-error' -%}
+                {{- name | t }}
+                <span>{{ form_errors_messages.author }}.</span></span
+              ></small
+            >
+          {%- endif -%}
+        </div>
+        <div class="t4s-col-md-6 t4s-col-item t4s-form-group">
+          <label class="t4s-field__label" for="CommentForm-email">
+            {{- email | t }}
+            <span aria-hidden="true">*</span></label
+          >
+          <input
+            type="email"
+            name="comment[email]"
+            id="CommentForm-email"
+            autocomplete="email"
+            class="t4s-field__input {% if form_errors contains 'email' %} t4s-input--error{% endif %}"
+            value="{{ form.email }}"
+            autocorrect="off"
+            autocapitalize="off"
+            aria-required="true"
+            {% if form_errors contains 'email' %}
+              aria-invalid="true" aria-describedby="CommentForm-email-error"
+            {% endif %}
+            placeholder="Email*"
+          >
+          {%- if form_errors contains 'email' -%}
+            <small id="CommentForm-email-error"
+              ><span class="t4s-message-error">
+                {%- render 'icon-error' -%}
+                {{- email | t }}
+                {{ form_errors_messages.email }}.</span
+              ></small
+            >
+          {%- endif -%}
+        </div>
+        <div class="t4s-col-item t4s-form-group">
+          <label class="t4s-form__label t4s-field__label" for="CommentForm-body">
+            {{- message | t }}
+            <span aria-hidden="true">*</span></label
+          >
+          <textarea
+            rows="5"
+            name="comment[body]"
+            id="CommentForm-body"
+            class="text-area t4s-field__input {% if form_errors contains 'body' %} t4s-input--error{% endif %}"
+            aria-required="true"
+            {% if form_errors contains 'body' %}
+              aria-invalid="true" aria-describedby="CommentForm-body-error"
+            {% endif %}
+            placeholder="Comment*"
+          >{{ form.body }}</textarea>
+          {%- if form_errors contains 'body' -%}
+            <small id="CommentForm-body-error"
+              ><span class="t4s-message-error">
+                {%- render 'icon-error' -%}
+                {{- message | t }}
+                {{ form_errors_messages.body }}.</span
+              ></small
+            >
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if blog_moderate -%}
+        <p class="t4s-article-template__comment-warning t4s-fnt-fm-3">{{ 'blogs.comments.moderated' | t }}</p>
+      {%- endif -%}
+      <input
+        type="submit"
+        class="t4s-btn btn btn__comment t4s-btn-base t4s-btn-style-{{bk_stts.button_style}} t4s-btn-size-{{bk_stts.btn_size}} t4s-btn-color-{{bk_stts.btn_cl}}{% if bk_stts.enable_full_btn %} t4s-w-100 t4s-justify-content-center{% endif %} t4s-btn-effect-fade t4s-cursor-pointer"
+        value="{{ 'blogs.comments.post' | t }}"
+      >
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Comment",
+  "class": "section-comment",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Block",
+      "type": "block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "html",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comment"
+    }
+  ]
+}
+{% endschema %}

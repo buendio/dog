@@ -1,0 +1,28 @@
+{% if first_time_accessed %}
+  <script>
+    window.dataLayer.push({
+      'event': 'purchase',
+        ecommerce: {
+        'transaction_id': '{{ order.name || order.order_number }}',
+        'value': {{ total_price | money_without_currency | remove:',' }}, // Includes tax & shipping
+        'tax': {{ tax_price | money_without_currency | remove:',' }},
+        'shipping': {{ shipping_price | money_without_currency | remove:',' }},
+        'currency': '{{ shop.currency }}',
+        'payment_type': '{{ order.transactions[0].gateway }}', //optional parameter
+        'items': [
+
+        {% for line_item in line_items %}
+          {
+          'item_name': '{{line_item.title}}',
+          'item_id': '{{ line_item.product_id }}', //if no SKU exists, use product Id
+          'item_name': '{{ line_item.product.title }}',
+          'discount': {{ line_item.line_level_total_discount | money_without_currency }},
+          'item_variant': '{{ line_item.variant.title }}',
+          'price': {{ line_item.final_price | money_without_currency }},
+          'quantity': {{ line_item.quantity }}
+          },
+        {% endfor %}
+        ]}
+    });
+  </script>
+{% endif %}

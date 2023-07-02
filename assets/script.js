@@ -153,6 +153,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setEqualHeight($(".grid__item"))
   setEqualHeight($(".is--href-replaced"))
   setEqualHeight($(".t4s-product--height"))
+  setEqualHeight($(".reviews-item .reviews-item__body"))
+  setEqualHeight($(".results-item a"))
+  setEqualHeight($(".t4s-post-inner"))
 
   if (document.querySelector(".globoRecommendationsBottom")) {
     var target = document.querySelector(".globoRecommendationsBottom")

@@ -1,0 +1,21 @@
+{% if template == 'collections' %}
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      'event': 'view_item_list',
+      'ecommerce': {
+        {% for line_item in line_items %}
+              {
+              'item_id': '{{ line_item.product_id }}', //if no SKU exists, use product Id
+              'item_name': '{{ line_item.product.title }}',
+              'discount': {{ line_item.line_level_total_discount | money_without_currency }},
+              'item_variant': '{{ line_item.variant.title }}',
+              'price': {{ line_item.final_price | money_without_currency }},
+              'quantity': {{ line_item.quantity }}
+              },
+            {% endfor %}
+
+      }
+    });
+  </script>
+{% endif %}

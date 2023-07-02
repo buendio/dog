@@ -1,0 +1,40 @@
+@use "mixins" as m;
+
+.page404-wrp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include m.media-md() {
+    flex-wrap: wrap;
+  }
+}
+.page404__img {
+  max-width: 605px;
+  object-fit: cover;
+  @include m.media-lg() {
+    max-width: 50%;
+  }
+  @include m.media-md() {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+}
+.page404-wrp__content {
+  width: 50%;
+  text-align: left;
+  @include m.media-md() {
+    width: 100%;
+    text-align: center;
+  }
+}
+.error-404-link {
+  max-width: 586px;
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #767270;
+  @include m.media-md() {
+    max-width: 100%;
+  }
+}

@@ -1,60 +1,16 @@
 {
   "sections": {
-    "heading": {
-      "type": "heading-template",
-      "blocks": {
-        "18952756-58af-4afa-a0cc-b1b54300fb8b": {
-          "type": "1",
-          "settings": {
-            "heading": "",
-            "fontf": "inherit",
-            "text_cl": "#ffffff",
-            "text_fs": 20,
-            "text_lh": 20,
-            "text_fw": 500,
-            "text_ls": 0,
-            "font_italic": false,
-            "font_uppercase": false,
-            "text_shadow": false,
-            "text_mgb": 15,
-            "hidden_mobile": false,
-            "text_fs_mb": 20,
-            "text_lh_mb": 20,
-            "text_ls_mb": 0,
-            "text_mgb_mobile": 10
-          }
-        },
-        "cc993342-0dd0-41d6-a6c4-a5f3c87e6f96": {
-          "type": "3",
-          "settings": {
-            "breadcrumb_color": "#f2f2f2",
-            "brc_mgb": 5
-          }
-        }
-      },
-      "block_order": [
-        "18952756-58af-4afa-a0cc-b1b54300fb8b",
-        "cc993342-0dd0-41d6-a6c4-a5f3c87e6f96"
-      ],
+    "page-banner": {
+      "type": "page-banner",
       "settings": {
-        "image": "shopify:\/\/shop_images\/bg-heading.jpg",
-        "parallax": false,
-        "color": "#000000",
-        "overlay": 54,
-        "padding": 50,
-        "paddingmb": 50,
-        "mg_b": 50,
-        "mg_bmb": 50,
-        "content_align": "t4s-text-center",
-        "bg_pos": "center center",
-        "bg_repeat": "no-repeat",
-        "bg_size": "cover",
-        "use_cus_css": false,
-        "code_cus_css": ".SectionID {\nbackground-color:red\n}"
+        "img": "shopify:\/\/shop_images\/Mask_group_8.jpg",
+        "iscontent": false,
+        "title": "Shipping &amp; <span>Delivery<\/span>"
       }
     },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "layout": "t4s-container-wrap",
         "cl_bg": "",
@@ -65,23 +21,91 @@
         "pd_mb": ""
       }
     },
-    "sidebar-page": {
-      "type": "sidebar-page",
-      "disabled": true,
+    "6a3936e0-3bee-4ca4-b743-2f34b6b86c4a": {
+      "type": "section-faq",
+      "blocks": {
+        "ad32d417-76cd-4858-a42b-831d824f212a": {
+          "type": "block",
+          "settings": {
+            "question": "How much does shipping cost?",
+            "answer": "For orders over $70, shipping is FREE!\n\nFor all other orders, shipping fee is based on your order weight and the shipping address; calculated at check out."
+          }
+        },
+        "29925685-6ac6-4115-accc-01688b7f33c9": {
+          "type": "block",
+          "settings": {
+            "question": "When will I get my order?",
+            "answer": "In most cases, orders will arrive in 3-5 business days after you place your order, depending on your location. We do not ship on Saturdays, Sundays, and holidays."
+          }
+        },
+        "182edd51-2215-490d-a26e-2e2e08c76314": {
+          "type": "block",
+          "settings": {
+            "question": "How can I track my order after it ships?",
+            "answer": "When we ship your order, we'll send you an email with tracking information. You can also track your order in your account under Order History. Please note that it might take up to 24 hours in some cases for tracking information to be updated by the carrier, but don't worry! Once you get the email, the order has already left our warehouse."
+          }
+        },
+        "1fc136ae-c17c-44c5-948b-25c8cc28dd04": {
+          "type": "block",
+          "settings": {
+            "question": "Damaged and Defective Goods Policy",
+            "answer": "Occasionally, a product will be damaged in transit, or there may be a manufacturer's product defect. With your help, we will work to ensure a timely and satisfying solution. Depending upon the product and form of shipment, we ask that you follow the appropriate outlined procedures below."
+          }
+        },
+        "1c6c5eed-56ac-4d5f-9b06-52d175665652": {
+          "type": "block",
+          "settings": {
+            "question": "Small packages - delivered by UPS or FedEx ",
+            "answer": "The first step is for you, the customer, to perform a detailed product inspection immediately upon delivery. In case of a damage please take pictures.\nNotify our customer service as soon as possible.\nIf damages are reported within 7 days for UPS or FedEx deliveries, we can file a claim on your behalf and work to resolve the issue. You may file the claim yourself, but should you need any assistance, please contact customer service.\nPlease understand that replacements or refunds can be hindered or denied if we're not notified of defective or damaged merchandise within two business days of receipt."
+          }
+        },
+        "bbfcc717-29cc-49c2-8227-da101397a312": {
+          "type": "block",
+          "settings": {
+            "question": "Where will you ship my order from?",
+            "answer": "All orders ship from our warehouse, in Bridgeview, IL."
+          }
+        },
+        "4085a028-dd5d-4b26-97d1-59b66616bf65": {
+          "type": "block",
+          "settings": {
+            "question": "Do you ship to…",
+            "answer": "We ship to the lower 48 states."
+          }
+        }
+      },
+      "block_order": [
+        "ad32d417-76cd-4858-a42b-831d824f212a",
+        "29925685-6ac6-4115-accc-01688b7f33c9",
+        "182edd51-2215-490d-a26e-2e2e08c76314",
+        "1fc136ae-c17c-44c5-948b-25c8cc28dd04",
+        "1c6c5eed-56ac-4d5f-9b06-52d175665652",
+        "bbfcc717-29cc-49c2-8227-da101397a312",
+        "4085a028-dd5d-4b26-97d1-59b66616bf65"
+      ],
       "settings": {
-        "enable_drawer": true,
-        "space": 50,
-        "size": "medium",
-        "br_style": "none",
-        "brcolor": "#222222",
-        "sidebar_bdr": 5,
-        "sidebar_pd": 10
+        "title": "<span>FAQ<\/span>",
+        "class": "section-faq__faqs"
+      }
+    },
+    "5356a967-8096-4373-9c8c-5658ade9650c": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"cnt-inf\">\n<div class=\"faq__question \">Do you ship to…<\/div><br>\n<div>We ship to the lower 48 states.<br><br><stong>We ship to Alaska and Hawaii<\/strong>, but unfortunately free shipping is not applied. Shipping fee calculated at checkout.<br><br>Since all of our carriers require physical delivery addresses, we are unable to ship orders to PO Boxes or APO\/FPOs.<br><br><\/div>\n<div class=\"faq__question \">Contact information:<br><br>\nKIKA USA, LLC, 97-04 Queens Boulevard, New York, New York 11374, United States<br><br>\n1-929-810-3980<br><br>\nhello@superiorcare.pet<\/div><br>\nUnfortunately, we do not ship internationally at this time.\n<\/div>",
+        "layout": "t4s-container-wrap",
+        "cl_bg": "",
+        "cl_bg_gradient": "",
+        "mg": ",,50px,",
+        "pd": "",
+        "mg_mb": ",,30px,",
+        "pd_mb": ""
       }
     }
   },
   "order": [
-    "heading",
+    "page-banner",
     "main",
-    "sidebar-page"
+    "6a3936e0-3bee-4ca4-b743-2f34b6b86c4a",
+    "5356a967-8096-4373-9c8c-5658ade9650c"
   ]
 }

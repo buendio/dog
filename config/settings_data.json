@@ -1,24 +1,48 @@
 {
   "current": {
     "purchase_code": "bb7f47fc-fcd0-4dab-8fe7-0b8769c2e030",
+    "home_keywords": "SuperiorCare.pet unique animal products, functional food and treats for dogs, and natural cosmetics for animals. ⭐ Individual consultations for your pet & Get the best pet supplies online and in store",
+    "shop_author": "KIKA USA LLC",
     "use_rtl": "0",
+    "platform_email": "2",
+    "klaviyo_list_id": "QYYq72",
+    "ajax_klaviyo": false,
+    "ajax_mailChimp": false,
+    "checkbox_mail": false,
+    "link_mail": "terms-of-service",
     "header_design": "inline",
-    "logo": "shopify:\/\/shop_images\/kalles_babcb241-47cc-4352-a0ae-1458bbff9dcc.png",
     "logo_width": 95,
     "logos_width": 95,
     "logo_mb_width": 95,
     "logo_tr_width": 95,
-    "font_source": "2",
+    "heading_color": "#1d1d1d",
+    "text_color": "#1d1d1d",
+    "secondary_color": "#1d1d1d",
+    "link_color_hover": "#f88927",
+    "font_source": "1",
+    "fnt_fm_sp1": "helvetica_n4",
     "fnt_fm_sp2": "poppins_n4",
     "fnt_fm_sp3": "libre_baskerville_n4",
+    "fnt_fm_gg1": "Helvetica",
     "fnt_fm_gg2": "Poppins",
     "fnt_fm_gg3": "Libre Baskerville",
+    "bd_fsize": 18,
+    "bd_lheight": 1.7,
+    "bd_lspacing": 1,
     "hd_ffamily": "1",
+    "fs_h1": 50,
+    "fs_h2": 46,
+    "hd_fweight": 400,
+    "hd_lheight": 1.2,
+    "wishlist_mode": "0",
     "enable_compe": true,
-    "app_review": "2",
+    "app_review": "1",
     "badge_shape": "1",
     "label_sale_style": "2",
     "use_new_badge": false,
+    "enable_quickview": true,
+    "enable_quickshop": false,
+    "enable_atc": false,
     "show_qty": false,
     "pr_border_style": "1",
     "enable_pr_color": true,
@@ -29,10 +53,21 @@
     "use_group_media": true,
     "use_change_variant_by_img": true,
     "enable_his": true,
-    "variant_remove": "2",
+    "variant_remove": "1",
+    "use_notify_me": false,
     "share_source": "1",
+    "min_qty": "1",
+    "cart_type": "drawer",
+    "free_ship_pr": "free-shipping",
     "gift_wrap_pr": "gift-wrap",
-    "filter_type_search": true,
+    "link_ship": "shipping-delivery",
+    "link_conditions": "terms-of-service",
+    "use_privacy_policy": false,
+    "privacy_policy_link": "privacy-policy",
+    "login_side": true,
+    "growave_social_login": false,
+    "filter_type_search": false,
+    "only_search_prs": true,
     "show_search_suggest": true,
     "search_prs_suggest": "women",
     "show_search_hotkey": true,
@@ -41,13 +76,17 @@
     "round_currency": false,
     "notify_currency": true,
     "hover_currency": false,
-    "share_tumblr": true,
-    "share_telegram": true,
+    "custom_js": false,
+    "share_twitter": false,
+    "share_pinterest": false,
+    "share_tumblr": false,
+    "share_email": false,
+    "share_telegram": false,
     "share_whatsapp": false,
-    "social_email_link": "hello@whitedogclubusa.com",
-    "social_facebook_link": "#",
-    "social_twitter_link": "#",
-    "social_instagram_link": "https:\/\/instagram.com\/shopify",
+    "social_email_link": "hello@superiorcare.pet",
+    "social_facebook_link": "https:\/\/www.facebook.com\/superiorcarepet",
+    "social_twitter_link": "",
+    "social_instagram_link": "https:\/\/www.instagram.com\/superiorcare.pet\/",
     "social_dribbble_link": "",
     "social_linkedin_link": "#",
     "social_pinterest_link": "#",
@@ -58,7 +97,12 @@
     "social_behance_link": "",
     "social_soundcloud_link": "",
     "social_tiktok_link": "",
-    "favicon": "shopify:\/\/shop_images\/k-fav.jpg",
+    "favicon": "shopify:\/\/shop_images\/fav4.png",
+    "favicon_apple": "shopify:\/\/shop_images\/486b1ab26d33f9c3e0b0aa6db7b3bc56.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/logo.png",
+    "checkout_accent_color": "#f88927",
+    "checkout_button_color": "#f88927",
+    "free_ship_pr2": 101,
     "pr_incoming_mess": true,
     "use_vimg": true,
     "sticky_atc": true,
@@ -946,7 +990,7 @@
             "type": "shop",
             "settings": {
               "title": "Shop",
-              "link": ""
+              "link": "all-products"
             }
           },
           "toolbar_mobile-1": {
@@ -1304,7 +1348,7 @@
             "type": "menu",
             "settings": {
               "title": "Shop",
-              "url": "shopify:\/\/collections\/women",
+              "url": "shopify:\/\/collections\/all-products",
               "open_link": "_self",
               "menu": "",
               "icon": "",
@@ -1366,6 +1410,7 @@
           },
           "mb_nav-5": {
             "type": "sea",
+            "disabled": true,
             "settings": {}
           },
           "mb_nav-6": {
@@ -1560,10 +1605,10 @@
             "type": "btn",
             "settings": {
               "title": "Return To Shop",
-              "url": "",
+              "url": "shopify:\/\/collections\/all-products",
               "btn_icon": false,
               "button_style": "default",
-              "btn_cl": "primary",
+              "btn_cl": "custom1",
               "button_effect": "fade"
             }
           }
@@ -1619,6 +1664,7 @@
           },
           "main-qv-2": {
             "type": "description",
+            "disabled": true,
             "settings": {
               "des": "2",
               "text": "<p>Go kalles this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish kalles vibe.<\/p>",
@@ -1635,18 +1681,18 @@
               "enable_fit_ratio_img": false,
               "color_size": "medium",
               "show_qty": true,
-              "enable_wishlist": true,
-              "enable_compare": true,
+              "enable_wishlist": false,
+              "enable_compare": false,
               "btn_atc_full": false,
               "pr_btn_round": 40,
-              "ani": "t4s-ani-tada",
+              "ani": "none",
               "time": 6,
               "btn_txt": "3",
               "btn_icon": false,
               "button_style": "default",
-              "button_color": "primary",
+              "button_color": "custom1",
               "button_effect": "sweep-to-bottom",
-              "show_dynamic_checkout": true,
+              "show_dynamic_checkout": false,
               "btn_txt2": "3",
               "button_color_payment": "dark",
               "product_list": [],
@@ -1658,6 +1704,7 @@
           },
           "main-qv-4": {
             "type": "size_delivery_ask",
+            "disabled": true,
             "settings": {
               "size_chart": "3",
               "pos_sizeg": "1",
@@ -1666,12 +1713,13 @@
               "size_ck": "",
               "delivery": true,
               "page_dr": "delivery-return",
-              "ask": true,
+              "ask": false,
               "phone": true
             }
           },
           "main-qv-5": {
             "type": "meta",
+            "disabled": true,
             "settings": {
               "show_options": true,
               "show_vendor": false,
@@ -1686,6 +1734,7 @@
           },
           "main-qv-6": {
             "type": "social",
+            "disabled": true,
             "settings": {
               "socials_align": "start",
               "social_mode": "1",
@@ -1700,6 +1749,12 @@
               "space_h_item_mb": "6",
               "space_v_item_mb": "2"
             }
+          },
+          "a9047756-592d-4630-83a1-a4c2edf75ba7": {
+            "type": "custom_liquid",
+            "settings": {
+              "custom_liquid": "<h4>{{ product.metafields.custom.promo }}<\/h4>"
+            }
           }
         },
         "block_order": [
@@ -1709,18 +1764,19 @@
           "main-qv-3",
           "main-qv-4",
           "main-qv-5",
-          "main-qv-6"
+          "main-qv-6",
+          "a9047756-592d-4630-83a1-a4c2edf75ba7"
         ],
         "settings": {
           "demo_pr": "",
-          "image_ratio": "ratioadapt",
+          "image_ratio": "ratio3_2",
           "image_size": "cover",
-          "image_position": "8",
+          "image_position": "default",
           "nav_btn": true,
           "btn_vi": "always",
-          "btn_owl": "outline",
+          "btn_owl": "default",
           "btn_shape": "round",
-          "btn_cl": "dark",
+          "btn_cl": "primary",
           "btn_size": "small",
           "btn_hidden_mobile": false
         }
@@ -1758,11 +1814,11 @@
       "login-sidebar": {
         "type": "login-sidebar",
         "settings": {
-          "content_align": "start",
+          "content_align": "center",
           "btn_width": "full",
           "button_style": "default",
           "btns_size": "medium",
-          "btns_cl": "primary",
+          "btns_cl": "custom1",
           "button_effect": "default"
         }
       },
@@ -1802,7 +1858,7 @@
           "heading-template-0"
         ],
         "settings": {
-          "image": "shopify:\/\/shop_images\/shopping-cart-head.jpg",
+          "use_specify_image": true,
           "parallax": false,
           "color": "#000000",
           "overlay": 54,
@@ -1830,14 +1886,15 @@
           "main-wishlist-0"
         ],
         "settings": {
-          "product_des": "1",
+          "product_des": "2",
           "show_vendor": false,
+          "use_cdt": false,
           "image_ratio": "rationt",
           "image_size": "cover",
           "image_position": "8",
           "content_align": "default",
           "limit": 12,
-          "enable_listing": true,
+          "enable_listing": false,
           "enable_listing_default": false,
           "col_dk": "4",
           "col_tb": "2",
@@ -2033,6 +2090,42 @@
       },
       "popups": {
         "type": "popups",
+        "blocks": {
+          "c4216de2-e08a-4008-b495-f5d0afc8c02c": {
+            "type": "newsletter",
+            "settings": {
+              "heading": "Sign up our newsletter and save 25% off for the next purchase!",
+              "sub_heading": "Subscribe to our newsletters and don’t miss new arrivals, the latest fashion updates and our promotions.",
+              "txt": "Your Information will never be shared with any third party.",
+              "btn_ck": true,
+              "txt2": "Do not show it anymore.",
+              "input_cl": "#878787",
+              "border_cl": "#000000",
+              "btn_cl": "#ffffff",
+              "btn_bg_cl": "#222222",
+              "btn_hover_cl": "#ffffff",
+              "btn_hover_bg_cl": "#56cfe1",
+              "news_layout": "1",
+              "mb": false,
+              "index": true,
+              "product": true,
+              "collection": false,
+              "article": false,
+              "blog": false,
+              "cart": false,
+              "page": false,
+              "number_pages": 1,
+              "version": "1",
+              "day_next": 7,
+              "after": "scroll",
+              "time_delay": 2,
+              "scroll_delay": 800
+            }
+          }
+        },
+        "block_order": [
+          "c4216de2-e08a-4008-b495-f5d0afc8c02c"
+        ],
         "settings": {}
       },
       "t4s_custom_color": {
@@ -2041,8 +2134,8 @@
           "06eaa184-e59c-4525-ac5d-eac6fc91f3e8": {
             "type": "bg_color",
             "settings": {
-              "title": "",
-              "color": "",
+              "title": "brand-yellow",
+              "color": "#f88927",
               "cl_gradient": "",
               "color_img": false
             }
@@ -2084,23 +2177,23 @@
             "type": "form",
             "settings": {
               "selector_mode": "block",
-              "color_mode": "variant_image",
+              "color_mode": "block",
               "enable_fit_ratio_img": true,
-              "color_size": "large",
+              "color_size": "medium",
               "show_qty": true,
-              "enable_wishlist": true,
-              "enable_compare": true,
+              "enable_wishlist": false,
+              "enable_compare": false,
               "pr_btn_round": 40,
-              "ani": "t4s-ani-shake",
+              "ani": "none",
               "time": 3,
               "btn_txt": "3",
               "btn_icon": false,
               "button_style": "default",
-              "button_color": "primary",
+              "button_color": "custom1",
               "button_effect": "sweep-to-top",
-              "show_dynamic_checkout": true,
+              "show_dynamic_checkout": false,
               "btn_txt2": "3",
-              "button_color_payment": "dark"
+              "button_color_payment": "custom1"
             }
           }
         },
@@ -2135,6 +2228,7 @@
       "header": {
         "type": "header",
         "settings": {
+          "logo": "shopify:\/\/shop_images\/logo_906dd610-be58-4e81-816d-198f91b8c724.png",
           "menu": "main-menu",
           "menu2": "menu-collections"
         }
@@ -2142,12 +2236,138 @@
       "section-footer": {
         "type": "section-footer",
         "settings": {
-          "img": "<svg width=\"249\" height=\"89\" viewbox=\"0 0 249 89\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n                    <path d=\"M77.1573 42.1689C68.8314 42.1689 62.0898 47.646 62.0898 56.2144V69.0839C62.0898 77.6523 68.8314 83.1294 77.1573 83.1294C85.1123 83.1294 92.191 78.1227 92.191 71.8056C92.191 69.9239 90.6404 68.4119 88.7191 68.4119C86.7977 68.4119 85.2471 69.9239 85.2471 71.8056C85.2471 71.8392 85.2808 74.0905 85.2471 74.393C84.9775 78.1563 81.4719 81.1133 77.1573 81.1133C71.9662 81.1133 69.0337 77.3499 69.0337 71.4024V53.9967C69.0337 47.8476 71.764 44.2859 77.1573 44.2859C81.4719 44.2859 85.0112 47.2428 85.2471 51.0062C85.2808 51.275 85.2471 53.5263 85.2471 53.5599C85.2471 55.4416 86.7977 56.9537 88.7191 56.9537C90.6404 56.9537 92.191 55.4416 92.191 53.5599C92.191 47.0076 85.0786 42.1689 77.1573 42.1689Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M122.765 78.8954C124.821 80.8443 127.551 82.054 130.585 82.1884C130.854 82.1884 131.057 81.9868 131.057 81.718V80.8443C131.057 80.6091 130.888 80.4075 130.652 80.3403C128.023 79.8699 125.967 77.585 125.967 74.796V54.1982C125.967 47.4107 120.034 41.9336 111.708 41.9336C103.686 41.9336 98.3264 45.9658 98.3264 51.2413C98.3264 53.123 99.877 54.635 101.798 54.635C103.72 54.635 105.27 53.0894 105.27 51.2077C105.27 47.4779 108.034 44.0505 111.81 44.0505C116.293 44.0505 119.023 47.2091 119.023 51.1405V53.2238C119.023 56.8191 114.843 58.6 110.428 60.4481C107.697 61.5906 104.023 62.733 101.63 63.9763C99.4725 65.1188 95.832 67.6053 95.832 72.5447C95.832 79.3323 102.574 82.8604 110.899 82.8604C115.72 82.8604 120.001 81.5836 122.765 78.8954ZM102.81 72.5447C102.81 68.1093 106.989 64.1779 111.439 62.2962C114.135 61.1538 116.765 59.9777 119.023 58.7008V73.284C119.023 77.753 115.652 80.8443 110.899 80.8443C105.607 80.8107 102.81 77.7194 102.81 72.5447Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M135.101 82.1884H140.191C140.697 82.1884 141.135 81.8188 141.135 81.382V51.6109C141.135 47.6123 144.843 44.2185 149.427 44.3193C151.113 44.3529 153.169 45.193 154.618 46.0666C154.82 46.201 155.09 46.1338 155.225 45.9322C155.596 45.4282 156 44.9242 156.438 44.4201C156.641 44.1849 156.573 43.8153 156.27 43.7145C154.18 42.8408 151.787 42.3032 149.259 42.3032C140.933 42.3032 134.191 47.7467 134.191 54.467V81.4156C134.158 81.8188 134.596 82.1884 135.101 82.1884Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M10.7194 38.607C7.85424 38.607 5.29244 35.8517 5.29244 33.4324C5.29244 32.2563 4.21379 31.1139 2.83177 31.1139C1.44975 31.1139 0.371094 32.2563 0.371094 33.634C0.371094 37.0278 4.55087 40.1527 10.652 40.1527C14.8655 40.1527 20.9666 37.767 20.9666 31.1139C20.9666 25.1328 15.9104 23.7215 11.4273 23.0159C7.58458 22.4782 3.91042 20.8654 3.91042 17.6732C3.91042 14.481 7.18008 12.7002 9.97784 12.7002C12.6408 12.7002 14.5958 15.1195 14.5958 17.7404C14.5958 19.0845 15.7082 20.1597 17.0565 20.1597C18.4048 20.1597 19.5172 19.0845 19.5172 17.7404C19.5172 14.0106 15.7082 11.2217 10.0453 11.2217C6.13514 11.2217 0.438509 13.4394 0.438509 19.7229C0.438509 26.0064 6.20256 26.9809 10.6183 27.8881C14.4273 28.661 17.225 30.3746 17.225 33.3316C17.2587 36.6581 13.7194 38.607 10.7194 38.607Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M27.9445 11.9946H24.3377C23.9669 11.9946 23.6973 12.2634 23.6973 12.5659V31.618C23.6973 36.3558 28.4838 40.22 34.3827 40.22H35.3602C41.2591 40.22 46.0456 36.3894 46.0456 31.618V12.5659C46.0456 12.2634 45.7422 11.9946 45.3714 11.9946H41.7647C41.3939 11.9946 41.0905 12.2634 41.0905 12.5659V33.6341C41.0905 36.4566 38.4613 38.8424 35.2254 38.7752H34.349C31.1467 38.7752 28.6186 36.423 28.6186 33.6341V12.5659C28.6186 12.2634 28.3152 11.9946 27.9445 11.9946Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M61.3153 11.2554C56.4951 11.2554 56.4276 13.4395 54.8434 13.4395C53.4613 13.4395 52.9894 11.3226 51.2366 11.3226C50.967 11.3226 50.6973 11.4906 50.6973 11.9946L50.6299 45.6635C50.6299 45.9995 50.9333 46.3019 51.304 46.3019H54.8771C55.2479 46.3019 55.5512 45.9995 55.5512 45.6299V38.876C57.2029 39.7496 59.158 40.22 61.2816 40.22C67.1804 40.22 71.967 36.3558 71.967 30.2739V21.2015C72.0007 15.1196 67.2142 11.2554 61.3153 11.2554ZM67.0456 31.9204C67.0456 36.2886 65.1243 38.8087 61.2816 38.8087C58.2479 38.8087 55.7872 36.759 55.5512 34.1381V17.3709C55.7872 14.7499 58.2479 12.7002 61.2816 12.7002C64.9557 12.7002 67.0456 15.3884 67.0456 19.5886V31.9204Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M96.9777 32.2226C96.9777 32.2226 96.9777 32.189 96.9777 32.2226C96.9777 30.8786 95.8653 29.8033 94.517 29.8033C93.1687 29.8033 92.0564 30.8786 92.0564 32.189C92.0564 32.2226 92.0564 33.8019 92.0564 34.0035C92.0564 36.5909 89.3934 38.7414 86.326 38.7414C83.1575 38.7414 80.562 36.9941 80.562 33.2979C80.562 30.7442 82.6856 28.9297 86.6631 27.1152C88.5844 26.2415 91.18 25.5695 92.8991 24.5951C94.4159 23.755 96.708 21.9741 96.708 18.4796C96.708 13.6745 92.2249 11.188 86.326 11.188C80.4271 11.188 75.6406 14.3465 75.6406 21.3693V30.2401C75.6406 36.322 80.4271 40.1862 86.326 40.1862C91.9552 40.2198 96.9777 36.6917 96.9777 32.2226ZM80.5957 19.5548C80.5957 15.5898 82.9215 12.7001 86.3597 12.7001C90.1013 12.7001 92.1238 14.8842 92.1238 18.5468C92.1238 21.7053 89.1238 23.7886 86.2249 25.5023C84.4384 26.5776 82.2474 27.5184 80.6294 28.4256V19.5548H80.5957Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M110.865 11.457C104.966 11.457 100.18 15.3212 100.18 20.0591V39.1448C100.18 39.4472 100.483 39.716 100.82 39.716H104.427C104.798 39.716 105.067 39.4472 105.067 39.1448V18.043C105.067 15.2204 107.697 12.8347 110.932 12.8683C112.146 12.9019 113.595 13.4731 114.607 14.1116C114.741 14.2124 114.944 14.1452 115.045 14.0108C115.315 13.6411 115.584 13.3051 115.888 12.9355C116.022 12.7675 115.989 12.5323 115.786 12.4315C114.337 11.8267 112.652 11.457 110.865 11.457Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M125.764 0.16668C125.427 -0.135735 121.652 -0.404548 119.731 4.40049C119.09 5.97977 117.944 7.69346 116.764 8.09668C116.495 8.19748 116.326 8.4663 116.36 8.73511V8.76871C121.349 8.33189 125.562 4.87092 125.899 1.17473C125.933 1.00672 126 0.435493 125.764 0.16668Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M122.664 11.5242C121.518 12.297 120.27 12.801 118.956 13.0698C118.72 13.137 118.585 13.3722 118.585 13.6411L118.652 39.0439C118.652 39.4135 118.956 39.716 119.327 39.716H122.866C123.237 39.716 123.54 39.4135 123.54 39.0439V12.0618C123.506 11.625 123.001 11.2889 122.664 11.5242Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M150.472 30.3074V21.1678C150.472 15.0859 145.685 11.2217 139.786 11.2217C133.888 11.2217 129.135 15.1195 129.135 21.1678V30.2738C129.135 36.3557 133.921 40.2199 139.82 40.2199C145.719 40.2199 150.472 36.3557 150.472 30.3074ZM134.056 31.8867V19.5885C134.056 15.2203 135.977 12.7002 139.82 12.7002C143.629 12.7002 145.584 15.2203 145.584 19.5885V31.9203C145.584 36.1205 143.528 38.8087 139.82 38.8087C136.112 38.7751 134.056 36.1205 134.056 31.8867Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M153.675 20.059V39.1447C153.675 39.4471 153.978 39.716 154.315 39.716H157.922C158.293 39.716 158.562 39.4471 158.562 39.1447V18.0429C158.562 15.2203 161.192 12.8346 164.428 12.8682C165.641 12.9018 167.091 13.473 168.102 14.1115C168.237 14.2123 168.439 14.1451 168.54 14.0107C168.81 13.641 169.079 13.305 169.383 12.9354C169.518 12.7674 169.484 12.5322 169.282 12.4314C167.798 11.793 166.113 11.4233 164.326 11.4233C158.461 11.4569 153.675 15.3211 153.675 20.059Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M183.64 68.1766C181.719 68.1766 180.169 69.6887 180.169 71.5704C180.169 71.604 180.169 72.1752 180.169 72.78C180.169 73.3849 180.169 74.0233 180.169 74.1577C180.169 75.0985 179.899 76.0058 179.461 76.8458C178.18 79.1979 175.281 80.878 172.079 80.878C167.596 80.878 163.955 78.3915 163.955 73.2168C163.955 69.6215 166.955 67.0341 172.551 64.4804C174.607 63.5396 177.236 62.7667 179.461 61.8259C180.135 61.5571 180.809 61.2546 181.348 60.9186C183.506 59.709 186.708 57.2224 186.708 52.283C186.708 49.9981 186 48.0828 184.719 46.5707C183.438 45.025 181.618 43.8826 179.427 43.1097C177.27 42.3705 174.775 41.9673 172.045 41.9673C163.719 41.9673 156.978 46.4027 156.978 56.3488V68.8822C156.978 77.4507 163.719 82.9277 172.045 82.9277C174.674 82.9277 177.202 82.3565 179.427 81.4157C183.91 79.4668 187.079 75.8378 187.079 71.604V71.5704C187.112 69.6887 185.528 68.1766 183.64 68.1766ZM163.955 53.6943C163.955 48.0828 167.258 44.017 172.079 44.017C175.82 44.017 178.315 45.5627 179.461 48.2844C179.933 49.4269 180.169 50.7709 180.169 52.283C180.169 53.3919 179.899 54.4335 179.461 55.3408C178.079 58.1633 174.944 60.2802 171.843 62.0947C169.315 63.6068 166.213 64.9172 163.955 66.2277V53.6943Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M203.798 59.2383C199.821 59.2383 199.787 61.0528 198.472 61.0528C197.326 61.0528 196.956 59.3055 195.506 59.3055C195.304 59.3055 195.068 59.4399 195.068 59.8431L195.034 87.5309C195.034 87.7997 195.27 88.0685 195.573 88.0685H198.506C198.809 88.0685 199.045 87.8333 199.045 87.5309V81.9866C200.394 82.6923 202.012 83.0955 203.765 83.0955C208.618 83.0955 212.529 79.9033 212.529 74.9303V67.4371C212.596 62.4304 208.652 59.2383 203.798 59.2383ZM208.517 76.2407C208.517 79.8361 206.933 81.8858 203.798 81.8858C201.304 81.8858 199.281 80.2057 199.079 78.0216V64.2785C199.248 62.128 201.304 60.4143 203.798 60.4143C206.832 60.4143 208.517 62.5985 208.517 66.0594V76.2407Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M223.18 81.9197C225.674 81.9197 227.832 80.1388 227.832 78.0555C227.832 77.8875 227.832 76.6107 227.832 76.5771C227.832 75.5018 228.742 74.6282 229.82 74.6282C230.933 74.6282 231.843 75.5018 231.809 76.5771C231.809 80.2396 227.731 83.0958 223.146 83.0958C218.36 83.0958 214.483 79.9372 214.483 75.0314V67.807C214.483 62.0947 218.36 59.541 223.146 59.541C227.933 59.541 231.573 61.5907 231.573 65.4885C231.573 68.3111 229.719 69.7559 228.472 70.4616C227.09 71.2344 224.967 71.8056 223.416 72.5113C220.18 73.9897 218.461 75.4682 218.461 77.5515C218.495 80.4749 220.585 81.9197 223.18 81.9197ZM223.18 60.7171C220.416 60.7171 218.495 63.0692 218.495 66.295V73.5193C219.809 72.7801 221.562 72.0072 223.045 71.1672C225.405 69.7559 227.832 68.0758 227.832 65.5221C227.832 62.498 226.214 60.7171 223.18 60.7171Z\" fill=\"#928F91\"><\/path>\n                    <path d=\"M247.753 63.6067C247.113 63.9091 243.304 65.7572 240 66.2276V78.0218C240 79.7691 241.214 81.2812 242.967 81.9196C243 81.9196 243.034 81.9532 243.068 81.9532C243.102 81.9532 243.102 81.9532 243.135 81.9868C243.203 81.9868 243.27 82.054 243.304 82.0876C243.472 82.1884 243.573 82.39 243.573 82.5916C243.573 82.894 243.371 83.0957 243.102 83.1965H243.068C243.034 83.1965 243 83.1965 243 83.1965H242.967C242.697 83.1965 242.495 83.1629 242.36 83.1293H242.326C242.293 83.1293 242.259 83.1293 242.259 83.1293C242.225 83.1293 242.225 83.1293 242.191 83.1293C238.585 82.2892 235.955 79.6011 235.955 76.4425V66.0932C233.798 65.5892 232.517 64.6483 232.517 64.6483L232.146 64.4131C232.146 64.4131 232.484 63.9427 232.989 64.0099C233.495 64.0771 233.967 64.0435 233.967 64.0435C234.506 64.0435 235.18 63.9427 235.955 63.7747V59.9105V56.8863C235.955 56.6847 236.057 56.4831 236.259 56.4159C237.338 56.2143 238.349 55.7775 239.259 55.1391C239.529 54.971 239.967 55.2399 239.967 55.6095V62.6658C241.618 62.1282 243.034 61.5906 243.573 61.4562C244.753 61.1202 246.776 61.0866 248.09 61.7586C249.472 62.3634 248.529 63.2371 247.753 63.6067Z\" fill=\"#928F91\"><\/path>\n                <\/svg>",
-          "menu": "main-menu",
+          "img": "<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0597\/1551\/8645\/files\/logo_906dd610-be58-4e81-816d-198f91b8c724_1.png?v=1682863385\" alt=\"\">",
+          "contact": "<p>{%render 'icon-marker'%} \n<span>KIKA USA, LLC, 97-04 Queens Boulevard, New York, New York 11374, United States<\/span><\/p><p>{%render 'icon-phone'%}<a href=\"tel:1-929-810-3980\">1-929-810-3980<\/a><\/p><p>{%render 'icon-email'%}<a href=\"mailto:hello@superiorcare.pet:hello@superiorcare.pet\">hello@superiorcare.pet<\/a>",
+          "menu": "our-information",
+          "menu2": "more-info",
           "copy": "©2022 All Rights Reserved."
+        }
+      },
+      "heading-template-custom": {
+        "type": "heading-template-custom",
+        "settings": {
+          "img": "shopify:\/\/shop_images\/logo.png",
+          "img2": "shopify:\/\/shop_images\/Union_1.png",
+          "video": "",
+          "title": "wishlist"
         }
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "1575957009345749421": {
+        "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/side-drawer\/a103faaf-2125-4b0e-89fa-de5149736723",
+        "disabled": true,
+        "settings": {
+          "show_avatar": true,
+          "position": "right",
+          "text": "",
+          "title": "",
+          "link": "",
+          "link_text": "",
+          "background_color": "",
+          "style_color_button_text": "",
+          "style_color_star": "",
+          "style_color_text": "",
+          "style_color_link": "",
+          "review_ids": "",
+          "product_ids": "",
+          "category": "",
+          "product_brand": "",
+          "tags": "",
+          "min_rating": "none",
+          "fill_empty": false,
+          "random": false,
+          "with_photos": false
+        }
+      },
+      "4697538150380142411": {
+        "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/reviews-popup\/a103faaf-2125-4b0e-89fa-de5149736723",
+        "disabled": true,
+        "settings": {
+          "layout": "horizontal",
+          "effect": "slidetop",
+          "delay_seconds": 3,
+          "show_seconds": 10,
+          "pause_seconds": 10,
+          "position": "bottomleft",
+          "color_background": "",
+          "color_star": "",
+          "color_text": "",
+          "review_ids": "",
+          "product_ids": "",
+          "category": "",
+          "product_brand": "",
+          "tags": "",
+          "min_rating": "none",
+          "fill_empty": false,
+          "random": false,
+          "with_photos": false
+        }
+      },
+      "7612553728132747764": {
+        "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/net-promoter-score-form-modal\/a103faaf-2125-4b0e-89fa-de5149736723",
+        "disabled": true,
+        "settings": {
+          "email": "",
+          "name": "",
+          "title": "",
+          "message": "Enable advanced features and increase your monthly order limit to match your business's needs.",
+          "reason": "",
+          "thank_you": "",
+          "label_name": "",
+          "label_email": ""
+        }
+      },
+      "1513253815146976218": {
+        "type": "shopify:\/\/apps\/omnisend-email-marketing-sms\/blocks\/app-embed\/44704aa2-794f-4c5d-8c8e-039c841158e9",
+        "disabled": false,
+        "settings": {}
+      },
+      "10605408327587305396": {
+        "type": "shopify:\/\/apps\/easygift-auto-add-to-cart\/blocks\/app-embed\/0f7d4f74-1e89-4820-aec4-6564d7e535d2",
+        "disabled": false,
+        "settings": {
+          "version": "v3"
+        }
+      },
+      "10436698916776057164": {
+        "type": "shopify:\/\/apps\/appstle-subscriptions\/blocks\/appstle-subscription-helper\/fe257d39-6f88-4f35-ab08-bd437e3aa94e",
+        "disabled": false,
+        "settings": {}
+      },
+      "855628211100114053": {
+        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": true,
+        "settings": {}
+      },
+      "10570433277407501837": {
+        "type": "shopify:\/\/apps\/simprosys-google-shopping-feed\/blocks\/gsf-gcr\/1f0b859e-9fa6-4007-97e8-4513aff5ff3b",
+        "disabled": false,
+        "settings": {}
+      },
+      "5439026248262864547": {
+        "type": "shopify:\/\/apps\/preorder-globo-back-in-stock\/blocks\/app-embed\/e547a0ad-8212-4bcc-b02f-761faa9b8af2",
+        "disabled": true,
+        "settings": {}
+      },
+      "free-gifts-bogo-buy-x-get-y-0432bba6-720a-4e95-be5a-b868386f7aa6": {
+        "type": "shopify:\/\/apps\/free-gifts-bogo-buy-x-get-y\/blocks\/app-embed\/0432bba6-720a-4e95-be5a-b868386f7aa6",
+        "disabled": false,
+        "settings": {}
+      },
+      "15909290956780699707": {
+        "type": "shopify:\/\/apps\/advanced-bundle-products\/blocks\/app-embed-block\/5bcb1a6d-53b5-4d9c-b4f9-19f6620da62b",
+        "disabled": false,
+        "settings": {
+          "accent_color": "#6371c7"
+        }
+      },
+      "9144908965052497053": {
+        "type": "shopify:\/\/apps\/glo-related-products-upsell\/blocks\/app-embed\/75cf2d86-3988-45e7-8f28-ada23c99704f",
+        "disabled": true,
+        "settings": {}
+      }
+    }
   }
 }

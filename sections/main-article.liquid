@@ -34,6 +34,21 @@
         assign number_of_comments = article.comments_count
     endif
 -%}
+
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "ImageObject",
+"contentUrl": "{{ image | image_url }}",
+"datePublished": "{{ article.published_at | date: "%Y-%m-%d" }}",
+"name": "https://www.superiorcare.pet/",
+"description": "{{ article.title }}",
+"width": "{{ image.width }}",
+"height": "{{ image.height }}",
+"author": "{{ article.author }}"
+}
+</script>
+
 <div class="t4s-section-inner t4s_nt_se_{{sid}} {{stt_layout}}{% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s{% endif %}" {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto"  data-optimumx="1.5"{% endif %} {% render 'section_style',se_stts:se_stts -%} >
     {{-html_layout[0]-}}
     {%- if stt_layout == 't4s-se-container' -%}

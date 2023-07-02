@@ -2,6 +2,7 @@
   "sections": {
     "1661347224ce5f5628": {
       "type": "heading-template-custom",
+      "disabled": true,
       "settings": {
         "img": "shopify:\/\/shop_images\/logo.png",
         "img2": "shopify:\/\/shop_images\/Union.png",

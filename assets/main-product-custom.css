@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&family=Quicksand:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 .main-logo {
   padding: 25px 0;
 }
@@ -9,7 +10,9 @@
   font-size: 24px;
   line-height: 30px;
   color: #1D1D1D;
+  font-weight: 700;
   text-transform: uppercase;
+  font-family: "DM Sans", sans-serif;
 }
 
 span[data-instock-status] {
@@ -28,16 +31,18 @@ span[data-instock-status] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 8px 25px;
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  height: 60px;
+  width: 258px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
   color: #FFFFFF;
   text-transform: uppercase;
   background: #F88927;
-  border-radius: 50px;
+  border-radius: 10px !important;
 }
 .t4s-btn-base.t4s-btn.t4s-btn-color-custom1 svg {
+  margin-right: 10px;
   stroke: #fff;
 }
 .t4s-btn-base.t4s-btn.t4s-btn-color-custom1:hover {
@@ -77,8 +82,62 @@ span[data-instock-status] {
   background: #928F91;
 }
 
+.t4s-product-form__buttons .t4s-d-flex {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.t4s-product-form__buttons .t4s-btn-base.t4s-btn.t4s-btn-color-custom1 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .t4s-product-form__buttons .t4s-quantity-wrapper {
-  border: 1px solid #CECECE;
+  border: none;
+}
+
+.t4s-product-form__buttons .t4s-quantity-wrapper button {
+  width: 34px;
+  height: 34px;
+  background: #F8F9FA;
+  border-radius: 5px;
+}
+.t4s-product-form__buttons .t4s-quantity-wrapper button:hover {
+  color: #F88927;
+  background: #F8F9FA;
+}
+
+.appstle_widget_title {
+  display: none !important;
+}
+
+#appstle_subscription_widget0 .appstle_subscription_wrapper {
+  border: none !important;
+}
+
+#appstle_subscription_widget0 .appstle_subscription_wrapper_option {
+  padding: 8px 8px 8px 0 !important;
+}
+
+#appstle_subscription_widget0 .appstle_circle {
+  border: 2px solid #F88927 !important;
+}
+#appstle_subscription_widget0 .appstle_circle::before {
+  display: none !important;
+}
+
+#appstle_subscription_widget0 .appstle_subscription_wrapper_option input[type=radio]:checked + label .appstle_circle .appstle_dot {
+  background-color: #F88927 !important;
+}
+
+.t4s-product-form__buttons .t4s-quantity-wrapper .is--minus {
+  padding-left: 0;
+  text-align: center;
+}
+
+.t4s-product-form__buttons .t4s-quantity-wrapper .is--plus {
+  padding-right: 0;
+  text-align: center;
 }
 
 .t4s-product-tabs-wrapper.is--tab-position__external {

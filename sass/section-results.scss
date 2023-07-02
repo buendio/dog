@@ -20,72 +20,98 @@
   margin-bottom: 38px;
   margin-top: 20px;
 }
+.results-items {
+  overflow: hidden;
+}
 .results-item {
-  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
-  @include m.media-md {
-    margin-bottom: 20px;
-  }
-  @include m.media-xl() {
-    max-width: 48%;
-  }
-  @include m.media-sm {
-    max-width: 100%;
-  }
+
   img {
     display: block;
     width: 100%;
     max-height: 460px;
     aspect-ratio: 1/1;
-
-    margin-bottom: 27px;
-    border-radius: 40px;
-    object-fit: cover;
     @include m.media-xl() {
       width: 100%;
     }
-    @include m.media-sm {
-      margin-bottom: 20px;
-    }
   }
   a {
-    padding-bottom: 5px;
-    font-size: 32px;
+    display: block;
+    font-size: 20px;
     line-height: 1.4;
-    color: #525252;
-    border-bottom: 2px solid transparent;
-    @include m.media-sm {
-      font-size: 20px;
+    color: #121212;
+    padding: 35px 30px 30px 30px;
+    border-left: 1px solid #e0e1e1;
+    border-right: 1px solid #e0e1e1;
+    border-bottom: 1px solid #e0e1e1;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: left;
+    @include m.media-md {
+      font-size: 13px;
+      padding: 10px;
     }
-    span {
-      color: #f88927;
-    }
+
     &:hover {
-      border-bottom: 2px solid #f88927;
-    }
-  }
-  &.sng {
-    width: 100%;
-    @include m.media-xl() {
-      max-width: 100%;
-    }
-    img {
-      max-height: 380px;
-      border-radius: 40px;
-      @include m.media-lg {
-        max-height: 180px;
-        object-fit: contain;
-      }
-      @include m.media-sm {
-        max-height: 150px;
-      }
+      color: #f88927;
     }
   }
   .results-item__text {
     margin: 20px 0 0;
     @include m.media-sm() {
       margin: 10px 0 0;
+    }
+  }
+}
+.results-items-wrapper {
+  position: relative;
+}
+.results-slider-nav {
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #f88927;
+    transition: all 300ms;
+    @include m.media-md {
+      display: none;
+    }
+    &::after {
+      display: none;
+    }
+    svg {
+      path {
+        transition: all 300ms;
+        stroke: #f88927;
+      }
+    }
+    &:hover {
+      background: #f88927;
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+  .swiper-button-prev {
+    left: -50px;
+    @include m.media-xxxl {
+      left: 0;
+    }
+  }
+  .swiper-button-next {
+    right: -50px;
+    @include m.media-xxxl {
+      right: 0;
     }
   }
 }

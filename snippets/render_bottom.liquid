@@ -302,7 +302,11 @@ endif -%}
     {%- if currency_selector %}<input type="hidden" name="currency_code" id="CurrencySelector" value="{{ form.current_currency.iso_code }}" data-disclosure-input/>{% endif -%}
   {%- endform -%}
 {%- endif -%}
-
+{%- comment -%}
+  unless customer or settings.login_side == false
+     section 'login-sidebar'
+  endunless
+{%- endcomment -%}
 {%- liquid
 if admin_sp
   render 'var_adm'
@@ -312,9 +316,7 @@ if admin_sp
   if enable_quickshop
   section 'main-qs'
   endif
-  unless customer or settings.login_side == false
-     section 'login-sidebar'
-  endunless
+
   if page_type == 'collection' or page_type == 'search'
      section 'facets'
   endif
@@ -358,3 +360,4 @@ echo '<div id="t4s-append-component" class="t4s-d-none"></div>' -%}
 {%- if settings.colors_css %}<link rel="stylesheet" href="{{ 'colors.css' | asset_url }}" media="print" onload="this.media='all'">{% endif -%}
 {%- if settings.custom_css %}{{- 'custom.css' | asset_url | stylesheet_tag:preload:true -}}{% endif -%}
 {%- if admin_sp %}<style>.t4s-section-admn-fixed { position: fixed;top: 100px;pointer-events: none; z-index: -1;opacity: 0; }.t4s-section-admn2-fixed { position: fixed;top: 100px;z-index: 468; }</style>{% endif -%}
+

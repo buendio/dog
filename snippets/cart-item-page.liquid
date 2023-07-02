@@ -21,6 +21,7 @@
               </a>
               <div class="t4s-page_cart__info">
                  <a href="{{item_url}}" class="t4s-page_cart__title">{{ item.product.title }}</a>
+                  <span class="ga_cart_upsell" data-productid="{{ item.product_id }}"></span>
                  <div class="t4s-page_cart__meta">
                     {%- assign qv_key = item.product.id -%}
                     {%- unless item.product.has_only_default_variant or item.variant.title contains 'mczr_price_' -%}{%- assign qv_key = item_id -%}{%- for option in item.options_with_values -%}<p class="t4s-cart_meta_variant">{{ option.name }}: <strong>{{ option.value }}</strong></p>{%- endfor -%}{%- endunless -%}
@@ -29,6 +30,7 @@
                     {%- if property_size > 0 -%}
                     <ul class="t4s-cart_meta_propertyList">
                       {%- for p in item.properties -%}
+                        {% if p.first == '_bundle' %}{% continue %}{% endif %}{% if p.first == '__is_bundle_product' %}{% continue %}{% endif %}{% if p.first == '_upsell_bundle' %}{% continue %}{% endif %}
                         {% assign first_character_in_key = p.first | truncate: 1, '' %}
                         {% if first_character_in_key == '_' %}
                             {% continue %}

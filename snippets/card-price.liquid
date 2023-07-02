@@ -7,7 +7,7 @@
         </div>
         {% elsif product.price_varies %}
             <div class="price__element-varies">
-            From {{ product.price_min | money }} to {{ product.price_max | money }}
+            From <span>{{ product.price_min | money }}</span> to <span>{{ product.price_max | money }}</span>
             </div>
         {% else %}
             <div class="price__element-normal">

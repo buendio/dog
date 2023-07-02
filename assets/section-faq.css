@@ -1,0 +1,111 @@
+.section-faq {
+  position: relative;
+  padding: 50px 0 100px;
+}
+@media (max-width: 768px) {
+  .section-faq {
+    padding: 40px 0;
+  }
+}
+.section-faq .h1--decor2 {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.section-faq:has(.section-faq__faqs) {
+  padding: 50px 0;
+}
+
+.faq__wr {
+  padding: 15px 0;
+  border-top: 1px solid #e0e1e1;
+}
+.faq__wr:last-child {
+  border-bottom: 1px solid #e0e1e1;
+}
+.faq__wr:has(.faq__question.active) {
+  max-width: 80%;
+}
+@media (max-width: 768px) {
+  .faq__wr:has(.faq__question.active) {
+    max-width: 100%;
+  }
+}
+
+.section-faq__faqs .faq__wr:has(.faq__question.active) {
+  max-width: 100%;
+}
+
+.faq__answer {
+  display: none;
+  font-weight: 400;
+  font-size: 16px;
+  color: #767270;
+  line-height: 1.6;
+}
+.faq__answer span {
+  color: #f88927;
+}
+
+.faq__question {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+.faq__question .h6 {
+  display: block;
+  max-width: calc(100% - 23px);
+}
+.faq__question svg {
+  -webkit-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
+}
+.faq__question svg path {
+  -webkit-transition: all 300ms;
+  -o-transition: all 300ms;
+  transition: all 300ms;
+  stroke: #767270;
+}
+.faq__question.active {
+  color: #f88927;
+}
+.faq__question.active svg {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.faq__question.active svg path {
+  stroke: #f88927;
+}
+
+.faq__decor1 {
+  position: absolute;
+  left: 10%;
+  top: 3%;
+  max-width: 84px;
+}
+@media (max-width: 575px) {
+  .faq__decor1 {
+    max-width: 40px;
+    left: 3%;
+  }
+}
+
+.cnt-inf {
+  max-width: 1004px;
+  margin: auto;
+}
+
+.section-faq__faqs {
+  max-width: 1034px;
+}

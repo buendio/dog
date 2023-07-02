@@ -8,9 +8,10 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   font-weight: 400;
-  color: #1d1d1d;
+  color: #121212;
   overflow-x: hidden;
   &.scroll {
     height: 100vh;
@@ -23,7 +24,8 @@ body {
       right: 0;
       bottom: 0;
       z-index: 1;
-      background-color: rgba(#000, 0.3);
+      background-color: rgba(18, 18, 18, 0.6);
+      filter: blur(5px);
       transition: all 400ms;
     }
   }
@@ -31,13 +33,14 @@ body {
 
 h1,
 .h1 {
-  // font-family: 'Museo Sans Cyrl', sans-serif;
-  // font-size: 48px;
-  // line-height: 1;
-  // font-weight: 300;
-  text-transform: uppercase;
+  color: #121212;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+  @include m.media-lg() {
+    font-size: 40px;
+  }
   @include m.media-sm() {
-    font-size: 32px;
+    font-size: 20px;
   }
 }
 .h1--decor {
@@ -52,6 +55,25 @@ h1,
     height: 1px;
     margin: 32px auto 0;
     background-color: #2d2424;
+  }
+}
+.h1--decor2 {
+  span {
+    position: relative;
+    display: inline-block;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      width: 140%;
+      height: 140%;
+      top: 0px;
+      left: 0;
+      background: url(dec.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: left;
+    }
   }
 }
 p {
@@ -70,42 +92,40 @@ button {
 }
 form {
   :-moz-placeholder {
-    color: #999999;
-    letter-spacing: 0.02em;
+    color: #767270;
     font-size: 16px;
-    font-family: "Museo Sans Cyrl", sans-serif;
+    font-family: "DM Sans", sans-serif;
   }
   ::-moz-placeholder {
-    color: #999999;
-    letter-spacing: 0.02em;
+    color: #767270;
     font-size: 16px;
-    font-family: "Museo Sans Cyrl", sans-serif;
+    font-family: "DM Sans", sans-serif;
   }
   :-ms-input-placeholder {
-    color: #999999;
-    letter-spacing: 0.02em;
+    color: #767270;
     font-size: 16px;
-    font-family: "Museo Sans Cyrl", sans-serif;
+    font-family: "DM Sans", sans-serif;
   }
   ::-webkit-input-placeholder {
-    color: #999999;
-    letter-spacing: 0.02em;
+    color: #767270;
     font-size: 16px;
-    font-family: "Museo Sans Cyrl", sans-serif;
+    font-family: "DM Sans", sans-serif;
   }
 }
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 25px;
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  padding: 20px 30px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: #ffffff;
   text-transform: uppercase;
   background: #f88927;
-  border-radius: 50px;
+  border-radius: 10px;
   &:hover {
     color: #fff;
     background: #f88927;
@@ -135,4 +155,75 @@ h2.ga-title {
 }
 .ga-product_price-container {
   text-align: center;
+}
+.zf-templateWidth {
+  width: auto !important;
+  max-width: 1034px;
+  .zf-oneColumns .zf-tempContDiv span input[type="checkbox"] {
+    display: none;
+  }
+  .zf-oneColumns .zf-tempContDiv span {
+    position: relative;
+  }
+  .zf-oneColumns .zf-tempContDiv span label {
+    cursor: pointer;
+  }
+
+  .zf-oneColumns .zf-tempContDiv span label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #767270;
+    border-radius: 2px;
+  }
+  .zf-oneColumns .zf-tempContDiv span label::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    top: 4.5px;
+    background: #f88927;
+    border-radius: 1px;
+  }
+  .zf-oneColumns .zf-tempContDiv span input[type="checkbox"]:checked + label:after {
+    display: block;
+  }
+  .zf-oneColumns .zf-tempContDiv span input[type="checkbox"]:checked + label::before {
+    border: 1px solid #f88927;
+  }
+  .zf-nameWrapper {
+    width: 100% !important;
+  }
+  .zf-tempContDiv input[type="text"]:focus,
+  .zf-tempContDiv textarea:focus {
+    border: 1px solid rgba(#f88927, 0.7) !important;
+  }
+  .zf-name .zf-tempContDiv input[type="text"] {
+    padding: 15px 0 15px 20px;
+    border: 1px solid #E0E1E1;
+    border-radius: 10px;
+  }
+  .zf-small .zf-tempContDiv input[type="text"] {
+    width: 100%;
+    padding: 15px 0 15px 20px;
+    border: 1px solid #E0E1E1;
+    border-radius: 10px;
+  }
+  .zf-small .zf-tempContDiv textarea {
+    width: 100%;
+  }
+}
+.gBackInStock-Button {
+  display: flex;
+  justify-content: center;
+  .gBackInStockBtn {
+    width: 258px !important;
+    height: 60px !important;
+    border-radius: 10px !important;
+  }
 }

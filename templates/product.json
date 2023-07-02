@@ -5,7 +5,7 @@
       "settings": {
         "breadcrumb_pr": true,
         "back_next_pr": true,
-        "cl_bg": "#f6f6f6",
+        "cl_bg": "#ffffff",
         "cl_link": "#222222"
       }
     },
@@ -37,14 +37,9 @@
             "show_tags": false
           }
         },
-        "56172fcf-3b56-458b-a812-2a4d7211742c": {
-          "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/star-rating-badge\/a103faaf-2125-4b0e-89fa-de5149736723",
-          "settings": {
-            "use_metafields": true,
-            "sku_tagtype": "sku",
-            "is_featured_product": false,
-            "featured_product_handle": ""
-          }
+        "113a5b30-ad6d-4197-a5df-c3396996ee98": {
+          "type": "shopify:\/\/apps\/bazaarvoice-reviews-photos\/blocks\/rating-summary-block\/766ed9d3-b120-48f3-8444-448f45152f47",
+          "settings": {}
         },
         "price_review": {
           "type": "price_review",
@@ -148,14 +143,14 @@
           "type": "tab_liquid",
           "settings": {
             "title": "Reviews",
-            "custom_liquid": "{% render 'rev', product: product %}"
+            "custom_liquid": "<div data-bv-show=\"reviews\" data-bv-product-id=\"{{product.id}}\"> <\/div>"
           }
         }
       },
       "block_order": [
         "title",
         "meta",
-        "56172fcf-3b56-458b-a812-2a4d7211742c",
+        "113a5b30-ad6d-4197-a5df-c3396996ee98",
         "price_review",
         "description",
         "51212fa1-4ea7-4e2b-ab5c-95609aa20e1b",
@@ -172,8 +167,8 @@
         "media_layout": "thumbnails_left",
         "media_size": "medium",
         "thumb_lr_size": "medium",
-        "image_ratio": "rationt",
-        "image_size": "cover",
+        "image_ratio": "ratio1_1",
+        "image_size": "contain",
         "image_position": "8",
         "main_click": "none",
         "zoom_tp": "external",
@@ -191,7 +186,7 @@
         "tabs_design_mb": "accordion",
         "tabs_position": "external",
         "enable_first_tab": false,
-        "tabs_layout": "tab",
+        "tabs_layout": "full",
         "bg": "#f6f6f8",
         "bg_mb": "#ffffff",
         "product_list": [],
@@ -397,11 +392,10 @@
     },
     "1659339445f2d7460e": {
       "type": "section-products",
-      "disabled": true,
       "settings": {
         "title": "Related <span>Products<\/span>",
         "text": "",
-        "collection": "2-nd-hc",
+        "collection": "{{ product.metafields.custom.related_product.value }}",
         "textBtn": "",
         "url": ""
       }

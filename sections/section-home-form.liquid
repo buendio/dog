@@ -17,16 +17,16 @@
             data-form-mail-agree: ''
           -%}
             {% if form.posted_successfully? %}
-          <div class='form-status form-status--success' tabindex='-1' autofocus>
-            {% render 'icon-success' %}
-            {{ 'templates.contact.form.post_success' | t }}
-          </div>
-        {%- elsif form.errors -%}
-          <div class='form-status form-status--error' tabindex='-1' autofocus>
-            {% render 'icon-error' %}
-            {{ 'templates.contact.form.error_heading' | t }}
-          </div>
-        {% endif %}
+              <div class='form-status form-status--success' tabindex='-1' autofocus>
+                {% render 'icon-success' %}
+                {{ 'templates.contact.form.post_success' | t }}
+              </div>
+            {%- elsif form.errors -%}
+              <div class='form-status form-status--error' tabindex='-1' autofocus>
+                {% render 'icon-error' %}
+                {{ 'templates.contact.form.error_heading' | t }}
+              </div>
+            {% endif %}
             <input type='hidden' name='contact[tags]' value='newsletter'>
             <div class='t4s-newsletter__fields'>
               <div class='t4s-newsletter__inner t4s-row t4s-g-0 t4s-pr t4s-oh {{class}}'>

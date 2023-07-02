@@ -1,8 +1,8 @@
 .t4s-single-product-badge {
     opacity: 1 !important;
     top: 15px;
-    right: 15px;
-    z-index: 450;
+    left: 0px;
+    z-index: 10;
     transform: scale(.5);
     -webkit-transform: scale(.5);
     transform-origin: 100% 0;
@@ -10,7 +10,12 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: flex-end;
+    /* align-items: flex-end; */
+}
+@media (max-width: 500px) {
+    .t4s-single-product-badge {
+        left: -100px;
+    }  
 }
 .t4s-single-product-badge>span {
     display: inline-flex;
@@ -25,6 +30,7 @@
     padding: 0 5px;
     line-height: 1;
     text-align: center;
+    border-radius: 0px 8px 8px 0px !important;
 }
 .badge_shape_1 .t4s-single-product-badge>span {
     height: 60px;

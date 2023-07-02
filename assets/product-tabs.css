@@ -1,11 +1,11 @@
 @media (min-width: 1230px) {
 	.t4s-container.is--tab-layout__wide {
-	    max-width: 1600px;
+	    max-width: 1560px;
 	}
 }
 @media (min-width: 1025px) {
 	.t4s-container.is--tab-layout__full {
-	    max-width: 1600px;
+	    max-width: 1560px;
 	}
 	.t4s-container.is--tab-layout__content_full {
     max-width: 100%;

@@ -13,14 +13,22 @@
   endif
 -%}
 {%- capture class_html -%}
-  t4sp-theme t4s-wrapper__{{ settings.general_layout }} rtl_{{ isRTL }} swatch_color_style_
+  t4sp-theme t4s-wrapper__{{ settings.general_layout }} rtl_
+  {{- isRTL }}
+  swatch_color_style_
   {{- settings.swatch_color_style }}
-  pr_border_style_{{ settings.pr_border_style }} pr_img_effect_{{ settings.pr_img_effect }} enable_eff_img1_
+  pr_border_style_{{ settings.pr_border_style }} pr_img_effect_
+  {{- settings.pr_img_effect }}
+  enable_eff_img1_
   {{- settings.enable_eff_img1 }}
-  badge_shape_{{ settings.badge_shape }} css_for_wis_app_{{ settings.enable_css_wis -}}
-  {%- if settings.use_cus_lz and settings.cus_lz %} t4s-lzcus-true{% endif %} shadow_round_img_
+  badge_shape_{{ settings.badge_shape }} css_for_wis_app_
+  {{- settings.enable_css_wis -}}
+  {%- if settings.use_cus_lz and settings.cus_lz %} t4s-lzcus-true{% endif %}
+  shadow_round_img_
   {{- settings.enable_shadow_round_img }}
-  t4s-header__{{ settings.header_design }} is-remove-unavai-{{ settings.variant_remove }} t4_compare_
+  t4s-header__{{ settings.header_design }} is-remove-unavai-
+  {{- settings.variant_remove }}
+  t4_compare_
   {{- settings.enable_compe }}
   is-catalog__mode-{{ settings.catalog_mode }}
 {%- endcapture -%}
@@ -64,7 +72,10 @@
     >
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-240000464-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-240000464-1"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
@@ -74,6 +85,7 @@
 
       gtag('config', 'UA-240000464-1')
     </script>
+    {% include 'dataLayer-allPages' %}
     <!-- Google Tag Manager -->
     <script>
       ;(function (w, d, s, l, i) {
@@ -105,11 +117,7 @@
       >
     {%- endif -%}
 
-    {%- if settings.font_source == '1'
-      and settings.fnt_fm_sp1.system? == false
-      or settings.fnt_fm_sp2.system? == false
-      or settings.fnt_fm_sp3.system? == false
-    -%}
+    {%- if settings.font_source == '1' and settings.fnt_fm_sp1.system? == false or settings.fnt_fm_sp2.system? == false or settings.fnt_fm_sp3.system? == false -%}
       <link
         rel="preconnect"
         href="https://fonts.shopifycdn.com"
@@ -119,8 +127,7 @@
 
     {%- capture seo_title -%}
       {%- if template == 'search' and search.performed == true -%}
-        {{ 'search.general.heading' | t: count: search.results_count }}:
-        {{ 'search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
+        {{ 'search.general.heading' | t: count: search.results_count }}: {{ 'search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
       {%- elsif template == 'search.wishlist' -%}
         {{- 'wishlist_page.meta' | t }}
       {%- elsif template == 'search.compare' -%}
@@ -129,11 +136,16 @@
         {{ page_title }}
       {%- endif -%}
       {%- if current_tags -%}
-        {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+        {%- assign meta_tags = current_tags | join: ', ' %} &ndash;
+        {{ 'general.meta.tags' | t: tags: meta_tags -}}
       {%- endif -%}
-      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{%- endif -%}
+      {%- if current_page != 1 %}
+        &ndash; {{ 'general.meta.page' | t: page: current_page }}
+      {%- endif -%}
       {%- assign escaped_page_title = page_title | escape -%}
-      {%- unless escaped_page_title contains shop.name %} &ndash; {{ shop.name }}{%- endunless -%}
+      {%- unless escaped_page_title contains shop.name %}
+        &ndash; {{ shop.name }}
+      {%- endunless -%}
     {%- endcapture -%}
     <title>{{ seo_title | strip }}</title>
     <meta
@@ -147,15 +159,31 @@
       render 'meta-tags', t_name: t_name
     -%}
 
-    <script data-src="{{ 'lazysizes.min.js' | asset_url }}" type="lazyload.js" async="async"></script>
-    <script data-src="{{ 'global.min.js' | asset_url }}" type="lazyload.js" defer="defer"></script>
+    <script
+      data-src="{{ 'lazysizes.min.js' | asset_url }}"
+      type="lazyload.js"
+      async="async"
+    ></script>
+    <script
+      data-src="{{ 'global.min.js' | asset_url }}"
+      type="lazyload.js"
+      defer="defer"
+    ></script>
 
     {% if template contains 'checkout' %}
-      {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%}
+      {%- if tinyscript -%}
+        {{ content_for_header }}
+      {%- else -%}
+        {% render 'tiny-script-control' %}
+      {%- endif -%}
     {% else %}
       <script src="{{ 'optimization.js' | asset_url }}" defer></script>
       {% capture content_for_header2 %}
-        {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%}
+        {%- if tinyscript -%}
+          {{ content_for_header }}
+        {%- else -%}
+          {% render 'tiny-script-control' %}
+        {%- endif -%}
       {% endcapture %}
       {{
         content_for_header2
@@ -186,14 +214,27 @@
 
     {% render 'gsf-conversion-pixels' %}
     <!-- DOOFINDER-SHOPIFY -->
-    {% if content_for_header contains 'doofinder-installed.js' %} {% render 'doofinder-script-tag' %} {% endif %}
+    {% if content_for_header contains 'doofinder-installed.js' %}
+      {% render 'doofinder-script-tag' %}
+    {% endif %}
     <!-- /DOOFINDER-SHOPIFY -->
+    <!-- DOOFINDER-SHOPIFY -->
+    {% if content_for_header contains 'doofinder-installed.js' %}
+      {% render 'doofinder-script-tag' %}
+    {% endif %}
+    <!-- /DOOFINDER-SHOPIFY -->
+    <!-- Swiper Slider css -->
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.css"
+    >
   </head>
 
   <body
     class="template-{{ request.page_type | handle }} {{class_lazy}}"
     {% if body_img != blank %}
-      data-bgset="{{ body_img | image_url: width: 1 }}" data-optimumx="1.5" data-sizes="auto"
+      data-bgset="{{ body_img | image_url: width: 1 }}" data-optimumx="1.5"
+      data-sizes="auto"
     {% endif -%}
   >
     <a
@@ -204,27 +245,21 @@
     </a>
     <div class="t4s-close-overlay t4s-op-0"></div>
     <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
+    <noscript>
+      <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-5PWBJ24"
         height="0"
         width="0"
         style="display:none;visibility:hidden"
-      ></iframe
-    ></noscript>
+      ></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="t4s-website-wrapper">
       {% section 'header' %}
-      {% if template == 'collection' %}
-        <style>
-          #MainContent {
-            background-color: #f4f4f4;
-          }
-        </style>
-      {%- endif -%}
+     
       <main
         id="MainContent"
-        class="content-for-layout focus-none"
+        class="content-for-layout focus-none {{template}}"
         role="main"
         tabindex="-1"
       >
@@ -239,13 +274,21 @@
         type="text/css"
         href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
       >
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer="defer"></script>
+      <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+        defer="defer"
+      ></script>
       {%- comment -%}
       {%- endcomment -%}
       <script src="{{ 'script.js' | asset_url }}" defer="defer"></script>
     </div>
     {%- render 'render_bottom' -%}
+    {% section 'login-sidebar' %}
+
     <!-- Stamped - Begin Script -->
     {%- if template == 'product' -%}
       <script
@@ -259,16 +302,62 @@
     <!-- Stamped - End Script -->
     <br>
     {% render 'ecomsolid-footer' %}
-    {%- unless template == 'index' -%}
-    {%- endunless -%}
-    <script>
-      window.GloboPreorderParams = window.GloboPreorderParams || {}
-      window.GloboPreorderParams.selectors = window.GloboPreorderParams.selectors || {}
-      window.GloboPreorderParams.selectors.collectionAddToCartBtn = '.product-form__submit--collection'
-      window.GloboPreorderParams.selectors.collectionAddToCartTextElement = ''
-    </script>
+    <!-- Swiper Slider install -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.js"></script>
 
     {{ 'tiny-img-link-preloader.js' | asset_url | script_tag }}
     {% include 'gts' %}
+    {% render 'globo.preorder.script' %}
+    {% include 'globo.preorder.custom' %}
+
+    <script type="text/javascript" id="zsiqchat">
+      var $zoho = $zoho || {}
+      $zoho.salesiq = $zoho.salesiq || {
+        widgetcode: '00f33205e195e32084969fefc7d2a57444b7d3c015ff5c38be1aa86bfc2fee95',
+        values: {},
+        ready: function () {},
+      }
+      var d = document
+      s = d.createElement('script')
+      s.type = 'text/javascript'
+      s.id = 'zsiqscript'
+      s.defer = true
+      s.src = 'https://salesiq.zoho.eu/widget'
+      t = d.getElementsByTagName('script')[0]
+      t.parentNode.insertBefore(s, t)
+    </script>
+
+    <!--Start Stamped.io Bazaarvoice Integration-->
+<script>
+window.IGLOO = window.IGLOO || {
+"bbout_element_id" : "ioBlackBox", // Populate #ioBlackBox input with device fingerprint
+"loader" : {
+"version" : "general5"
+}
+};
+
+window.IGLOO.bb_callback = function(blackBoxString, isComplete) {
+if (isComplete == true) {
+var btnSend = document.querySelector('#stamped-main-widget');
+if (btnSend) {
+btnSend.setAttribute('data-user-reference', blackBoxString);
+}
+}
+};
+
+
+/*
+Copyright(c) 2018, iovation, inc. All rights reserved.
+*/
+(function B(){function v(e,a){var b={},c;for(c=e.length-1;-1<c;c--)0<c?b[c]=function(){var d=c;return function(){return w(e[d],b[d+1],a)}}():w(e[c],b[c+1],a)}function w(e,n,k){var c=document.createElement("script"),f,g,l;l=A(a[k]&&a[k].staticVer&&a[k].staticVer+"/"||e[1]);e[0]=e[0].replace("##version##",l);f=e[0].split("?")[0].split("/");g=f[f.length-1].split(".")[0];u.test(e[1])&&l!==e[1]&&d("loader: Overriding configured version with staticVer.");c.setAttribute("src",e[0]);c&&c.addEventListener?
+c.addEventListener("error",function(){b[k+"_"+g+"_load_failure"]="true"}):c.attachEvent&&c.attachEvent("onerror",function(){b[k+"_"+g+"_load_failure"]="true"});n&&(c.onload=n);document.getElementsByTagName("head")[0].appendChild(c)}function d(e){if("function"===typeof a.trace_handler)try{a.trace_handler(e)}catch(b){}}function f(b,a){var d=null!==b&&void 0!==b;return!d||"1"!==b.toString()&&"true"!==b.toString().toLowerCase()?!d||"0"!==b.toString()&&"false"!==b.toString().toLowerCase()?"boolean"===
+typeof a?a:!1:!1:!0}function A(a){d("********** version before replace: "+a+" **********");d('localNamespace[ "url_dots_to_dashes" ]: '+b.url_dots_to_dashes);d("numericVersionPattern.test( output ): "+u.test(a));b.url_dots_to_dashes&&u.test(a)&&(a=a.replace(/\./g,"-"));d("version after replace: "+a);return a}var g=window,x=g.io_global_object_name||"IGLOO",a=g[x]=g[x]||{},b=a.loader=a.loader||{},y=[],z=[],u=/^[0-9]{1,3}(\.[0-9]{1,3}){2}\/$/;if(b.loaderMain)return d("loader: Loader script has already run, try reducing the number of places it's being included."),
+!1;b.loaderMain=B;b.loaderVer="5.2.2";(function(){var e=f(b.tp,!0),n=f(b.fp_static,!0),k=f(b.fp_dyn,!0),c=f(b.enable_legacy_compatibility),u=f(b.tp_split),v=b.tp_host&&b.tp_host.replace(/\/+$/,"")||"https://mpsnare.iesnare.com",l=b.fp_static_override_uri,m=void 0!==b.uri_hook?b.uri_hook+"/":"/iojs/",p=(b.version||"versionOrAliasIsRequired")+"/",w=b.subkey?g.encodeURIComponent(b.subkey)+"/":"",x=b.tp_resource||"wdp.js",q=b.tp_host?"&tp_host="+g.encodeURIComponent(b.tp_host):"",C=l?"&fp_static_uri="+
+g.encodeURIComponent(l):"",r,t,h;b.tp_host=v;r=f(a.enable_flash,!0);t=a.io&&a.io.enable_flash;h=a.fp&&a.fp.enable_flash;t=void 0!==t&&null!==t?f(t,!0):r;void 0!==h&&null!==h?h=f(h,!0):t=r;r=t?"&flash=true":"&flash=false";h=h?"&flash=true":"&flash=false";q="?loaderVer="+b.loaderVer+"&compat="+c+"&tp="+e+"&tp_split="+u+q+"&fp_static="+n+"&fp_dyn="+k+C;e||n||d("loader: Not currently configured to load fp_static or tp script(s).");a.fp&&a.fp.staticVer&&a.fp.staticVer+"/"!==p&&(p=A(a.fp.staticVer+"/"),
+d("loader: Configured version replaced with that from pre-loaded static script."));n||a.fp&&a.fp.staticMain?(m=(m+"##version##"+w).replace(/\/\//g,"/"),n&&(a.fp&&a.fp.staticMain?c&&!a.fp.preCompatMain&&d("loader: enable_legacy_compatibility on, but included static does not have the compat wrapper."):l?y.push([l,""]):y.push([m+"static_wdp.js"+q+h,p])),!k||a.fp&&a.fp.dynMain?a.fp&&a.fp.dynMain&&d("loader: First party dynamic script has already been loaded, disable fp_dyn or make sure you're not manually including the dynamic file separately."):
+y.push([m+"dyn_wdp.js"+q+h,p])):f(b.fp_dyn)&&d("loader: Invalid Config, first party dynamic script set to load without static.");e&&(a.io&&a.io.staticMain?d("loader: Third party script has already been loaded."):(m=v+"/##version##"+w,u?(z.push([m+"static_wdp.js"+q+r,p]),z.push([m+"dyn_wdp.js"+q+r,p]),b.tp_resource&&d("loader: Invalid Config: both tp_resource and tp_split set. Ignoring tp_resource.")):z.push([m+x+q+r,p])))})();v(y,"fp");v(z,"io")})();
+
+</script>
+<!--End Stamped.io Bazaarvoice Integration-->
   </body>
 </html>

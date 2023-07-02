@@ -23,7 +23,7 @@
         {%- case block.type -%}
             {%- when '1' -%}
             {%- assign general_block = true -%}
-            <h1 class="title-head t4s-bl-item t4s-animation-none t4s-text-bl t4s-fnt-fm-{{bk_stts.fontf}} t4s-font-italic-{{bk_stts.font_italic}} t4s-uppercase-{{bk_stts.font_uppercase}} t4s-hidden-mobile-{{bk_stts.hidden_mobile}} t4s-br-mb-{{bk_stts.remove_br_tag}} t4s-text-shadow-{{bk_stts.text_shadow}}" id="b_{{block.id}}" {%- render 'bk_cus_style',type:'custom_text',bk_stts:bk_stts,ani_delay:ani_delay -%}>{{ heading_content}} </h1>
+            <h1 class="title-head t4s-bl-item t4s-animation-none t4s-text-bl t4s-fnt-fm-{{bk_stts.fontf}} t4s-font-italic-{{bk_stts.font_italic}} t4s-uppercase-{{bk_stts.font_uppercase}} t4s-hidden-mobile-{{bk_stts.hidden_mobile}} t4s-br-mb-{{bk_stts.remove_br_tag}} t4s-text-shadow-{{bk_stts.text_shadow}}" id="b_{{block.id}}" {%- render 'bk_cus_style',type:'custom_text',bk_stts:bk_stts,ani_delay:ani_delay -%}>{{ heading_content}}</h1>
             {%- when '2' -%}
             {%- assign general_block = true -%}
             {% if block.settings.content == blank %}{% continue %}{% endif %}<div class="desc-head t4s-bl-item t4s-animation-none t4s-text-bl t4s-fnt-fm-{{bk_stts.fontf}} t4s-font-italic-{{bk_stts.font_italic}} t4s-uppercase-{{bk_stts.font_uppercase}} t4s-hidden-mobile-{{bk_stts.hidden_mobile}} t4s-br-mb-{{bk_stts.remove_br_tag}} t4s-text-shadow-{{bk_stts.text_shadow}}" id="b_{{block.id}}" {%- render 'bk_cus_style',type:'custom_text',bk_stts:bk_stts,ani_delay:ani_delay -%}>{{ block.settings.content }}</div> 

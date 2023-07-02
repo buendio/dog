@@ -6,10 +6,7 @@
       <ul>
         {%- for link in menu.links -%}
           <li>
-            <a
-              href='{{ link.url }}'
-              class='{% if link.active %}active{% endif %}'
-            >
+            <a href='{{ link.url }}' class='{% if link.active %}active{% endif %}'>
               {{- link.title -}}
             </a>
           </li>
@@ -18,17 +15,16 @@
     </nav>
   {%- endif -%}
   <div class='mob-content'>
-    <button class='mob'><span></span></button>
+    <button class='mob'>
+      <span></span>
+    </button>
     {%- if menu != blank -%}
       <nav class='about-menu--mobile'>
         <ul>
           {%- for link in menu.links -%}
             <li>
               <h3>
-                <a
-                  href='{{ link.url }}'
-                  class='{% if link.active %}active{% endif %} h3'
-                >
+                <a href='{{ link.url }}' class='{% if link.active %}active{% endif %} h3'>
                   {{- link.title -}}
                 </a>
               </h3>
@@ -37,7 +33,6 @@
         </ul>
       </nav>
     {%- endif -%}
-    <h3>{{ page.title }}</h3>
   </div>
   <div class='rte'>
     {{ page.content }}
@@ -46,30 +41,30 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    $('.about-menu--mobile').hide() //?
-    $('.mob').on('click', function () {
+    $('.about-menu--mobile').hide() // ?
+    $('.mob').on('click', function() {
       $('.about-menu--mobile').slideToggle()
       $('.mob span').toggleClass('active')
     })
   })
 </script>
 {% schema %}
-{
-  "name": "About Info",
-  "tag": "section",
-  "class": "section about-info",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu Header"
-    }
-  ],
-  "presets": [
-    {
-      "name": "About Info",
-      "category": "Custom Section"
-    }
-  ]
-}
+  {
+    "name": "About Info",
+    "tag": "section",
+    "class": "section about-info",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu Header"
+      }
+    ],
+    "presets": [
+      {
+        "name": "About Info",
+        "category": "Custom Section"
+      }
+    ]
+  }
 {% endschema %}

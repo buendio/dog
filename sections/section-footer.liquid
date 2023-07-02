@@ -1,55 +1,64 @@
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 {% assign menu = linklists[section.settings.menu] %}
+{% assign menu2 = linklists[section.settings.menu2] %}
 
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-6 col-lg-4'>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
       {%- if section.settings.img != blank -%}
-        <div class='footer-logo'>
+        <div class="footer-logo">
           {{- section.settings.img -}}
         </div>
       {%- endif -%}
-      {%- if settings.social_facebook_link != blank -%}
-        <div class='footer-info'>
-          <p class='footer-info__text'>All your information is protected.</p>
-          {% if section.settings.contact != blank %}
-            <div class='footer-info__text'>{{ section.settings.contact }}</div>
-          {% endif %}
+      {%- form 'customer', class: 't4s-newsletter__form subscribe-form', id: 'form_id1', data-form-mail-agree: '' -%}
+        {% if form.posted_successfully? %}
+          <div class="form-status form-status--success" tabindex="-1" autofocus>
+            {% render 'icon-success' %}
+            {{ 'templates.contact.form.post_success' | t }}
+          </div>
+        {%- elsif form.errors -%}
+          <div class="form-status form-status--error" tabindex="-1" autofocus>
+            {% render 'icon-error' %}
+            {{ 'templates.contact.form.error_heading' | t }}
+          </div>
+        {% endif %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="t4s-newsletter__fields">
+          <div class="t4s-newsletter__inner t4s-row t4s-g-0 t4s-pr {{class}}">
+            <div class="{{class_email}} t4s-col-item is--col-email subscribe-field">
+              <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 2.75C1 1.7835 1.80589 1 2.8 1H17.2C18.1941 1 19 1.7835 19 2.75V13.25C19 14.2165 18.1941 15 17.2 15H2.8C1.80589 15 1 14.2165 1 13.25V2.75ZM4.16673 2.75L10 7.71233L15.8333 2.75H4.16673ZM17.2 3.91267L10.5927 9.5335C10.2533 9.82217 9.74667 9.82217 9.40735 9.5335L2.8 3.91267V13.25H17.2V3.91267Z" fill="#F88927" stroke="#121212" stroke-width="0.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+
+              <input
+                type="email"
+                name="contact[email]"
+                placeholder="Enter your email"
+                value="{% if customer %}{{ customer.email }}{% endif %}"
+                class="{{class_ip}} t4s-newsletter__email"
+                required="required"
+              >
+              <button
+                data-agreeMail-btn
+                type="submit"
+                class="t4s-w-100 t4s-newsletter__submit t4s-truncate t4s-btn-loading__svg btn"
+              >
+                {{- 'sections.newsletter_form.submit' | t -}}
+              </button>
+            </div>
+
+            {{- conditions_mail- }}
+          </div>
         </div>
-      {%- endif -%}
-      <div class='footerSocial-icons d-flex align-items-center'>
-        {%- if settings.social_facebook_link != blank -%}
-          <a
-            href='{{- settings.social_facebook_link -}}'
-            target='_blank'
-          >
-            {%- render 'icon-facebookWhite' -%}
-          </a>
-        {%- endif -%}
-        {%- if settings.social_instagram_link != blank -%}
-          <a
-            href='{{- settings.social_instagram_link -}}'
-            target='_blank'
-          >
-            {%- render 'icon-instagramWhite' -%}
-          </a>
-        {%- endif -%}
-        {%- if settings.social_twitter_link != blank -%}
-          <a
-            href='{{- settings.social_twitter_link -}}'
-            target='_blank'
-          >
-            {%- render 'icon-twitterWhite' -%}
-          </a>
-        {%- endif -%}
-      </div>
+      {%- endform -%}
     </div>
     {%- if menu != blank -%}
-      <div class='d-none d-lg-block col-lg-4'>
-        <ul class='footer-menu'>
+      <div class="col-md-6 col-lg-3">
+        <ul class="footer-menu">
+          <h4>{{ section.settings.menu.title }}</h4>
           {%- for link in menu.links -%}
-            <li class='footer-menu__item'>
-              <a href='{{ link.url }}' class='footer-menu__link'>
+            <li class="footer-menu__item">
+              <a href="{{ link.url }}" class="footer-menu__link">
                 {{- link.title -}}
               </a>
             </li>
@@ -57,249 +66,71 @@
         </ul>
       </div>
     {%- endif -%}
-    <div class='col-md-6 col-lg-4'>
-      {%- case settings.platform_email -%}
-        {%- when '3' -%}
-          <form
-            data-t4s-klaviyo-form
-            data-form-mail-agree
-            id='t4s-form-{{form_id}}'
-            class='t4s-pr t4s-z-100 t4s-newsletter__form is--klaviyo subscribe-form'
-            action='//manage.kmail-lists.com/subscriptions/subscribe'
-            data-ajax-submit='//manage.kmail-lists.com/ajax/subscriptions/subscribe'
-            method='GET'
-            {% if settings.ajax_klaviyo and settings.klaviyo_list_id != blank %}
-              data-t4s-klaviyo-ajax
-            {% endif %}
-          >
-            <p class='subscribe-form__text'>Pupums Post' Newsletter</p>
-            <input type='hidden' name='g' value='{{settings.klaviyo_list_id}}'>
-            <div class='t4s-newsletter__fields'>
-              <div class='t4s-newsletter__inner t4s-row t4s-g-0 t4s-pr t4s-oh {{class}}'>
-                <div class='{{class_email}} t4s-col-item is--col-email'>
-                  <input
-                    type='email'
-                    name='email'
-                    placeholder='{{ 'sections.newsletter_form.email_placeholder' | t }}'
-                    value='{% if customer %}{{ customer.email }}{% endif %}'
-                    class='{{class_ip}} t4s-newsletter__email'
-                    required='required'
-                  >
-                </div>
-                <div class='{{class_btn}} t4s-col-item is--col-btn'>
-                  <button
-                    data-t4s-klaviyo-submit
-                    data-agreeMail-btn
-                    type='submit'
-                    class='t4s-w-100 t4s-newsletter__submit t4s-truncate t4s-btn-loading__svg'
-                  >
-                    <span class='t4s-newsletter__text'>
-                      {{- 'sections.newsletter_form.submit' | t -}}
-                      {{- btn_icon -}}
-                      {{- icon_Html -}}
-                    </span>
-                    <span class='t4s-loading__spinner t4s-dn'>
-                      <svg
-                        width='16'
-                        height='16'
-                        aria-hidden='true'
-                        focusable='false'
-                        role='presentation'
-                        class='t4s-svg__spinner'
-                        viewBox='0 0 66 66'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-              </div>
-              {{- conditions_mail- }}
-            </div>
-            <div class='t4s-newsletter__response klaviyo_messages'>
-              <div class='t4s-newsletter__success success_message t4s-dn'>
-                <svg
-                  width='18'
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 448 512'
-                >
-                  <path d="M443.3 100.7C449.6 106.9 449.6 117.1 443.3 123.3L171.3 395.3C165.1 401.6 154.9 401.6 148.7 395.3L4.686 251.3C-1.562 245.1-1.562 234.9 4.686 228.7C10.93 222.4 21.06 222.4 27.31 228.7L160 361.4L420.7 100.7C426.9 94.44 437.1 94.44 443.3 100.7H443.3z"/>
-                </svg>
-                {{ 'sections.newsletter_form.confirmation' | t }}
-              </div>
-              <div class='t4s-newsletter__error error_message t4s-dn'></div>
-            </div>
-          </form>
-        {%- when '4' -%}
-          <form
-            id='t4s-form-{{form_id}}'
-            data-form-mail-agree
-            role='form'
-            action='{%- if settings.ajax_mailChimp -%}{{ settings.action_mailchimp | replace: '/post?u', '/post-json?u' }}{%- else -%}{{ settings.action_mailchimp }}{%- endif -%}'
-            class='t4s-pr t4s-z-100 t4s-newsletter__form is--mailChimp subscribe-form'
-            method='post'
-            {%- if settings.ajax_mailChimp
-              and settings.action_mailchimp != blank
-            %}
-              data-t4s-mailChimp-ajax
-            {%- endif -%}
-          >
-            <p class='subscribe-form__text'>Pupums Post' Newsletter</p>
-            <div class='t4s-newsletter__fields'>
-              <div class='t4s-newsletter__inner t4s-row t4s-g-0 t4s-pr t4s-oh {{class}}'>
-                <div class='{{class_email}} t4s-col-item is--col-email'>
-                  <input
-                    type='email'
-                    name='EMAIL'
-                    placeholder='{{ 'sections.newsletter_form.email_placeholder' | t }}'
-                    value='{% if customer %}{{ customer.email }}{% endif %}'
-                    class='{{class_ip}} t4s-newsletter__email'
-                    required='required'
-                  >
-                </div>
-                <div class='{{class_btn}} t4s-col-item is--col-btn'>
-                  <button
-                    data-t4s-mailChimp-submit
-                    data-agreeMail-btn
-                    type='submit'
-                    class='t4s-w-100 t4s-newsletter__submit t4s-truncate t4s-btn-loading__svg'
-                  >
-                    <span class='t4s-newsletter__text'>
-                      {{- 'sections.newsletter_form.submit' | t -}}
-                      {{- btn_icon -}}
-                      {{- icon_Html -}}
-                    </span>
-                    <span class='t4s-loading__spinner t4s-dn'>
-                      <svg
-                        width='16'
-                        height='16'
-                        aria-hidden='true'
-                        focusable='false'
-                        role='presentation'
-                        class='t4s-svg__spinner'
-                        viewBox='0 0 66 66'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-              </div>
-              {{- conditions_mail- }}
-            </div>
-            <div data-new-response-form class='t4s-newsletter__response'>
-              <div
-                data-new-response-success
-                class='t4s-newsletter__success t4s-dn'
-              >
-                <svg
-                  width='18'
-                  xmlns='http://www.w3.org/2000/svg'
-                  viewBox='0 0 448 512'
-                >
-                  <path d="M443.3 100.7C449.6 106.9 449.6 117.1 443.3 123.3L171.3 395.3C165.1 401.6 154.9 401.6 148.7 395.3L4.686 251.3C-1.562 245.1-1.562 234.9 4.686 228.7C10.93 222.4 21.06 222.4 27.31 228.7L160 361.4L420.7 100.7C426.9 94.44 437.1 94.44 443.3 100.7H443.3z"/>
-                </svg>
-                {{ 'sections.newsletter_form.confirmation' | t }}
-              </div>
-              <div
-                data-new-response-error
-                class='t4s-newsletter__error t4s-dn'
-              ></div>
-            </div>
-          </form>
-        {%- else -%}
-          {%- assign form_id = 't4s-form-' | append: form_id -%}
-          {%- form 'customer',
-            class: 't4s-pr t4s-z-100 t4s-newsletter__form subscribe-form',
-            id: form_id,
-            data-form-mail-agree: ''
-          -%}
-            <p class='subscribe-form__text'>Pupums Post' Newsletter</p>
-            {% if form.posted_successfully? %}
-          <div class='form-status form-status--success' tabindex='-1' autofocus>
-            {% render 'icon-success' %}
-            {{ 'templates.contact.form.post_success' | t }}
-          </div>
-        {%- elsif form.errors -%}
-          <div class='form-status form-status--error' tabindex='-1' autofocus>
-            {% render 'icon-error' %}
-            {{ 'templates.contact.form.error_heading' | t }}
-          </div>
+    {%- if menu2 != blank -%}
+      <div class="col-md-6 col-lg-3">
+        <ul class="footer-menu">
+          <h4>{{ section.settings.menu2.title }}</h4>
+          {%- for link in menu2.links -%}
+            <li class="footer-menu__item">
+              <a href="{{ link.url }}" class="footer-menu__link">
+                {{- link.title -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    <div class="col-md-6 col-lg-3">
+      <div class="footer-info">
+        <h4>Contact information</h4>
+        {% if section.settings.contact != blank %}
+          <div class="footer-info__text">{{ section.settings.contact }}</div>
         {% endif %}
-            <input type='hidden' name='contact[tags]' value='newsletter'>
-            <div class='t4s-newsletter__fields'>
-              <div class='t4s-newsletter__inner t4s-row t4s-g-0 t4s-pr t4s-oh {{class}}'>
-                <div class='{{class_email}} t4s-col-item is--col-email'>
-                  <input
-                    type='email'
-                    name='contact[email]'
-                    placeholder='{{ 'sections.newsletter_form.email_placeholder' | t }}'
-                    value='{% if customer %}{{ customer.email }}{% endif %}'
-                    class='{{class_ip}} t4s-newsletter__email'
-                    required='required'
-                  >
-                </div>
-                 <button
-                    data-agreeMail-btn
-                    type='submit'
-                    class='t4s-w-100 t4s-newsletter__submit t4s-truncate t4s-btn-loading__svg btn'
-                  >
-                    <span class='t4s-newsletter__text'>
-                      {{- 'sections.newsletter_form.submit' | t -}}
-                      {{- btn_icon -}}
-                      {{- icon_Html -}}
-                    </span>
-                    <span class='t4s-loading__spinner t4s-dn'>
-                      <svg
-                        width='16'
-                        height='16'
-                        aria-hidden='true'
-                        focusable='false'
-                        role='presentation'
-                        class='t4s-svg__spinner'
-                        viewBox='0 0 66 66'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                      </svg>
-                    </span>
-                  </button>
-              {{- conditions_mail- }}
-            </div>
-          {%- endform -%}
-      {%- endcase -%}
-      {%- comment -%}
-      {%- form 'create_customer',
-        novalidate: 'novalidate',
-        id: 'footer-form',
-        class: 'subscribe-form'
-      -%}
-        <p class='subscribe-form__text'>Pupums Post' Newsletter</p>
-        {% if form.posted_successfully? %}
-          <div class='form-status form-status--success' tabindex='-1' autofocus>
-            {% render 'icon-success' %}
-            {{ 'templates.contact.form.post_success' | t }}
-          </div>
-        {%- elsif form.errors -%}
-          <div class='form-status form-status--error' tabindex='-1' autofocus>
-            {% render 'icon-error' %}
-            {{ 'templates.contact.form.error_heading' | t }}
-          </div>
-        {% endif %}
-        <input
-          type='text'
-          name='customer[email]'
-          placeholder='Your email address'
-        >
-        <button class='btn' type='sbbmit'>Subscribe</button>
-      {%- endform -%}
-      {%- endcomment -%}
+      </div>
+
+      <div class="footerSocial-icons d-flex align-items-center">
+        <h4>Follow us</h4>
+        {%- if settings.social_facebook_link != blank -%}
+          <a
+            href="{{- settings.social_facebook_link -}}"
+            target="_blank"
+          >
+            {%- render 'icon-face2' -%}
+          </a>
+        {%- endif -%}
+        {%- if settings.social_instagram_link != blank -%}
+          <a
+            href="{{- settings.social_instagram_link -}}"
+            target="_blank"
+          >
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_32_1036)">
+              <path d="M26.9879 17.822C26.9574 17.1313 26.8457 16.6564 26.6857 16.2449C26.5206 15.8081 26.2667 15.4171 25.934 15.092C25.6089 14.7619 25.2152 14.5053 24.7835 14.3428C24.3697 14.1828 23.8973 14.0711 23.2065 14.0407C22.5106 14.0076 22.2897 14 20.5247 14C18.7597 14 18.5388 14.0076 17.8455 14.0381C17.1547 14.0685 16.6799 14.1803 16.2685 14.3403C15.8316 14.5053 15.4405 14.7593 15.1154 15.092C14.7853 15.4171 14.5289 15.8107 14.3663 16.2424C14.2063 16.6564 14.0946 17.1287 14.0641 17.8195C14.0311 18.5154 14.0234 18.7363 14.0234 20.5013C14.0234 22.2663 14.0311 22.4872 14.0615 23.1805C14.092 23.8712 14.2038 24.3461 14.3638 24.7576C14.5289 25.1944 14.7853 25.5854 15.1154 25.9105C15.4405 26.2407 15.8342 26.4972 16.2659 26.6597C16.6799 26.8197 17.1522 26.9314 17.843 26.9619C18.5362 26.9924 18.7572 27 20.5222 27C22.2872 27 22.5081 26.9924 23.2015 26.9619C23.8922 26.9314 24.3671 26.8197 24.7785 26.6597C25.6521 26.3219 26.3429 25.6312 26.6807 24.7576C26.8406 24.3436 26.9524 23.8712 26.9828 23.1805C27.0133 22.4872 27.0209 22.2663 27.0209 20.5013C27.0209 18.7363 27.0183 18.5154 26.9879 17.822ZM25.8172 23.1297C25.7892 23.7646 25.6826 24.1074 25.5937 24.336C25.3753 24.9023 24.9258 25.3518 24.3594 25.5703C24.1309 25.6592 23.7856 25.7658 23.1531 25.7937C22.4675 25.8242 22.2618 25.8318 20.5273 25.8318C18.7927 25.8318 18.5845 25.8242 17.9013 25.7937C17.2664 25.7658 16.9236 25.6592 16.695 25.5703C16.4132 25.4661 16.1567 25.301 15.9484 25.0852C15.7326 24.8744 15.5675 24.6204 15.4633 24.3386C15.3745 24.11 15.2678 23.7646 15.2399 23.1323C15.2094 22.4466 15.2019 22.2409 15.2019 20.5063C15.2019 18.7718 15.2094 18.5636 15.2399 17.8805C15.2678 17.2456 15.3745 16.9027 15.4633 16.6742C15.5675 16.3922 15.7326 16.1358 15.951 15.9275C16.1617 15.7116 16.4157 15.5466 16.6976 15.4425C16.9262 15.3536 17.2716 15.247 17.9039 15.219C18.5896 15.1885 18.7953 15.1809 20.5298 15.1809C22.2669 15.1809 22.4725 15.1885 23.1557 15.219C23.7906 15.247 24.1335 15.3536 24.362 15.4425C24.6438 15.5466 24.9004 15.7116 25.1086 15.9275C25.3245 16.1383 25.4895 16.3922 25.5937 16.6742C25.6826 16.9027 25.7892 17.2481 25.8172 17.8805C25.8477 18.5661 25.8553 18.7718 25.8553 20.5063C25.8553 22.2409 25.8477 22.444 25.8172 23.1297Z" fill="#F88927" stroke="#F88927" stroke-width="0.2"/>
+              <path d="M20.5226 17.1616C18.679 17.1616 17.1831 18.6574 17.1831 20.5011C17.1831 22.3449 18.679 23.8407 20.5226 23.8407C22.3664 23.8407 23.8621 22.3449 23.8621 20.5011C23.8621 18.6574 22.3664 17.1616 20.5226 17.1616ZM20.5226 22.6674C19.3266 22.6674 18.3564 21.6973 18.3564 20.5011C18.3564 19.305 19.3266 18.3349 20.5226 18.3349C21.7188 18.3349 22.6889 19.305 22.6889 20.5011C22.6889 21.6973 21.7188 22.6674 20.5226 22.6674Z" fill="#F88927"/>
+              <path d="M24.7752 17.0296C24.7752 17.4602 24.4261 17.8093 23.9954 17.8093C23.5649 17.8093 23.2158 17.4602 23.2158 17.0296C23.2158 16.599 23.5649 16.25 23.9954 16.25C24.4261 16.25 24.7752 16.599 24.7752 17.0296Z" fill="#F88927"/>
+              </g>
+              <rect x="0.5" y="0.5" width="39" height="39" rx="5.5" stroke="#F88927"/>
+              <defs>
+              <clipPath id="clip0_32_1036">
+              <rect width="13" height="13" fill="white" transform="translate(14 14)"/>
+              </clipPath>
+              </defs>
+            </svg>
+          </a>
+        {%- endif -%}
+        {%- if settings.social_twitter_link != blank -%}
+          <a
+            href="{{- settings.social_twitter_link -}}"
+            target="_blank"
+          >
+            {%- render 'icon-twitterWhite' -%}
+          </a>
+        {%- endif -%}
+      </div>
     </div>
   </div>
   {%- if section.settings.copy != blank -%}
-    <p class='footer-copyright'>{{- section.settings.copy -}}</p>
+    <p class="footer-copyright">{{- section.settings.copy -}}</p>
   {%- endif -%}
 </div>
 
@@ -311,7 +142,8 @@
   "settings": [
     { "type": "html", "id": "img", "label": "Logo Icon" },
     { "type": "liquid", "id": "contact", "label": "Contact Info" },
-    { "type": "link_list", "id": "menu", "label": "Menu Footer" },
+    { "type": "link_list", "id": "menu", "label": "Menu First Footer" },
+    { "type": "link_list", "id": "menu2", "label": "Menu Second Footer" },
     { "type": "text", "id": "copy", "label": "Text Reserved" }
   ],
   "presets": [{ "name": "Header", "category": "Custom Header" }]

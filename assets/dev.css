@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&family=Poppins&family=Quicksand:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 body {
   position: relative;
   height: 100%;
@@ -6,9 +7,10 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.25;
   font-weight: 400;
-  color: #1d1d1d;
+  color: #121212;
   overflow-x: hidden;
 }
 body.scroll {
@@ -23,7 +25,9 @@ body.scroll::after {
   right: 0;
   bottom: 0;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(18, 18, 18, 0.6);
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
   -webkit-transition: all 400ms;
   -o-transition: all 400ms;
   transition: all 400ms;
@@ -31,12 +35,20 @@ body.scroll::after {
 
 h1,
 .h1 {
-  text-transform: uppercase;
+  color: #121212;
+  font-weight: 700;
+  font-family: "DM Sans", sans-serif;
+}
+@media (max-width: 991px) {
+  h1,
+.h1 {
+    font-size: 40px;
+  }
 }
 @media (max-width: 575px) {
   h1,
 .h1 {
-    font-size: 32px;
+    font-size: 20px;
   }
 }
 
@@ -53,6 +65,24 @@ h1,
   height: 1px;
   margin: 32px auto 0;
   background-color: #2d2424;
+}
+
+.h1--decor2 span {
+  position: relative;
+  display: inline-block;
+}
+.h1--decor2 span::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 140%;
+  height: 140%;
+  top: 0px;
+  left: 0;
+  background: url(dec.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
 }
 
 p {
@@ -72,28 +102,24 @@ button:hover {
 }
 
 form :-moz-placeholder {
-  color: #999999;
-  letter-spacing: 0.02em;
+  color: #767270;
   font-size: 16px;
-  font-family: "Museo Sans Cyrl", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 form ::-moz-placeholder {
-  color: #999999;
-  letter-spacing: 0.02em;
+  color: #767270;
   font-size: 16px;
-  font-family: "Museo Sans Cyrl", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 form :-ms-input-placeholder {
-  color: #999999;
-  letter-spacing: 0.02em;
+  color: #767270;
   font-size: 16px;
-  font-family: "Museo Sans Cyrl", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 form ::-webkit-input-placeholder {
-  color: #999999;
-  letter-spacing: 0.02em;
+  color: #767270;
   font-size: 16px;
-  font-family: "Museo Sans Cyrl", sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 .btn {
@@ -106,14 +132,16 @@ form ::-webkit-input-placeholder {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 15px 25px;
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  padding: 20px 30px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: #ffffff;
   text-transform: uppercase;
   background: #f88927;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 .btn:hover {
   color: #fff;
@@ -153,4 +181,80 @@ h2.ga-title {
 
 .ga-product_price-container {
   text-align: center;
+}
+
+.zf-templateWidth {
+  width: auto !important;
+  max-width: 1034px;
+}
+.zf-templateWidth .zf-oneColumns .zf-tempContDiv span input[type=checkbox] {
+  display: none;
+}
+.zf-templateWidth .zf-oneColumns .zf-tempContDiv span {
+  position: relative;
+}
+.zf-templateWidth .zf-oneColumns .zf-tempContDiv span label {
+  cursor: pointer;
+}
+.zf-templateWidth .zf-oneColumns .zf-tempContDiv span label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #767270;
+  border-radius: 2px;
+}
+.zf-templateWidth .zf-oneColumns .zf-tempContDiv span label::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  top: 4.5px;
+  background: #f88927;
+  border-radius: 1px;
+}
+.zf-templateWidth .zf-oneColumns .zf-tempContDiv span input[type=checkbox]:checked + label:after {
+  display: block;
+}
+.zf-templateWidth .zf-oneColumns .zf-tempContDiv span input[type=checkbox]:checked + label::before {
+  border: 1px solid #f88927;
+}
+.zf-templateWidth .zf-nameWrapper {
+  width: 100% !important;
+}
+.zf-templateWidth .zf-tempContDiv input[type=text]:focus,
+.zf-templateWidth .zf-tempContDiv textarea:focus {
+  border: 1px solid rgba(248, 137, 39, 0.7) !important;
+}
+.zf-templateWidth .zf-name .zf-tempContDiv input[type=text] {
+  padding: 15px 0 15px 20px;
+  border: 1px solid #E0E1E1;
+  border-radius: 10px;
+}
+.zf-templateWidth .zf-small .zf-tempContDiv input[type=text] {
+  width: 100%;
+  padding: 15px 0 15px 20px;
+  border: 1px solid #E0E1E1;
+  border-radius: 10px;
+}
+.zf-templateWidth .zf-small .zf-tempContDiv textarea {
+  width: 100%;
+}
+
+.gBackInStock-Button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.gBackInStock-Button .gBackInStockBtn {
+  width: 258px !important;
+  height: 60px !important;
+  border-radius: 10px !important;
 }

@@ -2,7 +2,10 @@
   "sections": {
     "main": {
       "type": "main-404",
-      "settings": {}
+      "settings": {
+        "link": "",
+        "img": "shopify:\/\/shop_images\/Group_17747.png"
+      }
     }
   },
   "order": [

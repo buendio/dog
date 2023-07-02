@@ -1,6 +1,6 @@
 .t4s-fnt-fm-3 {
   font-family: "Mulish" !important;
-  color: #49415A !important;
+  color: #49415a !important;
   font-weight: 600 !important;
   font-size: 16px !important;
 }
@@ -20,12 +20,12 @@
 }
 
 #comments {
-  background: #F4F4F4;
+  background: #f4f4f4;
   padding: 30px 20px 20px;
 }
 
 .btn__comment {
-  background: #F88927 !important;
+  background: #f88927 !important;
   border-radius: 50px !important;
   color: #fff !important;
   font-weight: 400 !important;
@@ -38,6 +38,41 @@
 .t4s-article-content ol {
   list-style: auto;
 }
-.t4s-article-content p, .t4s-article-content ol, .t4s-article-content ul {
+.t4s-article-content p,
+.t4s-article-content ol,
+.t4s-article-content ul {
   line-height: 1.8;
+}
+
+.article-img__img {
+  display: block;
+  max-height: 540px;
+  border-radius: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.section-article {
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+.section-article .t4s-container {
+  max-width: 1033px;
+}
+
+.section-article__date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+.section-article__date svg {
+  margin-right: 12px;
+}
+
+.section-article__title {
+  margin-bottom: 32px;
 }

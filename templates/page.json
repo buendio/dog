@@ -1,37 +1,17 @@
 {
   "sections": {
-    "1661881650cf9c9dca": {
-      "type": "heading-template-custom",
+    "page-banner": {
+      "type": "page-banner",
       "settings": {
-        "img": "shopify:\/\/shop_images\/logo.png",
-        "img2": "shopify:\/\/shop_images\/Union.png",
-        "video": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/aae62a01963043e2bf3d678dafadc2a8.mp4",
-        "title": ""
-      }
-    },
-    "heading": {
-      "type": "heading-template",
-      "settings": {
-        "use_specify_image": true,
-        "parallax": false,
-        "color": "#000000",
-        "overlay": 54,
-        "padding": 50,
-        "paddingmb": 50,
-        "mg_b": 50,
-        "mg_bmb": 50,
-        "content_align": "t4s-text-center",
-        "bg_pos": "center center",
-        "bg_repeat": "no-repeat",
-        "bg_size": "cover",
-        "use_cus_css": false,
-        "code_cus_css": ".SectionID {\nbackground-color:red\n}"
+        "img": "{{ page.metafields.custom.page_image.value }}",
+        "iscontent": false,
+        "title": "{{ page.metafields.custom.page_title  }}"
       }
     },
     "main": {
       "type": "main-page",
       "settings": {
-        "layout": "t4s-container-wrap",
+        "layout": "t4s-se-container",
         "cl_bg": "",
         "cl_bg_gradient": "",
         "mg": "60px,,60px,",
@@ -39,38 +19,10 @@
         "mg_mb": ",,30px,",
         "pd_mb": ""
       }
-    },
-    "sidebar-page": {
-      "type": "sidebar-page",
-      "disabled": true,
-      "blocks": {
-        "f69681ed-b75e-42de-be58-fdf73b3b7e08": {
-          "type": "blog_cate",
-          "settings": {
-            "title": "Blog categories",
-            "cat_link_list": "",
-            "count": true
-          }
-        }
-      },
-      "block_order": [
-        "f69681ed-b75e-42de-be58-fdf73b3b7e08"
-      ],
-      "settings": {
-        "enable_drawer": false,
-        "space": 50,
-        "size": "medium",
-        "br_style": "none",
-        "brcolor": "#222222",
-        "sidebar_bdr": 5,
-        "sidebar_pd": 10
-      }
     }
   },
   "order": [
-    "1661881650cf9c9dca",
-    "heading",
-    "main",
-    "sidebar-page"
+    "page-banner",
+    "main"
   ]
 }

@@ -1,73 +1,74 @@
-
 {% comment %}
-    {% render 'card-product', show_vendor: section.settings.show_vendor %}
+  {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
-  {%- if card_product and card_product != empty -%}
-      <div class="card"  data-productid="{{card_product.id}}">
-        <div class="sticker">
-          <svg width="92" height="96" viewBox="0 0 92 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g filter="url(#filter0_d_558_160)">
-            <path d="M81.5 44L48 11H4L81.5 87.5V44Z" fill="#FE0606"/>
-            </g>
-            <path d="M26.4926 21.2471L37.3682 15.983L39.4353 18.0792L34.0196 28.8801L31.9974 26.8295L33.212 24.6431L30.7067 22.1025L28.5147 23.2978L26.4926 21.2471ZM32.7623 20.9968L34.3463 22.6032L35.4805 20.5859L36.556 18.8737L36.5335 18.8509C35.8213 19.3136 35.2456 19.664 34.8064 19.9023L32.7623 20.9968ZM38.3166 25.0571C39.5166 23.8737 40.9086 23.2876 42.4925 23.2986C44.0838 23.3173 45.4937 23.9494 46.7219 25.195C47.2837 25.7646 47.7317 26.4164 48.0659 27.1504C48.4078 27.8769 48.5799 28.6211 48.5821 29.3829L46.1683 29.943C46.1417 29.4299 46.0209 28.9124 45.8058 28.3905C45.6058 27.8686 45.3335 27.433 44.989 27.0837C44.2401 26.3242 43.4467 25.9754 42.6091 26.0374C41.779 26.092 41.0412 26.4376 40.3956 27.0742C39.7348 27.7258 39.3561 28.4887 39.2595 29.363C39.1704 30.2448 39.4891 31.0541 40.2155 31.7908C40.9795 32.5655 42.0252 32.9575 43.3526 32.9668L42.9055 35.4301C41.1253 35.4478 39.5911 34.8035 38.3029 33.4972C37.0296 32.206 36.4023 30.7799 36.4207 29.2187C36.4543 27.6576 37.0862 26.2704 38.3166 25.0571ZM44.4035 39.4103L50.8403 33.0629L48.4024 30.5907L50.1113 28.9056L56.953 35.8436L55.2441 37.5288L52.8063 35.0566L46.3695 41.404L44.4035 39.4103ZM49.7827 44.8652L57.9283 36.8326L59.8943 38.8263L51.7487 46.8589L49.7827 44.8652ZM57.122 44.0588C58.3068 42.8905 59.6873 42.3156 61.2636 42.3341C62.8475 42.3452 64.2536 42.9735 65.4819 44.2191C66.7102 45.4647 67.3188 46.8794 67.3077 48.4633C67.3042 50.0397 66.7101 51.4121 65.5252 52.5805C64.31 53.7788 62.9029 54.3799 61.3038 54.3838C59.7048 54.3877 58.2911 53.7669 57.0628 52.5213C55.8345 51.2757 55.2335 49.8535 55.2598 48.2546C55.286 46.6558 55.9068 45.2572 57.122 44.0588ZM59.1554 46.1209C58.4566 46.8099 58.0778 47.588 58.019 48.4549C57.9676 49.3295 58.2565 50.0858 58.8856 50.7238C59.5147 51.3618 60.2631 51.6574 61.1309 51.6107C62.0061 51.5715 62.7931 51.2075 63.4918 50.5184C64.1602 49.8593 64.5087 49.1037 64.5372 48.2516C64.5809 47.3996 64.2882 46.6546 63.6591 46.0166C63.0299 45.3786 62.2854 45.0717 61.4253 45.0959C60.5804 45.1201 59.8237 45.4618 59.1554 46.1209ZM62.6517 57.9154L70.7973 49.8829L72.7858 51.8994L71.2051 57.9073C71.1355 58.1558 71.0391 58.453 70.916 58.7991C70.8005 59.1377 70.7005 59.4161 70.616 59.6343L70.4893 59.9615L70.5117 59.9843C71.0366 59.3468 71.47 58.8596 71.8118 58.5225L75.6169 54.7703L77.5829 56.764L69.4372 64.7965L67.46 62.7914L69.018 56.7833C69.0877 56.5349 69.1802 56.2413 69.2957 55.9027C69.4188 55.5566 69.5226 55.2745 69.6071 55.0564L69.7339 54.7291L69.7114 54.7064C69.1865 55.3438 68.7532 55.8311 68.4114 56.1681L64.6177 59.9091L62.6517 57.9154Z" fill="white"/>
-            <defs>
-            <filter id="filter0_d_558_160" x="0" y="11" width="85.5" height="84.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-            <feOffset dy="4"/>
-            <feGaussianBlur stdDeviation="2"/>
-            <feComposite in2="hardAlpha" operator="out"/>
-            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_558_160"/>
-            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_558_160" result="shape"/>
-            </filter>
-            </defs>
-          </svg>
-        </div>
-        <a href="{{ card_product.url }}" class="card__title">{{ card_product.title }}</a>
-        <div class="card__img">
-          <a href="{{ card_product.url }}" class="card__medialink" style="background-image:url({{ card_product.media[0].preview_image | product_img_url: 'master' }});"></a>
-        </div>
+{%- if card_product and card_product != empty -%}
+  <div class="card dd" data-productid="{{card_product.id}}">
+    <div class="sticker">
+      <svg width="92" height="96" viewBox="0 0 92 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_d_558_160)">
+        <path d="M81.5 44L48 11H4L81.5 87.5V44Z" fill="#FE0606"/>
+        </g>
+        <path d="M26.4926 21.2471L37.3682 15.983L39.4353 18.0792L34.0196 28.8801L31.9974 26.8295L33.212 24.6431L30.7067 22.1025L28.5147 23.2978L26.4926 21.2471ZM32.7623 20.9968L34.3463 22.6032L35.4805 20.5859L36.556 18.8737L36.5335 18.8509C35.8213 19.3136 35.2456 19.664 34.8064 19.9023L32.7623 20.9968ZM38.3166 25.0571C39.5166 23.8737 40.9086 23.2876 42.4925 23.2986C44.0838 23.3173 45.4937 23.9494 46.7219 25.195C47.2837 25.7646 47.7317 26.4164 48.0659 27.1504C48.4078 27.8769 48.5799 28.6211 48.5821 29.3829L46.1683 29.943C46.1417 29.4299 46.0209 28.9124 45.8058 28.3905C45.6058 27.8686 45.3335 27.433 44.989 27.0837C44.2401 26.3242 43.4467 25.9754 42.6091 26.0374C41.779 26.092 41.0412 26.4376 40.3956 27.0742C39.7348 27.7258 39.3561 28.4887 39.2595 29.363C39.1704 30.2448 39.4891 31.0541 40.2155 31.7908C40.9795 32.5655 42.0252 32.9575 43.3526 32.9668L42.9055 35.4301C41.1253 35.4478 39.5911 34.8035 38.3029 33.4972C37.0296 32.206 36.4023 30.7799 36.4207 29.2187C36.4543 27.6576 37.0862 26.2704 38.3166 25.0571ZM44.4035 39.4103L50.8403 33.0629L48.4024 30.5907L50.1113 28.9056L56.953 35.8436L55.2441 37.5288L52.8063 35.0566L46.3695 41.404L44.4035 39.4103ZM49.7827 44.8652L57.9283 36.8326L59.8943 38.8263L51.7487 46.8589L49.7827 44.8652ZM57.122 44.0588C58.3068 42.8905 59.6873 42.3156 61.2636 42.3341C62.8475 42.3452 64.2536 42.9735 65.4819 44.2191C66.7102 45.4647 67.3188 46.8794 67.3077 48.4633C67.3042 50.0397 66.7101 51.4121 65.5252 52.5805C64.31 53.7788 62.9029 54.3799 61.3038 54.3838C59.7048 54.3877 58.2911 53.7669 57.0628 52.5213C55.8345 51.2757 55.2335 49.8535 55.2598 48.2546C55.286 46.6558 55.9068 45.2572 57.122 44.0588ZM59.1554 46.1209C58.4566 46.8099 58.0778 47.588 58.019 48.4549C57.9676 49.3295 58.2565 50.0858 58.8856 50.7238C59.5147 51.3618 60.2631 51.6574 61.1309 51.6107C62.0061 51.5715 62.7931 51.2075 63.4918 50.5184C64.1602 49.8593 64.5087 49.1037 64.5372 48.2516C64.5809 47.3996 64.2882 46.6546 63.6591 46.0166C63.0299 45.3786 62.2854 45.0717 61.4253 45.0959C60.5804 45.1201 59.8237 45.4618 59.1554 46.1209ZM62.6517 57.9154L70.7973 49.8829L72.7858 51.8994L71.2051 57.9073C71.1355 58.1558 71.0391 58.453 70.916 58.7991C70.8005 59.1377 70.7005 59.4161 70.616 59.6343L70.4893 59.9615L70.5117 59.9843C71.0366 59.3468 71.47 58.8596 71.8118 58.5225L75.6169 54.7703L77.5829 56.764L69.4372 64.7965L67.46 62.7914L69.018 56.7833C69.0877 56.5349 69.1802 56.2413 69.2957 55.9027C69.4188 55.5566 69.5226 55.2745 69.6071 55.0564L69.7339 54.7291L69.7114 54.7064C69.1865 55.3438 68.7532 55.8311 68.4114 56.1681L64.6177 59.9091L62.6517 57.9154Z" fill="white"/>
+        <defs>
+        <filter id="filter0_d_558_160" x="0" y="11" width="85.5" height="84.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+        <feOffset dy="4"/>
+        <feGaussianBlur stdDeviation="2"/>
+        <feComposite in2="hardAlpha" operator="out"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_558_160"/>
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_558_160" result="shape"/>
+        </filter>
+        </defs>
+      </svg>
+    </div>
+    <a href="{{ card_product.url }}" class="card__title">{{ card_product.title }}</a>
+    <div class="card__img">
+      <a href="{{ card_product.url }}" class="card__medialink" style="background-image:url({{ card_product.media[0].preview_image | product_img_url: 'master' }});"></a>
+    </div>
 
-        {% form 'product', card_product, id: card_product.id, class: 'form form--product-card', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
-        {% render 'card-price' product: card_product %}
-        <div class="card__options">
+    {% form 'product', card_product, id: card_product.id, class: 'form form--product-card', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+      {% render 'card-price', product: card_product %}
+      <div class="card__options">
         {% for variant in card_product.variants %}
-                        {% assign batches = variant.price | money %}
+          {% assign batches = variant.price | money %}
 
-                        {% if variant.available %}
-                          <div {% if variant == product.selected_or_first_available_variant %}
-                            selected="selected" {% endif %}
-                            class="card__option"
-                            data-sku="{{ variant.sku }}"
-                            data-price="{{ variant.price | money }}"
-                            data-title="{{ variant.title }}"
-                            value="{{ variant.id }}">
-                            {{ variant.title }}
-                          </div>
-                        {% else %}
-                          <div disabled="disabled">
-                            {{ variant.title }} - {{ 'products.product.sold_out' | t }}
-                          </div>
-                        {% endif %}
-          {% endfor %}
-        </div>
-          <input type="hidden" name="id" id="curentvariant_{{ card_product.id }}" value="{{ card_product.selected_or_first_available_variant.id }}">
-            <div class="product-form__buttons">
-              <button
-                type="submit"
-                name="add"
-                class="product-form__submit product-form__submit--collection btn"
-              {% if card_product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
-
-                    {%- if card_product.selected_or_first_available_variant.available -%}
-                      {% render 'icon-cart2' %}
-                    {%- else -%}
-                      {{ 'products.product.sold_out' | t }}
-                    {%- endif -%}
-
-              </button>
+          {% if variant.available %}
+            <div
+              {% if variant == product.selected_or_first_available_variant %}
+                selected="selected"
+              {% endif %}
+              class="card__option"
+              data-sku="{{ variant.sku }}"
+              data-price="{{ variant.price | money }}"
+              data-title="{{ variant.title }}"
+              value="{{ variant.id }}"
+            >
+              {{ variant.title }}
             </div>
-          {% endform %}
+          {% else %}
+            <div disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</div>
+          {% endif %}
+        {% endfor %}
       </div>
-  {%- endif -%}
+      <input type="hidden" name="id" id="curentvariant_{{ card_product.id }}" value="{{ card_product.selected_or_first_available_variant.id }}">
+      <div class="product-form__buttons">
+        <button
+          type="submit"
+          name="add"
+          class="product-form__submit product-form__submit--collection btn {% if card_product.selected_or_first_available_variant.available == false%}sld{% endif %}"
+          {% if card_product.selected_or_first_available_variant.available == false %}
+            disabled
+          {% endif %}
+        >
+          {%- if card_product.selected_or_first_available_variant.available -%}
+            {% render 'icon-cart2' %}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </button>
+      </div>
+    {% endform %}
+  </div>
+{%- endif -%}
