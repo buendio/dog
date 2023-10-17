@@ -192,7 +192,7 @@ backdrop-filter: blur(5px);
   z-index: 11;
   width: 500px;
   height: 100vh;
-
+  overflow: auto;
   background: #fff;
   transition: all 400ms;
   &.active {
@@ -305,11 +305,11 @@ backdrop-filter: blur(5px);
   }
 }
 .menu-list__second {
-  // display: none;
+  display: none;
   padding-left: 50px;
   padding-top: 20px;
-  position: fixed;
-  top: 54px;
+  position: absolute;
+  top: -5px;
   left: -100%;
   width: 100%;
   height: 100%;
@@ -318,6 +318,7 @@ backdrop-filter: blur(5px);
 
   &.active {
     left: 0;
+    display: block;
   }
 
   li {
@@ -392,7 +393,7 @@ backdrop-filter: blur(5px);
   }
 }
 .menuCollection {
-  position: fixed;
+  position: absolute;
   top: 55px;
   right: -100%;
   width: 100%;

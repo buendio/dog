@@ -21,7 +21,7 @@
     .t4s-toolbar-icon svg{width: 20px;height: 20px;}
     .t4s-toolbar{
         background-color: #fff;
-        z-index: 190;
+        z-index: 2;
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
