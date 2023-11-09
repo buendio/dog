@@ -3,6 +3,7 @@
 {{ 'about-us.css' | asset_url | stylesheet_tag }}
 {{ 'video-load.css' | asset_url | stylesheet_tag }}
 {%- liquid
+    
     assign sid = section.id
     assign se_stts = section.settings
     assign stt_layout = se_stts.layout
